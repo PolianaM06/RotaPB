@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cultura · RotaPB</title>
+  <meta name="description" content="Arte e música da Paraíba: Pedro Américo, João Câmara, José Rufino, Jackson do Pandeiro, Sivuca, Elba e Zé Ramalho, Chico César, Seu Pereira e Coletivo 401 e o Sabadinho Bom.">
+  <!-- Fontes: Plus Jakarta Sans (títulos e texto) + DM Serif Display itálico (palavras em destaque) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@1&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <!-- ETAPA 12: Bootstrap (cópia local na pasta assets) -->
+  <link rel="stylesheet" href="../assets/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="../assets/bootstrap-icons/bootstrap-icons.min.css">
+  <!-- ETAPA 7: nosso CSS vem DEPOIS do Bootstrap para poder sobrescrever -->
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <!-- ETAPA 13 (acessibilidade): link para pular direto ao conteúdo -->
+  <a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
+
+  <!-- ===================== BARRA DE ACESSIBILIDADE (ETAPA 13 + ETAPA 11) ===================== -->
+  <div class="barra-acess">
+    <div class="container d-flex flex-wrap align-items-center justify-content-between gap-2">
+      <div class="d-flex flex-wrap align-items-center gap-1" role="group" aria-label="Acessibilidade">
+        <span class="me-1 rotulo">Acessibilidade:</span>
+        <button type="button" class="btn-acess" id="fonteMenor" aria-label="Diminuir texto">A-</button>
+        <button type="button" class="btn-acess" id="fonteNormal" aria-label="Tamanho normal do texto">A</button>
+        <button type="button" class="btn-acess" id="fonteMaior" aria-label="Aumentar texto">A+</button>
+        <button type="button" class="btn-acess" id="altoContraste" aria-pressed="false" aria-label="Alto contraste"><i class="bi bi-circle-half" aria-hidden="true"></i><span class="rotulo"> Alto contraste</span></button>
+        <button type="button" class="btn-acess" id="botaoTema" aria-pressed="false" aria-label="Modo noturno"><i class="bi bi-moon-stars" aria-hidden="true"></i><span class="rotulo"> Modo noturno</span></button>
+      </div>
+      <a class="link-whats-topo" href="https://wa.me/5583999999999?text=Ol%C3%A1!%20Quero%20conhecer%20a%20Para%C3%ADba" target="_blank" rel="noopener"><i class="bi bi-whatsapp" aria-hidden="true"></i> Fale no WhatsApp</a>
+    </div>
+  </div>
+
+  <!-- ===================== CABEÇALHO (ETAPA 6: header + nav | ETAPA 12: navbar) ===================== -->
+  <header class="topo">
+    <div class="faixa-bandeira" aria-hidden="true"></div>
+    <nav class="navbar navbar-expand-lg" aria-label="Menu principal">
+      <div class="container">
+        <a class="navbar-brand marca" href="../index.html">
+          <img class="logo-mapa logo-claro" src="../images/logo-rotapb-mapa.svg" alt="" width="96" height="56">
+          <img class="logo-mapa logo-escuro" src="../images/logo-rotapb-mapa-escuro.svg" alt="" width="96" height="56">
+          <span class="marca-texto">Rota<em>PB</em></span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu"
+                aria-controls="menu" aria-expanded="false" aria-label="Abrir menu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="menu">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item"><a class="nav-link" href="../index.html">Início</a></li>
+            <li class="nav-item"><a class="nav-link" href="conhece.html">Você conhece?</a></li>
+            <li class="nav-item"><a class="nav-link" href="culinaria.html">Culinária</a></li>
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="cultura.html">Cultura</a></li>
+            <li class="nav-item"><a class="nav-link" href="roteiros.html">Roteiros</a></li>
+            <li class="nav-item"><a class="nav-link" href="desafio.html">Desafio</a></li>
+            <li class="nav-item"><a class="nav-link" href="contato.html">Contato</a></li>
+          </ul>
+          <a class="btn btn-pb btn-sm" href="contato.html">Monte sua viagem</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ======================================================================
+       PÁGINA DE CULTURA (arte, cordel e música) · TODO: decidir quem fica com ela
+       JavaScript desta página: trocarMusica()
+       ====================================================================== -->
+  <main id="conteudo">
+    <section class="secao pb-4" aria-labelledby="tituloPagina">
+      <div class="container">
+        <div class="row align-items-center g-4">
+          <div class="col-12 col-lg-9">
+            <p class="sobretitulo">Cultura</p>
+            <h1 id="tituloPagina">Arte e música <em>de dentro pra fora</em></h1>
+            <p class="lead">A Paraíba revelou grandes nomes das artes plásticas, da poesia popular e da música, com projeção nacional e internacional. TODO: completar a abertura.</p>
+            <nav class="atalhos" aria-label="Nesta página">
+              <a href="#player">Toca aí</a><a href="#cordel">Cordel</a><a href="#artes">Artes plásticas</a><a href="#musica">Grandes nomes da música</a><a href="#cena">A cena hoje</a>
+            </nav>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===================== PLAYER DE MÚSICA (ETAPA 10 + ETAPA 11) ===================== -->
+    <section class="secao pt-0" id="player" aria-labelledby="tituloPlayer">
+      <div class="container">
+        <div class="player">
+          <div class="player-lista">
+            <p class="sobretitulo claro">Toca aí</p>
+            <h2 id="tituloPlayer">Rádio <em>paraibana</em></h2>
+            <p>Escolha um artista e dê o play. O som vem do Spotify oficial de cada um.</p>
+            <!-- ETAPA 11: cada botão troca o artista do player (função trocarMusica no script.js).
+                 data-spotify = "artist/" + o código que aparece no link do artista no Spotify -->
+            <div class="player-botoes" role="group" aria-label="Escolher artista">
+              <button type="button" class="faixa ativa" data-spotify="artist/5dk0R5am4zMYmG6uyZwfkW" aria-pressed="true"><i class="bi bi-music-note-beamed" aria-hidden="true"></i> Seu Pereira e Coletivo 401</button>
+              <button type="button" class="faixa" data-spotify="TODO" aria-pressed="false"><i class="bi bi-music-note-beamed" aria-hidden="true"></i> Jackson do Pandeiro</button>
+              <button type="button" class="faixa" data-spotify="TODO" aria-pressed="false"><i class="bi bi-music-note-beamed" aria-hidden="true"></i> Elba Ramalho</button>
+              <button type="button" class="faixa" data-spotify="TODO" aria-pressed="false"><i class="bi bi-music-note-beamed" aria-hidden="true"></i> Zé Ramalho</button>
+              <button type="button" class="faixa" data-spotify="TODO" aria-pressed="false"><i class="bi bi-music-note-beamed" aria-hidden="true"></i> Chico César</button>
+            </div>
+          </div>
+          <div class="player-tela">
+            <iframe id="playerSpotify" title="Player de música: Seu Pereira e Coletivo 401 no Spotify"
+                    src="https://open.spotify.com/embed/artist/5dk0R5am4zMYmG6uyZwfkW"
+                    width="100%" height="352" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== A HERANÇA DO CORDEL ===================== -->
+    <section class="secao secao-clara" id="cordel" aria-labelledby="tituloCordel">
+      <div class="container">
+        <div class="row g-4 g-lg-5 align-items-center">
+          <div class="col-12 col-lg-5">
+            <figure class="m-0">
+              <img class="foto foto-alta" src="../images/fotos/cordel-varal.webp" alt="Folhetos de cordel com capas em xilogravura pendurados em um barbante com prendedores" loading="lazy">
+              <figcaption>Folhetos pendurados no cordão, como nas feiras. Capas em xilogravura. TODO: crédito da foto.</figcaption>
+            </figure>
+          </div>
+          <div class="col-12 col-lg-7">
+            <p class="sobretitulo">Poesia que se pendura no barbante</p>
+            <h2 id="tituloCordel" class="titulo-secao">A herança <em>do cordel</em></h2>
+            <p>Os folhetos ficavam expostos em barbantes, os cordéis, nas feiras do Nordeste, e os poetas eram chamados de "poetas de bancada". Em 2018, o Iphan reconheceu a literatura de cordel como <strong>Patrimônio Cultural Imaterial do Brasil</strong>, e a Paraíba também a declarou patrimônio do estado por lei.</p>
+            <div class="row g-3 mt-1">
+              <div class="col-12 col-md-6">
+                <article class="card-prato">
+                  <span class="tag-cat cat-pratos">1865–1918</span>
+                  <h3>Leandro Gomes de Barros</h3>
+                  <p>Paraibano, considerado o criador do cordel. Foi o primeiro autor e editor do país a viver só de folhetos, com tipografia própria no Recife. Drummond o chamou de "príncipe dos poetas".</p>
+                </article>
+              </div>
+              <div class="col-12 col-md-6">
+                <article class="card-prato">
+                  <span class="tag-cat cat-pratos">Guarabira</span>
+                  <h3>José Camelo de Melo Resende</h3>
+                  <p>Autor do <em>Romance do Pavão Misterioso</em>, publicado pela primeira vez em 1923 e um dos folhetos mais famosos do Brasil.</p>
+                </article>
+              </div>
+            </div>
+            <p class="mt-3 mb-0">TODO: falar das capas em xilogravura, da cantoria e dos cordelistas de hoje.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="secao" id="artes" aria-labelledby="tituloArtes">
+      <div class="container">
+        <h2 id="tituloArtes" class="titulo-secao">Artes <em>plásticas</em></h2>
+        <div class="row g-4">
+          <div class="col-12 col-md-4">
+            <article class="card-pessoa">
+              <span class="monograma" aria-hidden="true">PA</span>
+              <h3>Pedro Américo</h3>
+              <p class="dados">1843–1905 · Areia</p>
+              <p>O maior pintor acadêmico brasileiro do século XIX. Autor de obras históricas monumentais como Independência ou Morte (O Grito do Ipiranga) e A Batalha do Avaí. Em Areia, a casa onde nasceu virou museu.</p>
+              <a href="https://enciclopedia.itaucultural.org.br/pessoas/6107-pedro-americo" target="_blank" rel="noopener">Saiba mais <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i></a>
+            </article>
+          </div>
+          <div class="col-12 col-md-4">
+            <article class="card-pessoa">
+              <span class="monograma" aria-hidden="true">JC</span>
+              <h3>João Câmara</h3>
+              <p class="dados">nascido em 1944 · João Pessoa</p>
+              <p>Pintor, gravurista e desenhista, um dos nomes mais influentes da arte contemporânea brasileira, com séries marcadas pela figura humana e pela crítica social.</p>
+              <a href="https://enciclopedia.itaucultural.org.br/pessoas/598-joao-camara" target="_blank" rel="noopener">Saiba mais <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i></a>
+            </article>
+          </div>
+          <div class="col-12 col-md-4">
+            <article class="card-pessoa">
+              <span class="monograma" aria-hidden="true">JR</span>
+              <h3>José Rufino</h3>
+              <p class="dados">nascido em 1965 · João Pessoa</p>
+              <p>Artista visual e professor, conhecido por instalações que investigam memória, arquivos e história.</p>
+              <a href="https://www.premiopipa.com/pag/artistas/jose-rufino/" target="_blank" rel="noopener">Saiba mais <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i></a>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="secao secao-clara" id="musica" aria-labelledby="tituloMus">
+      <div class="container">
+        <h2 id="tituloMus" class="titulo-secao">Grandes nomes <em>da música</em></h2>
+        <div class="row g-3">
+          <div class="col-12 col-sm-6 col-lg-3">
+            <article class="card-pessoa compacto">
+              <span class="monograma" aria-hidden="true">JP</span>
+              <h3>Jackson do Pandeiro</h3>
+              <p class="dados">1919–1982 · Alagoa Grande</p>
+              <p>O "Rei do Ritmo": samba, forró e coco. Sucessos como Sebastiana.</p>
+            </article>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3">
+            <article class="card-pessoa compacto">
+              <span class="monograma" aria-hidden="true">SV</span>
+              <h3>Sivuca</h3>
+              <p class="dados">1930–2006</p>
+              <p>Maestro, arranjador e mestre da sanfona, levou a música nordestina e o choro para palcos do mundo.</p>
+            </article>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3">
+            <article class="card-pessoa compacto">
+              <span class="monograma" aria-hidden="true">ER</span>
+              <h3>Elba Ramalho</h3>
+              <p class="dados">Conceição</p>
+              <p>Uma das maiores intérpretes da música nordestina, do forró à MPB.</p>
+            </article>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3">
+            <article class="card-pessoa compacto">
+              <span class="monograma" aria-hidden="true">ZR</span>
+              <h3>Zé Ramalho</h3>
+              <p class="dados">Brejo do Cruz</p>
+              <p>Uniu cordel, rock e poesia mística nordestina (Avôhai, Chão de Giz).</p>
+            </article>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3">
+            <article class="card-pessoa compacto">
+              <span class="monograma" aria-hidden="true">CC</span>
+              <h3>Chico César</h3>
+              <p class="dados">Catolé do Rocha</p>
+              <p>Cantor, compositor e escritor da MPB contemporânea (Mama África).</p>
+            </article>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3">
+            <article class="card-pessoa compacto">
+              <span class="monograma" aria-hidden="true">HV</span>
+              <h3>Herbert Vianna</h3>
+              <p class="dados">João Pessoa</p>
+              <p>Líder, guitarrista e principal compositor dos Paralamas do Sucesso.</p>
+            </article>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3">
+            <article class="card-pessoa compacto">
+              <span class="monograma" aria-hidden="true">AB</span>
+              <h3>Antônio Barros e Cecéu</h3>
+              <p class="dados">dupla de compositores</p>
+              <p>Centenas de sucessos do forró tradicional, gravados por grandes vozes do país.</p>
+            </article>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3">
+            <article class="card-pessoa compacto">
+              <span class="monograma" aria-hidden="true">FJ</span>
+              <h3>Flávio José</h3>
+              <p class="dados">Monteiro</p>
+              <p>Voz do forró pé de serra. TODO: confirmar e completar.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="secao" id="cena" aria-labelledby="tituloCena">
+      <div class="container">
+        <h2 id="tituloCena" class="titulo-secao">A cena <em>hoje</em></h2>
+        <div class="row g-4">
+          <div class="col-12 col-lg-4">
+            <article class="card-prato">
+              <span class="tag-cat cat-drink">Baião nervoso</span>
+              <h3>Seu Pereira e Coletivo 401</h3>
+              <p>O nome vem da linha de ônibus 401, que levava os músicos por João Pessoa. O som mistura baião, funk, rock e samba, com crônicas sobre a vida na cidade. Mais de 15 anos de estrada e presença confirmada no Lollapalooza Brasil 2027.</p>
+              <a class="link-seta mt-2 d-inline-block" href="https://open.spotify.com/intl-pt/artist/5dk0R5am4zMYmG6uyZwfkW" target="_blank" rel="noopener"><i class="bi bi-spotify" aria-hidden="true"></i> Ouvir no Spotify</a>
+            </article>
+          </div>
+          <div class="col-12 col-lg-4">
+            <article class="card-prato">
+              <span class="tag-cat cat-pratos">Todo sábado</span>
+              <h3>Sabadinho Bom</h3>
+              <p>Música na rua, no Centro Histórico: aos sábados, a partir das 12h30, na Praça Rio Branco. Chorinho, samba, xote e forró tradicional, promovido pela Fundação Cultural de João Pessoa (Funjope).</p>
+              <p class="nota mt-2 mb-0">TODO: confirmar se continua gratuito e o título de patrimônio imaterial.</p>
+            </article>
+          </div>
+          <div class="col-12 col-lg-4">
+            <article class="card-prato">
+              <span class="tag-cat cat-mar">Cena independente</span>
+              <h3>Palcos da nova música</h3>
+              <p>TODO (pesquisar e confirmar): espaços como a Usina Cultural Energisa e a Vila do Porto, no Centro Histórico, e bandas da nova geração.</p>
+            </article>
+          </div>
+        </div>
+        <!-- ETAPA 10: vídeo incorporado -->
+        <div class="ratio ratio-16x9 video mt-4">
+          <!-- TODO: trocar ID_DO_VIDEO pelo código de um clipe do CANAL OFICIAL do artista -->
+          <iframe src="https://www.youtube.com/embed/ID_DO_VIDEO" title="TODO: nome do clipe" loading="lazy" allowfullscreen></iframe>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== RODAPÉ (ETAPA 6: footer) ===================== -->
+  <footer class="rodape">
+    <div class="faixa-bandeira" aria-hidden="true"></div>
+    <div class="container py-5">
+      <div class="row g-4">
+        <section class="col-12 col-lg-4">
+          <p class="marca-rodape">Rota<em>PB</em></p>
+          <p>TODO: uma frase sobre a agência (fictícia). Ex.: mostramos a Paraíba de dentro pra fora, do Sertão ao mar.</p>
+          <div class="d-flex gap-2">
+            <a class="rede" href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+            <a class="rede" href="https://wa.me/5583999999999?text=Ol%C3%A1!%20Quero%20conhecer%20a%20Para%C3%ADba" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+            <a class="rede" href="https://youtube.com" target="_blank" rel="noopener" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+          </div>
+        </section>
+        <section class="col-12 col-sm-6 col-lg-2">
+          <h2 class="h6">Navegue</h2>
+          <ul class="list-unstyled">
+            <li><a href="conhece.html">Você conhece?</a></li>
+            <li><a href="culinaria.html">Culinária</a></li>
+            <li><a href="cultura.html">Arte e música</a></li>
+            <li><a href="roteiros.html">Roteiros</a></li>
+            <li><a href="desafio.html">Desafio (jogo)</a></li>
+            <li><a href="creditos.html">Créditos e fontes</a></li>
+          </ul>
+        </section>
+        <section class="col-12 col-sm-6 col-lg-3">
+          <h2 class="h6">Atendimento</h2>
+          <ul class="list-unstyled">
+            <li><i class="bi bi-whatsapp" aria-hidden="true"></i> (83) 99999-9999 <span class="text-nowrap">(fictício)</span></li>
+            <li><i class="bi bi-envelope" aria-hidden="true"></i> contato@paraibaadentro.com.br</li>
+            <li><a href="contato.html">Formulário de contato</a></li>
+          </ul>
+        </section>
+        <section class="col-12 col-lg-3">
+          <h2 class="h6">Novidades por e-mail</h2>
+          <form class="assinatura" novalidate>
+            <label for="emailNews-i" class="visually-hidden">Seu e-mail</label>
+            <input id="emailNews-i" type="email" class="form-control" placeholder="Seu e-mail" required>
+            <button type="submit" class="btn btn-pb">Assinar</button>
+          </form>
+        </section>
+      </div>
+      <p class="small mt-4 mb-0">© <span class="js-ano">2026</span> RotaPB · Projeto Integrador · UNIPÊ · Agência fictícia: valores e contatos são exemplos.</p>
+    </div>
+  </footer>
+
+  <!-- ===================== PASSAPORTE (ETAPA 11: localStorage) ===================== -->
+  <button type="button" class="flutuante passaporte-botao" data-bs-toggle="modal" data-bs-target="#modalPassaporte" aria-label="Abrir meu passaporte">
+    <i class="bi bi-journal-bookmark" aria-hidden="true"></i><span class="js-passaporte-contagem">0/8</span>
+  </button>
+  <div class="modal fade" id="modalPassaporte" tabindex="-1" aria-labelledby="tituloPassaporte" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content passaporte">
+        <div class="modal-header">
+          <h2 class="modal-title h4" id="tituloPassaporte">Meu passaporte paraibano</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+        </div>
+        <div class="modal-body">
+          <p class="mb-2">Ganhe carimbos explorando o site e vencendo as salas do <a href="desafio.html">Desafio</a>. Os carimbos ficam salvos neste navegador.</p>
+          <div class="progress passaporte-progresso" role="progressbar" aria-label="Carimbos conquistados" aria-valuemin="0" aria-valuemax="8" aria-valuenow="0">
+            <div class="progress-bar" id="barraPassaporte" style="width: 0%"></div>
+          </div>
+          <ul class="grade-carimbos" id="gradeCarimbos" aria-label="Carimbos"></ul>
+          <div id="passaporteCompleto" class="alert alert-success mt-3" hidden>
+            <strong>Passaporte completo!</strong> Você ganhou <strong>10% de desconto</strong> em qualquer roteiro. Use o cupom <code class="cupom">ROTAPB10</code> ao <a href="contato.html">montar sua viagem</a>.
+          </div>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-link text-decoration-none" id="zerarPassaporte">Zerar carimbos</button>
+          <a class="btn btn-pb" href="desafio.html">Ir para o Desafio</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Botões flutuantes: WhatsApp e voltar ao topo (ETAPA 11) -->
+  <a class="flutuante whatsapp" href="https://wa.me/5583999999999?text=Ol%C3%A1!%20Quero%20conhecer%20a%20Para%C3%ADba" target="_blank" rel="noopener" aria-label="Falar no WhatsApp"><i class="bi bi-whatsapp" aria-hidden="true"></i></a>
+  <button id="voltarTopo" class="flutuante voltar-topo" type="button" aria-label="Voltar ao topo"><i class="bi bi-arrow-up" aria-hidden="true"></i></button>
+
+  <script src="../assets/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="../js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,425 @@
+/* ==========================================================================
+   PARAÍBA ADENTRO · style.css
+   ETAPA 7: identidade visual própria (cores, tipografia, espaçamentos, hierarquia)
+   Trabalhar com: Flexbox, CSS Grid, pseudo-classes e animações simples.
+
+    1. Variáveis              7. Você conhece / oferta / números
+    2. Base e botões          8. Páginas internas (abas, cartas, filtros, rota, culinária, formulário)
+    3. Barra de acessibilidade 9. Rodapé e botões flutuantes
+    4. Cabeçalho              10. Modo noturno e alto contraste
+    5. Hero e busca           11. Responsividade (ETAPA 8)
+    6. Vantagens, destinos e categorias
+   ========================================================================== */
+
+/* ---------- 1. VARIÁVEIS ----------
+   Paleta sóbria, tirada das fotos (areia, pedra, mata, mar).
+   A bandeira (vermelho + preto) aparece só como detalhe. */
+:root {
+  /* Paleta inspirada nas referências (fundo claro, verde floresta, laranja quente).
+     A bandeira (vermelho + preto) aparece só na faixa fina do topo e no ícone. */
+  --pb-acento: #C2591F;     /* laranja-terracota: botões e destaques (branco sobre ele passa no contraste) */
+  --pb-acento-claro: #F2A65A;
+  --pb-escuro: #1F4A3A;     /* verde floresta: barra de cima, rodapé, faixas, botões escuros */
+  --pb-titulo: #1F4A3A;     /* cor dos títulos (no noturno fica clara) */
+  --pb-vermelho: #A3161B;   /* bandeira */
+  --pb-preto: #1F1B18;      /* bandeira */
+  --pb-fundo: #F8F6F1;
+  --pb-papel: #FFFFFF;
+  --pb-claro: #EDF1EA;      /* blocos verde-acinzentados claros */
+  --pb-tinta: #1E2B25;
+  --pb-suave: #5E6A63;
+  --pb-linha: #E1E5DD;
+
+  --pb-sertao: #C9974F;
+  --pb-borborema: #A06E55;
+  --pb-brejo: #4F7A55;
+  --pb-litoral: #2F7F86;
+
+  --fonte: "Plus Jakarta Sans", "Segoe UI", system-ui, sans-serif;
+  --fonte-destaque: "DM Serif Display", Georgia, serif;
+
+  --raio: 20px;
+  --sombra: 0 12px 32px rgba(31, 74, 58, .10);
+  --espaco-secao: clamp(3rem, 6vw, 5rem);
+  --escala: 100%;
+}
+
+/* ---------- 2. BASE E BOTÕES ---------- */
+html { font-size: var(--escala); }
+body { background: var(--pb-fundo); color: var(--pb-tinta); font-family: var(--fonte); line-height: 1.6; }
+h1, h2, h3 { color: var(--pb-titulo); font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; }
+h1 em, h2 em, .marca em { font-family: var(--fonte-destaque); font-style: italic; font-weight: 400; letter-spacing: 0; }
+a { color: var(--pb-acento); }
+a:hover { color: var(--pb-escuro); }
+:focus-visible { outline: 3px solid var(--pb-sertao); outline-offset: 3px; }
+
+.pular-conteudo { position: absolute; left: 1rem; top: -100px; z-index: 2000; background: var(--pb-sertao); color: var(--pb-preto); padding: .5rem 1rem; font-weight: 800; }
+.pular-conteudo:focus { top: 1rem; }
+
+.sobretitulo { font-size: .75rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: var(--pb-acento); margin-bottom: .5rem; }
+.sobretitulo.claro { color: var(--pb-acento-claro); }
+.titulo-secao { font-size: clamp(1.7rem, 3.2vw, 2.4rem); margin-bottom: 1.5rem; }
+.titulo-secao em, h1 em { color: var(--pb-acento); }
+.secao { padding-block: var(--espaco-secao); }
+.secao-clara { background: var(--pb-claro); }
+.nota { font-size: .85rem; color: var(--pb-suave); }
+
+.btn-pb { background: var(--pb-acento); color: #fff; border: 0; border-radius: 999px; padding: .75rem 1.5rem; font-weight: 700; }
+.btn-pb:hover { background: #9E4515; color: #fff; }
+.btn-escuro { background: var(--pb-escuro); color: #fff; border: 0; border-radius: 999px; padding: .75rem 1.5rem; font-weight: 700; }
+.btn-escuro:hover { background: var(--pb-preto); color: #fff; }
+.link-seta { background: none; border: 0; padding: 0; font-weight: 700; color: var(--pb-tinta); }
+.link-seta:hover { color: var(--pb-acento); }
+
+/* ---------- 3. BARRA DE ACESSIBILIDADE ---------- */
+.barra-acess { background: var(--pb-escuro); color: #E9E1D6; font-size: .8rem; padding-block: .35rem; }
+.btn-acess {
+  background: transparent; color: #E9E1D6; border: 1px solid rgba(255,255,255,.25); border-radius: 6px;
+  min-height: 32px; padding: .15rem .6rem; font-size: .8rem; font-weight: 700;
+}
+.btn-acess:hover, .btn-acess[aria-pressed="true"] { background: #fff; color: var(--pb-escuro); }
+.link-whats-topo { color: #9BE3B8; font-weight: 700; text-decoration: none; }
+
+/* ---------- 4. CABEÇALHO ---------- */
+.faixa-bandeira { height: 4px; background: linear-gradient(90deg, var(--pb-preto) 0 33.3%, var(--pb-vermelho) 33.3% 100%); }
+.topo { background: var(--pb-papel); position: sticky; top: 0; z-index: 1030; box-shadow: 0 1px 0 var(--pb-linha); }
+.marca { display: flex; align-items: center; gap: .6rem; font-weight: 800; color: var(--pb-escuro); font-size: 1.25rem; }
+.marca em { color: var(--pb-acento); }
+.navbar .nav-link { color: var(--pb-tinta); font-weight: 600; position: relative; }
+.navbar .nav-link:hover, .navbar .nav-link.active { color: var(--pb-acento); }
+/* pseudo-elemento: tracinho embaixo do link ativo */
+.navbar .nav-link.active::after { content: ""; position: absolute; left: .5rem; right: .5rem; bottom: .2rem; height: 2px; background: var(--pb-acento); border-radius: 2px; }
+
+/* ---------- 5. HERO E BUSCA ---------- */
+.hero { padding-top: 1.25rem; }
+.hero-foto { position: relative; border-radius: calc(var(--raio) + 8px); overflow: hidden; min-height: clamp(420px, 62vh, 620px); display: flex; align-items: flex-end; }
+.hero-foto > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.hero-foto::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(20, 16, 14, .72) 0%, rgba(20, 16, 14, .25) 55%, rgba(20, 16, 14, 0) 100%); }
+.hero-texto { position: relative; z-index: 1; color: #fff; padding: clamp(1.5rem, 5vw, 4rem); padding-bottom: clamp(5rem, 9vw, 6.5rem); max-width: 640px; }
+.hero-texto h1 { font-size: clamp(2.6rem, 6vw, 4.6rem); color: #fff; }
+.hero-texto h1 em { color: var(--pb-acento-claro); }
+.hero-texto p { font-size: 1.1rem; }
+
+.busca {
+  position: relative; z-index: 2; margin: -3.25rem auto 0; max-width: 980px;
+  background: var(--pb-papel); border-radius: 999px; box-shadow: var(--sombra);
+  display: flex; align-items: center; gap: .5rem; padding: .6rem .6rem .6rem 1.5rem;
+}
+.busca-campo { flex: 1; display: flex; align-items: center; gap: .7rem; padding-inline: .5rem; border-right: 1px solid var(--pb-linha); }
+.busca-campo:last-of-type { border-right: 0; }
+.busca-campo > i { font-size: 1.2rem; color: var(--pb-suave); }
+.busca-campo label { display: block; font-size: .75rem; font-weight: 800; }
+.busca-campo .form-select, .busca-campo .form-control { border: 0; padding: 0 1.5rem 0 0; background-color: transparent; color: var(--pb-suave); box-shadow: none; }
+
+/* ---------- 6. VANTAGENS, DESTINOS E CATEGORIAS ---------- */
+.vantagens { background: var(--pb-papel); border-radius: var(--raio); box-shadow: var(--sombra); padding: 1.25rem .75rem; margin-inline: 0; }
+.vantagem { display: flex; gap: .8rem; align-items: flex-start; }
+.vantagem > i { font-size: 1.6rem; color: var(--pb-litoral); }
+.vantagem strong { display: block; font-size: .95rem; }
+.vantagem span { font-size: .85rem; color: var(--pb-suave); }
+
+.card-destino { position: relative; border-radius: var(--raio); overflow: hidden; aspect-ratio: 3 / 4; box-shadow: var(--sombra); }
+.card-destino img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+.card-destino:hover img { transform: scale(1.06); }
+.card-destino::after { content: ""; position: absolute; inset: 0; background: linear-gradient(transparent 45%, rgba(15, 12, 10, .85)); }
+.selo-regiao { position: absolute; top: .9rem; left: .9rem; z-index: 1; background: var(--cor-regiao, var(--pb-preto)); color: #fff; font-size: .75rem; font-weight: 800; padding: .25rem .7rem; border-radius: 999px; }
+.card-destino-texto { position: absolute; left: 1.1rem; right: 1.1rem; bottom: 1rem; z-index: 1; color: #fff; }
+.card-destino-texto h3 { font-size: 1.35rem; margin: 0; color: #fff; }
+.card-destino-texto p { margin: 0; font-size: .9rem; opacity: .9; }
+.card-destino-texto .preco strong { color: var(--pb-acento-claro); font-size: 1.1rem; }
+
+.regiao-sertao { --cor-regiao: var(--pb-sertao); }
+.regiao-borborema { --cor-regiao: var(--pb-borborema); }
+.regiao-brejo { --cor-regiao: var(--pb-brejo); }
+.regiao-litoral { --cor-regiao: var(--pb-litoral); }
+.regiao-mapa { --cor-regiao: var(--pb-vermelho); }
+
+.categorias { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem 2rem; margin-top: 2.5rem; }
+.chip-cat { display: flex; align-items: center; gap: .6rem; color: var(--pb-tinta); text-decoration: none; font-weight: 700; font-size: .9rem; }
+.chip-icone { width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center; background: var(--pb-claro); color: var(--pb-escuro); font-size: 1.2rem; transition: background .2s, color .2s; }
+.chip-cat:hover .chip-icone { background: var(--pb-escuro); color: #fff; }
+
+/* fotos e lugares de foto */
+.foto { display: block; width: 100%; max-width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+figure .foto { border-radius: 14px; }
+figure figcaption { font-size: .8rem; color: var(--pb-suave); margin-top: .3rem; }
+.foto-placeholder { aspect-ratio: 4 / 3; max-width: 100%; display: grid; place-items: center; text-align: center; font-size: .8rem; font-weight: 800; letter-spacing: .06em; color: var(--pb-suave); background: repeating-linear-gradient(135deg, #EAE1D3 0 12px, #F4EEE4 12px 24px); border-radius: 14px; }
+.card { border: 1px solid var(--pb-linha); border-radius: var(--raio); overflow: hidden; background: var(--pb-papel); }
+
+/* ---------- 7. VOCÊ CONHECE / OFERTA / NÚMEROS ---------- */
+.bloco-claro { background: var(--pb-claro); border-radius: calc(var(--raio) + 8px); padding: clamp(1.5rem, 4vw, 3rem); }
+.carneirinho { display: block; width: 100%; max-width: 360px; height: auto; margin-bottom: 1rem; }
+.card-historia { background: var(--pb-papel); border-radius: var(--raio); overflow: hidden; box-shadow: var(--sombra); height: 100%; }
+.card-historia img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.card-historia h3 { font-size: 1rem; margin: .9rem 1rem .3rem; }
+.card-historia p { font-size: .8rem; color: var(--pb-suave); margin: 0 1rem 1rem; }
+
+.oferta { display: grid; grid-template-columns: 1.1fr 1fr; border-radius: calc(var(--raio) + 8px); overflow: hidden; background: var(--pb-escuro); color: #fff; }
+.oferta > img { width: 100%; height: 100%; min-height: 280px; object-fit: cover; }
+.oferta-texto { padding: clamp(1.5rem, 4vw, 3rem); display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: .5rem; }
+.oferta-texto h2 { font-size: clamp(1.7rem, 3vw, 2.4rem); }
+.oferta-texto h2 { color: #fff; }
+.oferta-texto h2 em { color: var(--pb-acento-claro); }
+.oferta-simples { grid-template-columns: 1fr; text-align: left; }
+
+.numeros > div { display: flex; flex-direction: column; align-items: center; }
+.numeros i { font-size: 1.6rem; color: var(--pb-litoral); }
+.numeros strong { font-size: 2.2rem; font-weight: 800; line-height: 1.1; }
+.numeros span { font-size: .8rem; font-weight: 700; color: var(--pb-suave); text-transform: uppercase; letter-spacing: .06em; }
+.video { border-radius: var(--raio); overflow: hidden; }
+
+/* ---------- 8. PÁGINAS INTERNAS ---------- */
+/* mapa do carneiro (contorno real) */
+.mapa-pb { width: 100%; height: auto; overflow: visible; }
+.mapa-pb .contorno { fill: url(#gradRegioes); stroke: var(--pb-escuro); stroke-width: 3; stroke-linejoin: round; filter: drop-shadow(0 10px 14px rgba(42, 35, 32, .2)); }
+.mapa-pb .pin circle { fill: var(--pb-acento); stroke: #fff; stroke-width: 4; }
+.mapa-pb .pin text { font-family: var(--fonte); font-weight: 700; font-size: 24px; fill: var(--pb-escuro); paint-order: stroke; stroke: #fff; stroke-width: 6px; }
+/* TODO (Pessoa 1): animação simples nos pinos */
+
+/* abas (Pessoa 2) */
+.abas { display: flex; gap: .35rem; margin-top: 1.5rem; }
+.aba { border: 0; border-radius: 999px; background: var(--pb-claro); color: var(--pb-titulo); padding: .6rem 1.2rem; font-weight: 800; min-height: 44px; }
+.aba.ativa { background: var(--pb-escuro); color: #fff; }
+.painel { margin-top: 1rem; padding: clamp(1.25rem, 3vw, 2rem); background: var(--pb-papel); border-radius: calc(var(--raio) + 8px); box-shadow: var(--sombra); }
+.mapa-vizinhos { width: 100%; height: auto; }
+.mapa-vizinhos .estado { fill: var(--pb-claro); stroke: var(--pb-escuro); stroke-width: 2.5; }
+.mapa-vizinhos .estado-pb { fill: var(--pb-escuro); }
+.mapa-vizinhos text { font-family: var(--fonte); font-weight: 800; font-size: 30px; text-anchor: middle; fill: var(--pb-escuro); }
+.mapa-vizinhos .rotulo-pb { fill: #fff; }
+.mapa-vizinhos .rotulo-mar { fill: var(--pb-litoral); font-size: 26px; }
+
+/* cartas que viram: animação 3D com rotateY */
+.carta { width: 100%; min-height: 240px; padding: 0; border: 0; background: transparent; perspective: 1000px; text-align: left; color: var(--pb-tinta); }
+.carta-frente, .carta-verso {
+  display: flex; flex-direction: column; gap: .4rem; min-height: 240px; padding: 1.25rem;
+  border-radius: var(--raio); background: var(--pb-papel); box-shadow: var(--sombra);
+  border-top: 8px solid var(--cor-regiao, var(--pb-escuro));
+  backface-visibility: hidden; transition: transform .6s ease;
+}
+.carta-frente strong { font-size: 1.25rem; color: var(--pb-titulo); }
+.carta .dica { font-size: .8rem; color: var(--pb-suave); margin-top: auto; }
+.carta-verso { position: absolute; inset: 0; transform: rotateY(180deg); justify-content: center; }
+.carta { position: relative; }
+.carta.virada .carta-frente { transform: rotateY(180deg); }
+.carta.virada .carta-verso { transform: rotateY(0); }
+.carta:focus-visible { outline-offset: 6px; }
+.pergunta { font-size: .8rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--pb-acento); }
+
+/* filtros (Pessoa 2 e 3) */
+.filtros { display: flex; flex-wrap: wrap; gap: .5rem; }
+.filtro { min-height: 44px; padding: .45rem 1.1rem; border-radius: 999px; border: 1px solid var(--pb-linha); background: var(--pb-papel); font-weight: 700; color: var(--pb-tinta); }
+.filtro:hover { border-color: var(--pb-escuro); }
+.filtro.ativo { background: var(--pb-escuro); border-color: var(--pb-escuro); color: #fff; }
+
+/* culinária (Pessoa 2) */
+.atalhos { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1rem; }
+.atalhos a { padding: .4rem 1rem; border-radius: 999px; background: var(--pb-claro); color: var(--pb-tinta); text-decoration: none; font-weight: 700; font-size: .9rem; }
+.atalhos a:hover { background: var(--pb-escuro); color: #fff; }
+.card-prato { background: var(--pb-papel); border-radius: var(--raio); padding: 1.25rem; height: 100%; box-shadow: var(--sombra); }
+.card-prato h3 { font-size: 1.15rem; margin: .6rem 0 .3rem; }
+.card-prato p { margin: 0; color: var(--pb-suave); font-size: .95rem; }
+.tag-cat { display: inline-block; font-size: .72rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; padding: .2rem .6rem; border-radius: 999px; background: var(--pb-claro); color: var(--pb-tinta); }
+.cat-pratos { background: #F1E3CC; }
+.cat-mar { background: #D9EAE8; }
+.cat-doces { background: #F2DDD6; }
+.cat-drink { background: #E6DFF0; }
+.card-restaurante .foto, .card-restaurante .foto-placeholder { border-radius: 0; }
+
+/* roteiros (Pessoa 3) */
+.card-regiao { border-top: 6px solid var(--cor-regiao, var(--pb-preto)); }
+.painel-rota { position: sticky; top: 100px; background: var(--pb-escuro); color: #fff; padding: 1.5rem; border-radius: var(--raio); }
+.painel-rota ol { border-left: 4px solid var(--pb-sertao); padding-left: 1.5rem; }
+.painel-rota .vazio { color: #b8c9c5; list-style: none; margin-left: -1.5rem; }
+
+/* formulário (Pessoa 3) — TODO: estilizar o retorno de sucesso/erro */
+.formulario { background: var(--pb-papel); border-radius: var(--raio); box-shadow: var(--sombra); padding: clamp(1.25rem, 3vw, 2rem); }
+.form-label { font-weight: 700; }
+.mapa-embed { border-radius: var(--raio); overflow: hidden; }
+
+/* ---------- 9. RODAPÉ E BOTÕES FLUTUANTES ---------- */
+.rodape { background: var(--pb-escuro); color: #E6EDE8; }
+.rodape a { color: #E6EDE8; }
+.rodape h2 { color: #fff; font-weight: 800; }
+.marca-rodape { font-size: 1.5rem; font-weight: 800; color: #fff; }
+.marca-rodape em { font-family: var(--fonte-destaque); font-weight: 400; color: var(--pb-acento-claro); }
+.rede { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; border: 1px solid rgba(255,255,255,.3); text-decoration: none; }
+.rede:hover { background: #E9E1D6; color: var(--pb-preto); }
+.assinatura { display: flex; gap: .5rem; }
+.assinatura .form-control { border-radius: 999px; }
+
+.flutuante { position: fixed; right: 1.25rem; z-index: 1040; width: 52px; height: 52px; border-radius: 50%; border: 0; display: grid; place-items: center; font-size: 1.4rem; box-shadow: var(--sombra); }
+.whatsapp { bottom: 1.25rem; background: #1F8F4E; color: #fff; text-decoration: none; }   /* verde escuro: contraste com o ícone branco */
+.whatsapp:hover { background: #167340; color: #fff; }
+.voltar-topo { bottom: 5.25rem; background: var(--pb-escuro); color: #fff; opacity: 0; visibility: hidden; transition: opacity .3s ease; }
+.voltar-topo.visivel { opacity: 1; visibility: visible; }
+
+/* ---------- 10. MODO NOTURNO E ALTO CONTRASTE ----------
+   O JS coloca data-tema="escuro" ou data-contraste="alto" no <html>.
+   Aqui só trocamos as variáveis. TODO: ajustar até ficar bom. */
+:root[data-tema="escuro"] {
+  --pb-fundo: #151311; --pb-papel: #1F1C19; --pb-claro: #26221E;
+  --pb-tinta: #F1EAE0; --pb-suave: #C4B8AC; --pb-linha: #3A332D;
+  --pb-titulo: #F6F1E8; --pb-acento: #E8853F; --pb-acento-claro: #F2A65A;
+  --sombra: 0 12px 32px rgba(0, 0, 0, .35);
+}
+:root[data-tema="escuro"] .tag-cat { color: #1E2B25; }            /* etiquetas têm fundo claro: texto fixo escuro */
+:root[data-tema="escuro"] .vantagens, :root[data-tema="escuro"] .busca { background: var(--pb-papel); }
+:root[data-tema="escuro"] .busca-campo .form-select, :root[data-tema="escuro"] .busca-campo .form-control { color: var(--pb-tinta); }
+:root[data-tema="escuro"] .form-control, :root[data-tema="escuro"] .form-select { background-color: #26221E; color: var(--pb-tinta); border-color: var(--pb-linha); }
+:root[data-tema="escuro"] .modal-content, :root[data-tema="escuro"] .card { background: var(--pb-papel); color: var(--pb-tinta); }
+:root[data-tema="escuro"] .btn-close { filter: invert(1); }
+:root[data-tema="escuro"] .certificado { background: #fff; color: #1E2B25; }
+:root[data-tema="escuro"] .mapa-pb .pin text { fill: var(--pb-tinta); stroke: var(--pb-fundo); }
+:root[data-tema="escuro"] .mapa-pb .contorno { stroke: var(--pb-fundo); }
+:root[data-tema="escuro"] .foto-placeholder { background: repeating-linear-gradient(135deg, #2A2520 0 12px, #332D27 12px 24px); }
+:root[data-tema="escuro"] .mapa-vizinhos text { fill: var(--pb-tinta); }
+:root[data-tema="escuro"] .mapa-vizinhos .estado { stroke: var(--pb-fundo); }
+:root[data-tema="escuro"] .topo { background: #1F1C19; }
+:root[data-tema="escuro"] .navbar-toggler-icon { filter: invert(1); }
+
+:root[data-contraste="alto"] {
+  --pb-fundo: #FFFFFF; --pb-papel: #FFFFFF; --pb-claro: #FFFFFF;
+  --pb-tinta: #000000; --pb-suave: #000000; --pb-linha: #000000;
+  --pb-vermelho: #8A0000; --pb-escuro: #000000; --sombra: none;
+}
+:root[data-contraste="alto"] a { text-decoration: underline; }
+
+@keyframes surgir { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+.hero-texto { animation: surgir .7s ease both; }
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+
+/* ---------- 11. RESPONSIVIDADE (ETAPA 8) ----------
+   Testar em 1920, 1366, 768, 425 e 375 px. */
+@media (max-width: 991.98px) {
+  .navbar-nav { padding-block: .5rem; }
+  .navbar .nav-link.active::after { display: none; }
+  .busca { flex-wrap: wrap; border-radius: var(--raio); padding: 1rem; margin-top: -2.5rem; }
+  .busca-campo { flex: 1 1 45%; border-right: 0; padding-block: .3rem; }
+  .busca .btn { flex: 1 1 100%; }
+  .oferta { grid-template-columns: 1fr; }
+  .painel-rota { position: static; }
+}
+@media (max-width: 575.98px) {
+  .busca-campo { flex: 1 1 100%; }
+  .barra-acess .rotulo, .barra-acess .link-whats-topo { display: none; }   /* no celular: só ícones; o WhatsApp já tem botão flutuante */
+  .barra-acess { padding-block: .25rem; }
+  .btn-acess { min-width: 36px; }
+  .assinatura { flex-direction: column; }
+  .mapa-pb .pin text { font-size: 34px; }
+}
+
+.rodape li { overflow-wrap: anywhere; }
+
+/* cultura: cards de artistas (sem fotos de pessoas: monograma no lugar) */
+.card-pessoa { background: var(--pb-papel); border-radius: var(--raio); box-shadow: var(--sombra); padding: 1.5rem; height: 100%; }
+.card-pessoa h3 { font-size: 1.25rem; margin: .8rem 0 .2rem; }
+.card-pessoa .dados { font-size: .8rem; font-weight: 700; color: var(--pb-acento); text-transform: uppercase; letter-spacing: .05em; margin-bottom: .6rem; }
+.card-pessoa p { color: var(--pb-suave); }
+.card-pessoa.compacto h3 { font-size: 1.05rem; }
+.monograma {
+  width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--pb-claro); color: var(--pb-escuro); font-family: var(--fonte-destaque); font-style: italic; font-size: 1.4rem;
+}
+
+/* cultura: chapéu, player e cordel */
+.chapeu { width: 100%; max-width: 380px; height: auto; }
+.foto-alta { aspect-ratio: 3 / 4; }
+.player { display: grid; grid-template-columns: 1fr 1.3fr; gap: 1.5rem; background: var(--pb-escuro); color: #fff; border-radius: calc(var(--raio) + 8px); padding: clamp(1.25rem, 3vw, 2rem); }
+.player > * { min-width: 0; }
+.player h2 { font-size: clamp(1.7rem, 3vw, 2.2rem); }
+.player h2 { color: #fff; }
+.player h2 em { color: var(--pb-acento-claro); }
+.player-botoes { display: flex; flex-direction: column; gap: .5rem; margin-top: 1rem; }
+.faixa { text-align: left; min-height: 44px; padding: .55rem 1rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, .25); background: transparent; color: #fff; font-weight: 700; }
+.faixa:hover { background: rgba(255, 255, 255, .1); }
+.faixa.ativa { background: var(--pb-acento); color: #fff; border-color: var(--pb-acento); }
+.player-tela iframe { display: block; border: 0; border-radius: 14px; background: rgba(255, 255, 255, .08); }
+@media (max-width: 991.98px) { .player { grid-template-columns: 1fr; } }
+
+/* lista das regiões (página Você conhece?) */
+.lista-regioes { list-style: none; padding: 0; margin: 1.25rem 0 0; display: grid; gap: .6rem; }
+.lista-regioes li { display: flex; gap: .8rem; align-items: center; padding: .7rem 1rem; border-radius: 14px; background: var(--pb-claro); }
+.lista-regioes .ponto { width: 14px; height: 14px; border-radius: 50%; background: var(--cor-regiao); flex: 0 0 auto; }
+.lista-regioes strong { display: block; color: var(--pb-titulo); }
+.lista-regioes span { font-size: .85rem; color: var(--pb-suave); }
+.secao-clara { background: var(--pb-claro); }
+
+/* logo do cabeçalho: só o mapa */
+.logo-mapa { display: block; height: 48px; width: auto; }
+.logo-escuro { display: none; }
+:root[data-tema="escuro"] .logo-claro { display: none; }
+:root[data-tema="escuro"] .logo-escuro { display: block; }
+:root[data-tema="escuro"] .topo { background: var(--pb-papel); }
+.marca-texto { font-size: 1.35rem; font-weight: 800; color: var(--pb-titulo); letter-spacing: -0.02em; }
+.marca-texto em { font-family: var(--fonte-destaque); font-style: italic; font-weight: 400; color: var(--pb-acento); }
+
+/* ---------- PASSAPORTE ---------- */
+.passaporte-botao { bottom: 1.25rem; left: 1.25rem; right: auto; width: auto; height: 52px; padding: 0 1rem; display: flex; align-items: center; gap: .45rem; border-radius: 999px; background: var(--pb-escuro); color: #fff; font-weight: 800; font-size: 1rem; }
+.passaporte-botao i { font-size: 1.25rem; line-height: 1; }
+#zerarPassaporte { color: var(--pb-suave); }
+.passaporte-progresso { height: 10px; border-radius: 999px; background: var(--pb-claro); margin-bottom: 1.25rem; }
+.passaporte-progresso .progress-bar { background: var(--pb-acento); transition: width .6s ease; }
+.grade-carimbos { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .75rem; }
+.carimbo { display: flex; flex-direction: column; align-items: center; text-align: center; gap: .3rem; padding: 1rem .5rem; border-radius: 14px; background: var(--pb-claro); color: var(--pb-suave); font-size: .85rem; }
+.carimbo strong { color: var(--pb-suave); }
+.carimbo-detalhe { font-size: .75rem; }
+.carimbo-selo { width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center; font-size: 1.4rem; border: 3px dashed var(--pb-linha); color: var(--pb-linha); background: transparent; }
+.carimbo.carimbado { background: var(--pb-papel); color: var(--pb-tinta); box-shadow: var(--sombra); }
+.carimbo.carimbado strong { color: var(--pb-titulo); }
+.carimbo.carimbado .carimbo-selo { border: 3px solid var(--cor-regiao, var(--pb-escuro)); color: #fff; background: var(--cor-regiao, var(--pb-escuro)); transform: rotate(-8deg); animation: carimbar .4s ease; }
+.carimbo-selo.grande { width: 84px; height: 84px; font-size: 2.2rem; border: 4px solid var(--cor-regiao, var(--pb-escuro)); background: var(--cor-regiao, var(--pb-escuro)); color: #fff; transform: rotate(-8deg); margin-bottom: .75rem; animation: carimbar .5s ease; }
+@keyframes carimbar { from { transform: rotate(-8deg) scale(1.6); opacity: 0; } to { transform: rotate(-8deg) scale(1); opacity: 1; } }
+.regiao-conhece { --cor-regiao: #7A6AA6; } .regiao-culinaria { --cor-regiao: #B8562E; } .regiao-cultura { --cor-regiao: #2F6F8F; } .regiao-contato { --cor-regiao: var(--pb-escuro); }
+
+/* ---------- DESAFIO ---------- */
+.desafio-tempo { display: flex; flex-direction: column; align-items: flex-start; gap: .1rem; padding: .9rem 1.25rem; border-radius: var(--raio); background: var(--pb-escuro); color: #fff; }
+.desafio-tempo strong { font-size: 2rem; line-height: 1; font-variant-numeric: tabular-nums; }
+.desafio-passos { list-style: none; padding: 0; margin: 0 0 .5rem; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .5rem; font-size: .85rem; font-weight: 700; color: var(--pb-suave); }
+.desafio-passo { display: flex; align-items: center; gap: .4rem; }
+.desafio-passo .ponto { width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--cor-regiao); background: transparent; }
+.desafio-passo.atual { color: var(--pb-titulo); }
+.desafio-passo.atual .ponto { background: var(--cor-regiao); box-shadow: 0 0 0 4px color-mix(in srgb, var(--cor-regiao) 25%, transparent); }
+.desafio-passo.feito .ponto { background: var(--cor-regiao); }
+.desafio-barra { height: 8px; border-radius: 999px; background: var(--pb-claro); margin-bottom: 1.5rem; }
+.desafio-barra .progress-bar { background: var(--pb-acento); transition: width .6s ease; }
+.palco { background: var(--pb-papel); border-radius: calc(var(--raio) + 8px); box-shadow: var(--sombra); padding: clamp(1.25rem, 3vw, 2rem); min-height: 320px; }
+.desafio-foto { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--raio); }
+.pistas { padding-left: 1.25rem; margin: 0 0 .75rem; display: grid; gap: .5rem; }
+.pistas li { padding-left: .25rem; }
+.pistas li::marker { color: var(--pb-acento); font-weight: 800; }
+.form-sala .form-control { max-width: 320px; }
+.form-sala .is-invalid { animation: tremer .3s ease; }
+@keyframes tremer { 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+.descoberta { text-align: center; max-width: 640px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; }
+.descoberta .d-flex { justify-content: center; }
+.certificado-form { width: 100%; max-width: 480px; margin: 1.25rem auto 0; text-align: left; }
+.certificado { margin-top: 1.5rem; padding: 2rem; border: 6px double var(--pb-acento); border-radius: 12px; background: #fff; color: #1E2B25; width: 100%; }
+.certificado-logo { width: 150px; height: auto; margin-bottom: .75rem; }
+.certificado-titulo { font-size: 1.5rem; font-weight: 800; color: var(--pb-titulo); margin-bottom: .5rem; }
+@media print {
+  body > *:not(main), .barra-acess, .topo, .rodape, .flutuante, .desafio-tempo, .desafio-passos, .desafio-barra, .no-print, .descoberta > *:not(#certificado) { display: none !important; }
+  #certificado { display: block !important; border-color: #000; box-shadow: none; }
+  .palco { box-shadow: none; }
+}
+@media (max-width: 767.98px) {
+  .grade-carimbos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .desafio-passos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* pinos menores no litoral (cidades próximas) */
+.mapa-pb .pin-mini text { font-size: 20px; }
+/* restaurantes fictícios: lista simples */
+.lista-restaurantes { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; }
+.restaurante { background: var(--pb-papel); border-radius: var(--raio); padding: 1.1rem 1.25rem; box-shadow: var(--sombra); display: grid; grid-template-columns: 1fr auto; gap: .35rem .75rem; align-items: start; }
+.restaurante strong { display: block; color: var(--pb-titulo); font-size: 1.05rem; }
+.restaurante-cidade { font-size: .8rem; color: var(--pb-suave); }
+.restaurante p { grid-column: 1 / -1; margin: 0; color: var(--pb-suave); font-size: .95rem; }
+.cat-fruta { background: #E4EFD9; }
+/* créditos */
+.lista-creditos { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1rem; }
+.credito-foto { display: flex; gap: .9rem; align-items: center; background: var(--pb-papel); border-radius: 14px; padding: .75rem; box-shadow: var(--sombra); }
+.credito-foto img { width: 84px; height: 64px; object-fit: cover; border-radius: 8px; flex: 0 0 auto; }
+.credito-foto strong { display: block; font-size: .95rem; color: var(--pb-titulo); }
+.credito-foto span { font-size: .8rem; color: var(--pb-suave); }
+.fontes { padding-left: 1.2rem; display: grid; gap: .5rem; }
+.cupom { background: var(--pb-claro); color: var(--pb-tinta); padding: .15rem .5rem; border-radius: 6px; font-weight: 800; }

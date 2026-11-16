@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Desafio · RotaPB</title>
+  <meta name="description" content="Escape room da Paraíba: destranque quatro salas, uma em cada região, e descubra os lugares históricos do estado.">
+  <!-- Fontes: Plus Jakarta Sans (títulos e texto) + DM Serif Display itálico (palavras em destaque) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@1&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <!-- ETAPA 12: Bootstrap (cópia local na pasta assets) -->
+  <link rel="stylesheet" href="../assets/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="../assets/bootstrap-icons/bootstrap-icons.min.css">
+  <!-- ETAPA 7: nosso CSS vem DEPOIS do Bootstrap para poder sobrescrever -->
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <!-- ETAPA 13 (acessibilidade): link para pular direto ao conteúdo -->
+  <a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
+
+  <!-- ===================== BARRA DE ACESSIBILIDADE (ETAPA 13 + ETAPA 11) ===================== -->
+  <div class="barra-acess">
+    <div class="container d-flex flex-wrap align-items-center justify-content-between gap-2">
+      <div class="d-flex flex-wrap align-items-center gap-1" role="group" aria-label="Acessibilidade">
+        <span class="me-1 rotulo">Acessibilidade:</span>
+        <button type="button" class="btn-acess" id="fonteMenor" aria-label="Diminuir texto">A-</button>
+        <button type="button" class="btn-acess" id="fonteNormal" aria-label="Tamanho normal do texto">A</button>
+        <button type="button" class="btn-acess" id="fonteMaior" aria-label="Aumentar texto">A+</button>
+        <button type="button" class="btn-acess" id="altoContraste" aria-pressed="false" aria-label="Alto contraste"><i class="bi bi-circle-half" aria-hidden="true"></i><span class="rotulo"> Alto contraste</span></button>
+        <button type="button" class="btn-acess" id="botaoTema" aria-pressed="false" aria-label="Modo noturno"><i class="bi bi-moon-stars" aria-hidden="true"></i><span class="rotulo"> Modo noturno</span></button>
+      </div>
+      <a class="link-whats-topo" href="https://wa.me/5583999999999?text=Ol%C3%A1!%20Quero%20conhecer%20a%20Para%C3%ADba" target="_blank" rel="noopener"><i class="bi bi-whatsapp" aria-hidden="true"></i> Fale no WhatsApp</a>
+    </div>
+  </div>
+
+  <!-- ===================== CABEÇALHO (ETAPA 6: header + nav | ETAPA 12: navbar) ===================== -->
+  <header class="topo">
+    <div class="faixa-bandeira" aria-hidden="true"></div>
+    <nav class="navbar navbar-expand-lg" aria-label="Menu principal">
+      <div class="container">
+        <a class="navbar-brand marca" href="../index.html">
+          <img class="logo-mapa logo-claro" src="../images/logo-rotapb-mapa.svg" alt="" width="96" height="56">
+          <img class="logo-mapa logo-escuro" src="../images/logo-rotapb-mapa-escuro.svg" alt="" width="96" height="56">
+          <span class="marca-texto">Rota<em>PB</em></span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu"
+                aria-controls="menu" aria-expanded="false" aria-label="Abrir menu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="menu">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item"><a class="nav-link" href="../index.html">Início</a></li>
+            <li class="nav-item"><a class="nav-link" href="conhece.html">Você conhece?</a></li>
+            <li class="nav-item"><a class="nav-link" href="culinaria.html">Culinária</a></li>
+            <li class="nav-item"><a class="nav-link" href="cultura.html">Cultura</a></li>
+            <li class="nav-item"><a class="nav-link" href="roteiros.html">Roteiros</a></li>
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="desafio.html">Desafio</a></li>
+            <li class="nav-item"><a class="nav-link" href="contato.html">Contato</a></li>
+          </ul>
+          <a class="btn btn-pb btn-sm" href="contato.html">Monte sua viagem</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ======================================================================
+       DESAFIO · escape room por regiões (ETAPA 11)
+       As salas, pistas e respostas estão no array SALAS do script.js.
+       A página só tem a "moldura": progresso, cronômetro e o palco (#desafioPalco).
+       ====================================================================== -->
+  <main id="conteudo">
+    <section class="secao pb-4" aria-labelledby="tituloPagina">
+      <div class="container">
+        <div class="row g-4 align-items-end">
+          <div class="col-12 col-lg-8">
+            <p class="sobretitulo">Desafio</p>
+            <h1 id="tituloPagina">Destranque a <em>Paraíba</em></h1>
+            <p class="lead mb-0">Quatro salas, uma em cada região. Em cada uma, um lugar histórico escondido em três pistas. Acerte o nome, ganhe o carimbo e siga do Sertão até o mar.</p>
+          </div>
+          <div class="col-12 col-lg-4">
+            <div class="desafio-tempo" aria-live="off">
+              <span class="small text-uppercase fw-bold">Tempo de travessia</span>
+              <strong id="desafioTempo">00:00</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pb-5" aria-label="Salas do desafio">
+      <div class="container">
+        <ol class="desafio-passos" aria-label="Progresso das salas">
+          <li class="desafio-passo regiao-sertao"><span class="ponto"></span>Sertão</li>
+          <li class="desafio-passo regiao-borborema"><span class="ponto"></span>Cariri</li>
+          <li class="desafio-passo regiao-brejo"><span class="ponto"></span>Brejo</li>
+          <li class="desafio-passo regiao-litoral"><span class="ponto"></span>Litoral</li>
+        </ol>
+        <div class="progress desafio-barra" role="progressbar" aria-label="Salas vencidas" aria-valuemin="0" aria-valuemax="4" aria-valuenow="0">
+          <div class="progress-bar" id="desafioProgresso" style="width: 0%"></div>
+        </div>
+        <div class="palco" id="desafioPalco">
+          <noscript><p>O Desafio precisa de JavaScript ativado.</p></noscript>
+        </div>
+      </div>
+    </section>
+
+    <section class="secao secao-clara" aria-labelledby="tituloComoJogar">
+      <div class="container">
+        <h2 id="tituloComoJogar" class="titulo-secao">Como <em>jogar</em></h2>
+        <div class="row g-3">
+          <div class="col-12 col-md-4"><article class="card-prato"><span class="tag-cat">1</span><h3>Leia a pista</h3><p>Cada sala começa com uma pista. Se precisar, peça mais duas.</p></article></div>
+          <div class="col-12 col-md-4"><article class="card-prato"><span class="tag-cat">2</span><h3>Destranque</h3><p>Digite o nome do lugar ou da cidade. Não se preocupe com acentos.</p></article></div>
+          <div class="col-12 col-md-4"><article class="card-prato"><span class="tag-cat">3</span><h3>Carimbe</h3><p>Cada acerto vira um carimbo no seu passaporte. Complete as quatro salas e gere o certificado.</p></article></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== RODAPÉ (ETAPA 6: footer) ===================== -->
+  <footer class="rodape">
+    <div class="faixa-bandeira" aria-hidden="true"></div>
+    <div class="container py-5">
+      <div class="row g-4">
+        <section class="col-12 col-lg-4">
+          <p class="marca-rodape">Rota<em>PB</em></p>
+          <p>TODO: uma frase sobre a agência (fictícia). Ex.: mostramos a Paraíba de dentro pra fora, do Sertão ao mar.</p>
+          <div class="d-flex gap-2">
+            <a class="rede" href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+            <a class="rede" href="https://wa.me/5583999999999?text=Ol%C3%A1!%20Quero%20conhecer%20a%20Para%C3%ADba" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+            <a class="rede" href="https://youtube.com" target="_blank" rel="noopener" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+          </div>
+        </section>
+        <section class="col-12 col-sm-6 col-lg-2">
+          <h2 class="h6">Navegue</h2>
+          <ul class="list-unstyled">
+            <li><a href="conhece.html">Você conhece?</a></li>
+            <li><a href="culinaria.html">Culinária</a></li>
+            <li><a href="cultura.html">Arte e música</a></li>
+            <li><a href="roteiros.html">Roteiros</a></li>
+            <li><a href="desafio.html">Desafio (jogo)</a></li>
+            <li><a href="creditos.html">Créditos e fontes</a></li>
+          </ul>
+        </section>
+        <section class="col-12 col-sm-6 col-lg-3">
+          <h2 class="h6">Atendimento</h2>
+          <ul class="list-unstyled">
+            <li><i class="bi bi-whatsapp" aria-hidden="true"></i> (83) 99999-9999 <span class="text-nowrap">(fictício)</span></li>
+            <li><i class="bi bi-envelope" aria-hidden="true"></i> contato@paraibaadentro.com.br</li>
+            <li><a href="contato.html">Formulário de contato</a></li>
+          </ul>
+        </section>
+        <section class="col-12 col-lg-3">
+          <h2 class="h6">Novidades por e-mail</h2>
+          <form class="assinatura" novalidate>
+            <label for="emailNews-i" class="visually-hidden">Seu e-mail</label>
+            <input id="emailNews-i" type="email" class="form-control" placeholder="Seu e-mail" required>
+            <button type="submit" class="btn btn-pb">Assinar</button>
+          </form>
+        </section>
+      </div>
+      <p class="small mt-4 mb-0">© <span class="js-ano">2026</span> RotaPB · Projeto Integrador · UNIPÊ · Agência fictícia: valores e contatos são exemplos.</p>
+    </div>
+  </footer>
+
+  <!-- ===================== PASSAPORTE (ETAPA 11: localStorage) ===================== -->
+  <button type="button" class="flutuante passaporte-botao" data-bs-toggle="modal" data-bs-target="#modalPassaporte" aria-label="Abrir meu passaporte">
+    <i class="bi bi-journal-bookmark" aria-hidden="true"></i><span class="js-passaporte-contagem">0/8</span>
+  </button>
+  <div class="modal fade" id="modalPassaporte" tabindex="-1" aria-labelledby="tituloPassaporte" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content passaporte">
+        <div class="modal-header">
+          <h2 class="modal-title h4" id="tituloPassaporte">Meu passaporte paraibano</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+        </div>
+        <div class="modal-body">
+          <p class="mb-2">Ganhe carimbos explorando o site e vencendo as salas do <a href="desafio.html">Desafio</a>. Os carimbos ficam salvos neste navegador.</p>
+          <div class="progress passaporte-progresso" role="progressbar" aria-label="Carimbos conquistados" aria-valuemin="0" aria-valuemax="8" aria-valuenow="0">
+            <div class="progress-bar" id="barraPassaporte" style="width: 0%"></div>
+          </div>
+          <ul class="grade-carimbos" id="gradeCarimbos" aria-label="Carimbos"></ul>
+          <div id="passaporteCompleto" class="alert alert-success mt-3" hidden>
+            <strong>Passaporte completo!</strong> Você ganhou <strong>10% de desconto</strong> em qualquer roteiro. Use o cupom <code class="cupom">ROTAPB10</code> ao <a href="contato.html">montar sua viagem</a>.
+          </div>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-link text-decoration-none" id="zerarPassaporte">Zerar carimbos</button>
+          <a class="btn btn-pb" href="desafio.html">Ir para o Desafio</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Botões flutuantes: WhatsApp e voltar ao topo (ETAPA 11) -->
+  <a class="flutuante whatsapp" href="https://wa.me/5583999999999?text=Ol%C3%A1!%20Quero%20conhecer%20a%20Para%C3%ADba" target="_blank" rel="noopener" aria-label="Falar no WhatsApp"><i class="bi bi-whatsapp" aria-hidden="true"></i></a>
+  <button id="voltarTopo" class="flutuante voltar-topo" type="button" aria-label="Voltar ao topo"><i class="bi bi-arrow-up" aria-hidden="true"></i></button>
+
+  <script src="../assets/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="../js/script.js"></script>
+</body>
+</html>

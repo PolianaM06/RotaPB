@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Você conhece? · RotaPB</title>
+  <meta name="description" content="Curiosidades da Paraíba: o carneiro do mapa, o algodão colorido, a cachaça de Areia e o Caribessa.">
+  <!-- Fontes: Plus Jakarta Sans (títulos e texto) + DM Serif Display itálico (palavras em destaque) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@1&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <!-- ETAPA 12: Bootstrap (cópia local na pasta assets) -->
+  <link rel="stylesheet" href="../assets/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="../assets/bootstrap-icons/bootstrap-icons.min.css">
+  <!-- ETAPA 7: nosso CSS vem DEPOIS do Bootstrap para poder sobrescrever -->
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <!-- ETAPA 13 (acessibilidade): link para pular direto ao conteúdo -->
+  <a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
+
+  <!-- ===================== BARRA DE ACESSIBILIDADE (ETAPA 13 + ETAPA 11) ===================== -->
+  <div class="barra-acess">
+    <div class="container d-flex flex-wrap align-items-center justify-content-between gap-2">
+      <div class="d-flex flex-wrap align-items-center gap-1" role="group" aria-label="Acessibilidade">
+        <span class="me-1 rotulo">Acessibilidade:</span>
+        <button type="button" class="btn-acess" id="fonteMenor" aria-label="Diminuir texto">A-</button>
+        <button type="button" class="btn-acess" id="fonteNormal" aria-label="Tamanho normal do texto">A</button>
+        <button type="button" class="btn-acess" id="fonteMaior" aria-label="Aumentar texto">A+</button>
+        <button type="button" class="btn-acess" id="altoContraste" aria-pressed="false" aria-label="Alto contraste"><i class="bi bi-circle-half" aria-hidden="true"></i><span class="rotulo"> Alto contraste</span></button>
+        <button type="button" class="btn-acess" id="botaoTema" aria-pressed="false" aria-label="Modo noturno"><i class="bi bi-moon-stars" aria-hidden="true"></i><span class="rotulo"> Modo noturno</span></button>
+      </div>
+      <a class="link-whats-topo" href="https://wa.me/5583999999999?text=Ol%C3%A1!%20Quero%20conhecer%20a%20Para%C3%ADba" target="_blank" rel="noopener"><i class="bi bi-whatsapp" aria-hidden="true"></i> Fale no WhatsApp</a>
+    </div>
+  </div>
+
+  <!-- ===================== CABEÇALHO (ETAPA 6: header + nav | ETAPA 12: navbar) ===================== -->
+  <header class="topo">
+    <div class="faixa-bandeira" aria-hidden="true"></div>
+    <nav class="navbar navbar-expand-lg" aria-label="Menu principal">
+      <div class="container">
+        <a class="navbar-brand marca" href="../index.html">
+          <img class="logo-mapa logo-claro" src="../images/logo-rotapb-mapa.svg" alt="" width="96" height="56">
+          <img class="logo-mapa logo-escuro" src="../images/logo-rotapb-mapa-escuro.svg" alt="" width="96" height="56">
+          <span class="marca-texto">Rota<em>PB</em></span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu"
+                aria-controls="menu" aria-expanded="false" aria-label="Abrir menu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="menu">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item"><a class="nav-link" href="../index.html">Início</a></li>
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="conhece.html">Você conhece?</a></li>
+            <li class="nav-item"><a class="nav-link" href="culinaria.html">Culinária</a></li>
+            <li class="nav-item"><a class="nav-link" href="cultura.html">Cultura</a></li>
+            <li class="nav-item"><a class="nav-link" href="roteiros.html">Roteiros</a></li>
+            <li class="nav-item"><a class="nav-link" href="desafio.html">Desafio</a></li>
+            <li class="nav-item"><a class="nav-link" href="contato.html">Contato</a></li>
+          </ul>
+          <a class="btn btn-pb btn-sm" href="contato.html">Monte sua viagem</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ======================================================================
+       PÁGINA DA PESSOA 2 · "Você conhece?"
+       JavaScript desta página: trocarAbas() e virarCartas()
+       ====================================================================== -->
+  <main id="conteudo">
+    <section class="secao" aria-labelledby="tituloPagina">
+      <div class="container">
+        <p class="sobretitulo">Você conhece?</p>
+        <h1 id="tituloPagina">A Paraíba que pouca gente mostra</h1>
+        <p class="lead">TODO: frase de abertura.</p>
+
+        <!-- ETAPA 11: ABAS (a troca é feita pela função trocarAbas no script.js) -->
+        <div class="abas" role="tablist" aria-label="Ver o mapa">
+          <button class="aba ativa" type="button" role="tab" id="aba-pb" aria-controls="painel-pb" aria-selected="true">A Paraíba</button>
+          <button class="aba" type="button" role="tab" id="aba-vizinhos" aria-controls="painel-vizinhos" aria-selected="false">Estados vizinhos</button>
+        </div>
+        <div class="painel" id="painel-pb" role="tabpanel" aria-labelledby="aba-pb">
+          <div class="row align-items-center g-4">
+            <div class="col-12 col-lg-7">
+              <svg class="mapa-pb" viewBox="0 0 1230 594" role="img" aria-labelledby="mapaTitulo">
+          <title id="mapaTitulo">Mapa da Paraíba, o carneiro, com as cidades do roteiro do Sertão ao Litoral</title>
+          <defs>
+            <!-- degradê de oeste para leste: Sertão → Borborema → Brejo → Litoral -->
+            <linearGradient id="gradRegioes" x1="0" x2="1" y1="0" y2="0">
+              <stop offset="0" stop-color="#D9B98A"/>
+              <stop offset="0.5" stop-color="#B98E73"/>
+              <stop offset="0.78" stop-color="#7E9A7C"/>
+              <stop offset="1" stop-color="#5C9A9A"/>
+            </linearGradient>
+          </defs>
+          <path class="contorno" d="M392,22 L393,24 L397,23 L400,25 L405,25 L405,38 L406,40 L404,48 L406,51 L409,51 L405,57 L400,58 L400,62 L397,64 L390,66 L386,69 L381,75 L380,82 L370,82 L367,87 L359,92 L355,97 L355,103 L353,106 L351,111 L351,115 L354,120 L352,124 L351,139 L346,143 L333,144 L330,147 L332,151 L331,158 L331,170 L334,174 L330,186 L348,183 L364,184 L371,181 L378,182 L377,187 L383,192 L381,200 L384,204 L385,211 L390,214 L401,214 L410,208 L415,200 L432,196 L446,186 L449,186 L452,189 L454,201 L458,202 L457,206 L468,198 L487,191 L502,205 L502,218 L512,217 L503,241 L509,249 L515,253 L522,239 L541,242 L551,227 L550,222 L551,220 L553,218 L557,219 L566,211 L566,198 L561,193 L557,192 L554,187 L556,183 L562,162 L562,159 L566,158 L574,163 L577,168 L580,165 L583,166 L581,150 L573,145 L572,140 L561,135 L560,122 L566,111 L568,101 L584,102 L593,85 L601,89 L614,82 L621,89 L621,98 L616,106 L617,109 L628,112 L628,120 L654,117 L661,118 L667,115 L669,112 L671,114 L673,113 L676,119 L685,124 L686,127 L685,129 L687,131 L694,133 L697,131 L702,134 L743,131 L758,128 L765,123 L768,123 L771,122 L781,126 L785,126 L790,132 L795,133 L798,131 L801,131 L803,129 L815,132 L819,130 L822,132 L823,130 L823,132 L834,133 L842,138 L850,146 L864,146 L874,143 L876,139 L882,147 L889,149 L895,148 L900,142 L903,136 L905,137 L907,135 L916,142 L921,139 L923,137 L932,136 L937,132 L939,169 L943,179 L947,181 L946,192 L947,194 L945,197 L946,198 L946,201 L950,201 L954,224 L959,231 L966,233 L962,242 L966,248 L962,252 L962,259 L965,264 L970,257 L968,249 L971,249 L972,259 L968,271 L971,275 L970,281 L973,284 L973,289 L980,295 L980,305 L978,308 L977,315 L979,325 L978,334 L980,337 L976,369 L978,372 L975,376 L976,382 L972,390 L964,388 L961,391 L957,388 L954,390 L954,388 L951,389 L946,386 L940,388 L932,376 L933,370 L914,355 L911,354 L906,356 L889,352 L884,354 L882,351 L871,348 L862,351 L856,356 L852,357 L849,356 L850,360 L845,360 L845,364 L841,364 L828,372 L825,372 L823,368 L814,365 L808,368 L807,376 L809,382 L804,388 L803,396 L800,398 L802,401 L806,400 L804,403 L805,405 L803,405 L802,408 L806,414 L803,414 L801,416 L795,418 L788,416 L783,416 L772,426 L762,427 L761,426 L758,429 L752,430 L741,437 L730,440 L719,440 L717,441 L716,446 L712,450 L705,448 L702,449 L696,449 L693,453 L690,452 L689,455 L683,454 L678,450 L675,452 L671,447 L644,448 L640,449 L638,445 L636,443 L627,450 L627,452 L630,456 L625,460 L615,454 L601,453 L598,455 L593,454 L586,456 L585,468 L582,471 L584,473 L581,480 L576,480 L572,482 L570,480 L568,481 L555,476 L550,478 L549,480 L550,485 L548,488 L549,491 L541,488 L537,497 L537,514 L532,517 L529,520 L531,520 L532,523 L534,523 L536,528 L527,531 L521,535 L522,538 L514,537 L513,539 L515,541 L507,543 L506,547 L504,548 L501,547 L494,548 L492,551 L472,559 L465,566 L460,568 L459,572 L457,573 L449,574 L442,571 L436,564 L425,563 L417,552 L417,543 L413,544 L407,541 L407,539 L410,537 L408,534 L410,531 L412,531 L412,522 L409,516 L408,513 L411,509 L410,503 L408,500 L404,500 L400,496 L400,491 L396,489 L393,491 L394,494 L380,494 L375,492 L365,496 L364,494 L361,494 L362,488 L370,487 L372,485 L372,480 L369,479 L377,477 L388,470 L387,463 L393,462 L392,457 L388,456 L391,455 L391,454 L399,452 L400,450 L405,452 L410,447 L409,445 L413,439 L411,435 L410,431 L400,416 L399,410 L406,399 L417,388 L444,376 L446,378 L450,374 L448,372 L447,369 L444,367 L441,363 L443,362 L440,360 L443,356 L440,351 L435,349 L430,350 L429,347 L424,344 L417,342 L416,341 L414,341 L412,339 L407,339 L404,332 L390,324 L380,324 L377,327 L367,328 L361,335 L362,339 L353,344 L346,345 L343,343 L327,347 L329,353 L322,361 L318,372 L299,381 L299,383 L294,387 L290,386 L287,384 L283,387 L282,391 L276,391 L276,396 L272,399 L271,398 L269,402 L267,403 L264,408 L263,411 L268,414 L268,418 L264,420 L261,417 L261,415 L259,415 L258,410 L255,410 L251,414 L239,416 L234,424 L228,427 L231,431 L224,431 L223,435 L219,438 L218,441 L212,446 L209,445 L207,447 L204,447 L203,444 L195,439 L188,445 L187,453 L189,456 L186,459 L177,457 L171,448 L165,447 L147,459 L141,459 L138,460 L136,459 L133,455 L132,449 L134,446 L132,443 L128,443 L132,439 L129,434 L130,431 L128,431 L127,427 L122,426 L119,422 L115,427 L107,431 L108,432 L106,435 L94,432 L93,435 L85,437 L85,440 L77,441 L74,439 L69,441 L66,441 L65,439 L61,441 L50,422 L48,422 L48,420 L45,417 L42,417 L39,412 L32,408 L31,405 L33,405 L33,400 L47,395 L47,384 L49,383 L49,379 L52,375 L49,369 L59,368 L59,365 L61,363 L63,363 L64,358 L61,358 L69,344 L72,339 L72,334 L76,329 L74,322 L72,321 L72,316 L70,315 L61,317 L60,314 L56,313 L54,308 L55,305 L54,304 L51,304 L49,302 L39,303 L41,298 L39,296 L42,295 L41,289 L46,280 L41,273 L43,269 L38,267 L38,264 L20,256 L23,254 L25,251 L24,247 L20,244 L22,242 L20,235 L28,232 L29,230 L32,229 L32,227 L42,223 L43,219 L41,216 L48,210 L51,209 L50,206 L56,207 L57,204 L48,199 L46,191 L44,190 L42,183 L45,178 L47,177 L49,175 L49,173 L46,170 L47,167 L49,163 L53,161 L52,157 L50,155 L58,143 L56,142 L57,138 L67,128 L67,124 L70,122 L71,119 L78,113 L80,113 L77,109 L74,111 L72,110 L66,112 L59,108 L63,105 L66,105 L66,102 L69,100 L73,100 L72,99 L73,97 L76,97 L83,100 L90,95 L94,94 L87,102 L88,106 L87,111 L96,109 L97,112 L102,114 L108,113 L114,120 L115,124 L117,124 L118,126 L120,125 L125,125 L129,132 L134,133 L135,137 L143,131 L147,130 L156,132 L160,135 L166,135 L169,133 L172,140 L177,140 L181,138 L182,134 L192,124 L193,121 L194,121 L196,125 L195,129 L202,127 L200,122 L203,119 L202,118 L210,117 L213,115 L213,112 L216,110 L216,113 L219,116 L222,116 L229,111 L232,110 L232,102 L239,105 L240,103 L243,102 L243,100 L245,97 L243,95 L245,92 L250,90 L247,88 L251,84 L264,84 L260,80 L263,75 L259,73 L263,72 L259,70 L264,66 L266,61 L275,57 L278,59 L290,60 L292,57 L302,56 L309,51 L311,54 L316,54 L317,51 L325,50 L325,49 L328,49 L330,50 L336,49 L337,43 L339,41 L352,40 L355,34 L361,34 L366,30 L374,26 L377,28 L381,27 L385,20 L391,20 Z M963,253 L967,253 L965,260 L964,260 L962,257 Z"/>
+          <g class="pin"><circle cx="70" cy="230" r="11"/><text x="70" y="282" text-anchor="middle">Cajazeiras</text></g>
+          <g class="pin"><circle cx="150" cy="198" r="11"/><text x="150" y="172" text-anchor="middle">Sousa</text></g>
+          <g class="pin"><circle cx="717" cy="313" r="11"/><text x="697" y="323" text-anchor="end">Campina Grande</text></g>
+          <g class="pin"><circle cx="619" cy="376" r="11"/><text x="619" y="428" text-anchor="middle">Cabaceiras</text></g>
+          <g class="pin"><circle cx="763" cy="248" r="11"/><text x="741" y="258" text-anchor="end">Areia</text></g>
+          <g class="pin"><circle cx="777" cy="196" r="11"/><text x="777" y="170" text-anchor="middle">Bananeiras</text></g>
+          <g class="pin"><circle cx="964" cy="285" r="11"/><text x="944" y="297" text-anchor="end">João Pessoa</text></g>
+          <g class="pin pin-mini"><circle cx="970" cy="252" r="8"/><text x="992" y="260" text-anchor="start">Cabedelo</text></g>
+          <g class="pin pin-mini"><circle cx="960" cy="233" r="8"/><text x="982" y="241" text-anchor="start">Lucena</text></g>
+          <g class="pin pin-mini"><circle cx="946" cy="181" r="8"/><text x="968" y="189" text-anchor="start">Baía da Traição</text></g>
+          <g class="pin pin-mini"><circle cx="978" cy="326" r="8"/><text x="1000" y="334" text-anchor="start">Jacumã</text></g>
+        </svg>
+            </div>
+            <div class="col-12 col-lg-5">
+              <h2 class="h3">Achou o carneiro?</h2>
+              <p>O contorno da Paraíba lembra um carneiro. TODO: dizer onde ficam a cabeça e o rabo e de onde vem a brincadeira.</p>
+              <ul class="lista-regioes">
+                <li class="regiao-sertao"><span class="ponto" aria-hidden="true"></span><div><strong>Sertão</strong><span>Cajazeiras e Sousa</span></div></li>
+                <li class="regiao-borborema"><span class="ponto" aria-hidden="true"></span><div><strong>Borborema e Cariri</strong><span>Campina Grande e Cabaceiras</span></div></li>
+                <li class="regiao-brejo"><span class="ponto" aria-hidden="true"></span><div><strong>Brejo</strong><span>Areia e Bananeiras</span></div></li>
+                <li class="regiao-litoral"><span class="ponto" aria-hidden="true"></span><div><strong>Litoral</strong><span>João Pessoa e Cabedelo</span></div></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="painel" id="painel-vizinhos" role="tabpanel" aria-labelledby="aba-vizinhos" hidden>
+          <div class="row align-items-center g-4">
+            <div class="col-12 col-lg-7">
+            <svg class="mapa-vizinhos" viewBox="0 0 1000 757" role="img" aria-labelledby="vizTitulo">
+              <title id="vizTitulo">A Paraíba e seus vizinhos: Rio Grande do Norte ao norte, Ceará a oeste, Pernambuco ao sul e o Oceano Atlântico a leste</title>
+              <path class="estado" d="M169,26 L183,31 L202,43 L212,46 L215,51 L237,63 L239,62 L251,67 L269,85 L273,87 L278,86 L287,97 L298,101 L313,115 L331,121 L334,119 L345,138 L352,144 L355,144 L382,177 L400,191 L408,193 L413,203 L427,217 L433,219 L437,217 L456,225 L463,239 L422,249 L418,263 L413,265 L409,272 L406,280 L407,289 L400,294 L394,311 L385,317 L380,326 L375,329 L374,335 L379,336 L366,359 L358,364 L356,370 L351,374 L347,372 L345,374 L343,370 L336,374 L331,385 L328,385 L328,390 L322,394 L324,403 L320,406 L329,408 L319,419 L316,427 L317,429 L314,432 L315,436 L312,439 L315,446 L319,448 L312,454 L312,457 L303,462 L305,469 L303,471 L313,477 L314,481 L311,492 L317,492 L321,498 L325,498 L327,503 L321,516 L322,518 L315,521 L317,523 L314,532 L308,534 L308,538 L305,542 L297,543 L296,549 L291,548 L290,552 L284,553 L281,562 L276,559 L268,563 L267,554 L263,549 L255,545 L251,547 L249,542 L245,543 L248,537 L244,529 L207,505 L180,508 L175,513 L145,518 L142,514 L137,512 L113,514 L114,507 L117,504 L119,484 L126,475 L125,473 L128,472 L126,471 L126,457 L132,450 L125,451 L121,443 L107,441 L94,434 L95,431 L87,419 L86,407 L88,399 L81,388 L81,379 L78,370 L75,369 L78,362 L72,329 L76,323 L72,316 L74,307 L71,302 L74,301 L72,296 L74,292 L74,286 L71,283 L73,282 L73,277 L67,274 L61,267 L59,268 L55,263 L51,262 L50,256 L42,251 L39,243 L43,233 L38,231 L46,222 L41,217 L41,212 L39,211 L45,205 L48,191 L52,186 L51,175 L55,168 L52,168 L50,164 L53,155 L46,152 L38,154 L42,144 L36,132 L33,132 L38,126 L40,119 L29,116 L30,110 L26,104 L29,102 L31,97 L33,96 L30,95 L28,87 L24,87 L22,82 L20,83 L31,59 L38,53 L38,44 L36,40 L31,39 L31,35 L38,31 L54,32 L75,28 L80,28 L82,31 L91,27 L108,26 L118,20 L125,23 Z"/>
+              <path class="estado" d="M474,250 L480,249 L486,252 L494,249 L503,252 L511,261 L520,265 L522,264 L523,267 L545,264 L564,268 L566,267 L580,268 L599,262 L637,269 L651,274 L658,281 L665,296 L670,299 L672,307 L675,309 L680,329 L682,332 L681,337 L684,350 L686,352 L687,360 L691,365 L693,384 L699,390 L700,401 L704,404 L706,417 L697,421 L693,418 L685,424 L679,420 L668,423 L656,416 L643,417 L633,412 L621,416 L599,417 L588,408 L585,410 L570,411 L570,408 L565,407 L567,397 L564,395 L558,398 L555,396 L551,403 L543,403 L541,418 L549,424 L550,431 L548,432 L543,429 L541,429 L537,441 L543,445 L543,451 L536,455 L532,465 L523,464 L520,470 L515,465 L519,454 L515,454 L514,449 L508,443 L495,449 L493,442 L490,440 L476,446 L470,453 L465,453 L461,447 L462,443 L459,441 L460,439 L439,440 L441,435 L439,423 L448,419 L450,401 L456,394 L461,395 L463,389 L473,381 L472,380 L472,370 L464,367 L461,370 L449,374 L448,376 L443,376 L441,380 L411,385 L408,391 L410,396 L404,396 L401,403 L396,403 L396,407 L392,410 L389,407 L386,410 L382,410 L383,415 L380,415 L378,412 L372,420 L368,417 L358,416 L353,419 L349,414 L344,413 L341,408 L332,407 L332,404 L335,400 L330,403 L323,402 L322,394 L328,390 L328,385 L331,385 L336,374 L341,370 L345,374 L347,372 L351,374 L354,372 L358,364 L366,359 L371,352 L371,347 L379,336 L374,335 L375,329 L380,326 L385,317 L394,311 L400,294 L407,289 L406,280 L409,272 L413,265 L418,263 L422,249 L463,239 Z"/>
+              <path class="estado" d="M471,505 L473,508 L487,513 L488,518 L492,523 L477,529 L472,534 L469,541 L475,551 L474,555 L464,559 L467,562 L464,562 L464,565 L456,569 L457,572 L453,573 L452,576 L470,574 L474,581 L475,592 L473,596 L477,597 L481,606 L491,611 L530,591 L527,587 L530,585 L531,573 L535,574 L535,570 L538,568 L545,571 L549,570 L551,559 L564,558 L568,561 L573,553 L575,556 L589,555 L596,559 L600,556 L607,556 L610,552 L620,551 L628,546 L633,546 L638,542 L648,540 L646,538 L648,534 L646,534 L649,526 L649,520 L652,519 L658,522 L665,519 L667,515 L677,512 L682,514 L696,515 L704,521 L707,529 L720,530 L723,538 L719,545 L722,551 L719,559 L722,570 L720,579 L709,606 L709,616 L703,631 L702,639 L700,640 L696,648 L687,676 L684,674 L655,669 L653,666 L646,666 L636,673 L623,677 L620,675 L619,670 L613,672 L607,670 L600,675 L590,677 L583,681 L585,688 L576,691 L571,697 L568,697 L573,704 L564,704 L558,710 L552,710 L550,708 L543,715 L536,717 L536,721 L532,722 L523,715 L516,715 L512,717 L504,714 L499,718 L498,725 L495,727 L488,720 L484,720 L484,716 L479,711 L473,715 L473,711 L469,709 L465,711 L464,706 L457,696 L440,689 L438,686 L438,682 L428,683 L422,688 L420,684 L416,685 L417,682 L413,677 L409,670 L402,674 L401,683 L386,702 L374,704 L369,709 L365,717 L359,721 L353,704 L350,701 L351,696 L349,694 L353,691 L352,688 L350,685 L340,690 L332,686 L329,680 L334,674 L333,670 L323,668 L320,673 L319,681 L316,684 L311,680 L309,671 L299,664 L283,665 L274,658 L260,653 L254,655 L248,639 L237,636 L213,649 L204,650 L206,662 L204,664 L182,668 L185,678 L176,691 L164,692 L158,697 L145,692 L141,698 L136,724 L132,726 L127,723 L122,731 L115,730 L112,735 L105,737 L95,733 L89,734 L92,729 L93,722 L91,719 L98,715 L97,711 L100,703 L84,694 L81,681 L73,668 L71,669 L67,667 L63,669 L61,663 L54,662 L52,659 L53,654 L41,654 L35,657 L27,654 L34,649 L42,648 L42,643 L47,641 L49,636 L55,634 L57,629 L60,630 L61,625 L65,622 L73,626 L75,624 L76,617 L82,619 L84,613 L88,611 L88,606 L96,603 L104,594 L109,593 L107,590 L113,575 L114,561 L100,553 L103,537 L95,522 L113,514 L137,512 L142,514 L145,518 L175,513 L180,508 L207,505 L244,529 L248,537 L245,543 L249,542 L251,547 L255,545 L263,549 L267,554 L268,563 L276,559 L281,562 L284,553 L290,552 L291,548 L296,549 L297,543 L305,542 L308,538 L316,544 L321,552 L331,552 L335,548 L340,550 L346,544 L351,548 L350,553 L352,553 L353,560 L359,560 L366,555 L376,560 L376,554 L380,552 L387,555 L399,542 L407,539 L410,543 L412,542 L410,538 L415,530 L420,527 L423,529 L433,522 L438,514 L437,511 L449,510 L453,508 L455,503 L461,501 L465,501 Z M978,133 L980,134 L976,137 L972,137 Z"/>
+              <path class="estado estado-pb" d="M466,368 L472,370 L472,380 L473,381 L463,389 L461,395 L456,394 L450,401 L448,419 L439,423 L441,435 L439,440 L460,439 L459,441 L462,443 L461,447 L465,453 L470,453 L476,446 L490,440 L493,442 L495,449 L508,443 L514,449 L515,454 L519,454 L515,465 L520,470 L523,464 L532,465 L536,455 L543,451 L543,445 L537,441 L541,429 L548,432 L550,431 L549,424 L541,418 L540,412 L543,403 L551,403 L555,396 L558,398 L564,395 L567,397 L565,407 L570,408 L570,411 L585,410 L588,408 L599,417 L621,416 L633,412 L643,417 L656,416 L668,423 L679,420 L685,424 L693,418 L697,421 L706,416 L707,433 L710,438 L709,445 L711,447 L713,457 L718,461 L717,472 L718,474 L721,468 L719,478 L722,486 L725,488 L724,522 L721,530 L707,529 L704,521 L696,515 L682,514 L677,512 L667,515 L665,519 L658,522 L652,519 L649,520 L649,526 L646,534 L648,534 L646,538 L648,540 L646,542 L638,542 L633,546 L628,546 L620,551 L610,552 L607,556 L600,556 L597,559 L589,555 L575,556 L573,553 L568,561 L564,558 L551,559 L549,570 L545,571 L538,568 L535,570 L535,574 L531,573 L530,585 L527,587 L530,591 L523,594 L523,595 L520,595 L520,597 L516,600 L511,599 L501,604 L495,611 L491,611 L481,606 L477,597 L473,596 L474,592 L474,580 L470,577 L470,574 L452,576 L453,573 L457,572 L456,569 L464,565 L464,562 L467,562 L464,559 L474,555 L475,551 L469,541 L472,534 L477,529 L492,523 L488,518 L487,513 L473,508 L465,501 L455,503 L453,508 L449,510 L437,511 L438,514 L433,522 L423,529 L420,527 L415,530 L410,538 L412,541 L410,543 L407,539 L399,542 L387,555 L380,552 L376,554 L376,560 L366,555 L355,561 L352,553 L350,553 L352,551 L350,546 L346,544 L340,550 L335,548 L331,552 L321,552 L316,544 L308,538 L308,534 L314,532 L317,523 L315,521 L322,518 L321,516 L327,503 L325,498 L321,498 L317,492 L311,492 L314,481 L313,477 L303,471 L305,469 L303,462 L312,457 L316,449 L318,449 L312,439 L315,436 L314,432 L317,429 L316,427 L319,419 L329,408 L320,406 L324,403 L330,403 L335,400 L332,404 L332,407 L341,408 L344,413 L349,414 L353,419 L358,416 L368,417 L372,420 L378,412 L380,415 L383,415 L382,410 L386,410 L389,407 L392,410 L396,407 L396,403 L401,403 L404,396 L410,396 L408,391 L411,385 L441,380 L443,376 L448,376 L450,374 L461,370 L463,367 Z"/>
+              <text x="235" y="279">Ceará</text>
+              <text x="533" y="343">Rio Grande do Norte</text>
+              <text x="394" y="622">Pernambuco</text>
+              <text class="rotulo-pb" x="533" y="488">PARAÍBA</text>
+              <text class="rotulo-mar" x="985" y="140" transform="rotate(90 985 140)">Oceano Atlântico →</text>
+            </svg>
+            </div>
+            <div class="col-12 col-lg-5">
+              <h2>Quem mora do lado</h2>
+              <ul>
+                <li><strong>Norte:</strong> Rio Grande do Norte. TODO: curiosidade.</li>
+                <li><strong>Oeste:</strong> Ceará. TODO: curiosidade.</li>
+                <li><strong>Sul:</strong> Pernambuco. TODO: curiosidade.</li>
+                <li><strong>Leste:</strong> Oceano Atlântico, com a Ponta do Seixas. TODO: curiosidade.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="secao secao-clara" aria-labelledby="tituloCartas">
+      <div class="container">
+        <h2 id="tituloCartas" class="titulo-secao">Você conhece…?</h2>
+        <div class="row g-4">
+          <div class="col-12 col-sm-6 col-lg-3">
+            <!-- ETAPA 11: a carta vira ao clicar (função virarCartas no script.js) -->
+            <button class="carta regiao-mapa" type="button" aria-pressed="false">
+              <span class="carta-frente">
+                <span class="pergunta">Você conhece…</span>
+                <strong>O carneiro do mapa?</strong>
+                <span class="dica">Clique para virar</span>
+              </span>
+              <span class="carta-verso">TODO (Pessoa 2): descrever o carneiro no contorno do estado.</span>
+            </button>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3">
+            <!-- ETAPA 11: a carta vira ao clicar (função virarCartas no script.js) -->
+            <button class="carta regiao-borborema" type="button" aria-pressed="false">
+              <span class="carta-frente">
+                <span class="pergunta">Você conhece…</span>
+                <strong>O algodão que já nasce colorido?</strong>
+                <span class="dica">Clique para virar</span>
+              </span>
+              <span class="carta-verso">TODO: Embrapa Algodão (Campina Grande), cultivares BRS Rubi, Safira, Verde… dispensa tingimento.</span>
+            </button>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3">
+            <!-- ETAPA 11: a carta vira ao clicar (função virarCartas no script.js) -->
+            <button class="carta regiao-brejo" type="button" aria-pressed="false">
+              <span class="carta-frente">
+                <span class="pergunta">Você conhece…</span>
+                <strong>A nossa cachaça?</strong>
+                <span class="dica">Clique para virar</span>
+              </span>
+              <span class="carta-verso">TODO: Areia tem Indicação de Procedência (INPI) e é o 2º município do Brasil com mais cachaças registradas.</span>
+            </button>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3">
+            <!-- ETAPA 11: a carta vira ao clicar (função virarCartas no script.js) -->
+            <button class="carta regiao-litoral" type="button" aria-pressed="false">
+              <span class="carta-frente">
+                <span class="pergunta">Você conhece…</span>
+                <strong>O Caribessa?</strong>
+                <span class="dica">Clique para virar</span>
+              </span>
+              <span class="carta-verso">TODO: águas calmas entre recifes na Praia do Bessa, parte do "Caribe paraibano".</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="secao" aria-labelledby="tituloComidas">
+      <div class="container">
+        <div class="oferta oferta-simples">
+          <div class="oferta-texto">
+            <h2 id="tituloComidas">E a <em>comida?</em></h2>
+            <p>Cuscuz, rubacão, caranguejo, cachaça de Areia… tem uma página só para isso.</p>
+            <a class="btn btn-pb" href="culinaria.html">Abrir a Culinária</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== RODAPÉ (ETAPA 6: footer) ===================== -->
+  <footer class="rodape">
+    <div class="faixa-bandeira" aria-hidden="true"></div>
+    <div class="container py-5">
+      <div class="row g-4">
+        <section class="col-12 col-lg-4">
+          <p class="marca-rodape">Rota<em>PB</em></p>
+          <p>TODO: uma frase sobre a agência (fictícia). Ex.: mostramos a Paraíba de dentro pra fora, do Sertão ao mar.</p>
+          <div class="d-flex gap-2">
+            <a class="rede" href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+            <a class="rede" href="https://wa.me/5583999999999?text=Ol%C3%A1!%20Quero%20conhecer%20a%20Para%C3%ADba" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+            <a class="rede" href="https://youtube.com" target="_blank" rel="noopener" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+          </div>
+        </section>
+        <section class="col-12 col-sm-6 col-lg-2">
+          <h2 class="h6">Navegue</h2>
+          <ul class="list-unstyled">
+            <li><a href="conhece.html">Você conhece?</a></li>
+            <li><a href="culinaria.html">Culinária</a></li>
+            <li><a href="cultura.html">Arte e música</a></li>
+            <li><a href="roteiros.html">Roteiros</a></li>
+            <li><a href="desafio.html">Desafio (jogo)</a></li>
+            <li><a href="creditos.html">Créditos e fontes</a></li>
+          </ul>
+        </section>
+        <section class="col-12 col-sm-6 col-lg-3">
+          <h2 class="h6">Atendimento</h2>
+          <ul class="list-unstyled">
+            <li><i class="bi bi-whatsapp" aria-hidden="true"></i> (83) 99999-9999 <span class="text-nowrap">(fictício)</span></li>
+            <li><i class="bi bi-envelope" aria-hidden="true"></i> contato@paraibaadentro.com.br</li>
+            <li><a href="contato.html">Formulário de contato</a></li>
+          </ul>
+        </section>
+        <section class="col-12 col-lg-3">
+          <h2 class="h6">Novidades por e-mail</h2>
+          <form class="assinatura" novalidate>
+            <label for="emailNews-i" class="visually-hidden">Seu e-mail</label>
+            <input id="emailNews-i" type="email" class="form-control" placeholder="Seu e-mail" required>
+            <button type="submit" class="btn btn-pb">Assinar</button>
+          </form>
+        </section>
+      </div>
+      <p class="small mt-4 mb-0">© <span class="js-ano">2026</span> RotaPB · Projeto Integrador · UNIPÊ · Agência fictícia: valores e contatos são exemplos.</p>
+    </div>
+  </footer>
+
+  <!-- ===================== PASSAPORTE (ETAPA 11: localStorage) ===================== -->
+  <button type="button" class="flutuante passaporte-botao" data-bs-toggle="modal" data-bs-target="#modalPassaporte" aria-label="Abrir meu passaporte">
+    <i class="bi bi-journal-bookmark" aria-hidden="true"></i><span class="js-passaporte-contagem">0/8</span>
+  </button>
+  <div class="modal fade" id="modalPassaporte" tabindex="-1" aria-labelledby="tituloPassaporte" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content passaporte">
+        <div class="modal-header">
+          <h2 class="modal-title h4" id="tituloPassaporte">Meu passaporte paraibano</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+        </div>
+        <div class="modal-body">
+          <p class="mb-2">Ganhe carimbos explorando o site e vencendo as salas do <a href="desafio.html">Desafio</a>. Os carimbos ficam salvos neste navegador.</p>
+          <div class="progress passaporte-progresso" role="progressbar" aria-label="Carimbos conquistados" aria-valuemin="0" aria-valuemax="8" aria-valuenow="0">
+            <div class="progress-bar" id="barraPassaporte" style="width: 0%"></div>
+          </div>
+          <ul class="grade-carimbos" id="gradeCarimbos" aria-label="Carimbos"></ul>
+          <div id="passaporteCompleto" class="alert alert-success mt-3" hidden>
+            <strong>Passaporte completo!</strong> Você ganhou <strong>10% de desconto</strong> em qualquer roteiro. Use o cupom <code class="cupom">ROTAPB10</code> ao <a href="contato.html">montar sua viagem</a>.
+          </div>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-link text-decoration-none" id="zerarPassaporte">Zerar carimbos</button>
+          <a class="btn btn-pb" href="desafio.html">Ir para o Desafio</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Botões flutuantes: WhatsApp e voltar ao topo (ETAPA 11) -->
+  <a class="flutuante whatsapp" href="https://wa.me/5583999999999?text=Ol%C3%A1!%20Quero%20conhecer%20a%20Para%C3%ADba" target="_blank" rel="noopener" aria-label="Falar no WhatsApp"><i class="bi bi-whatsapp" aria-hidden="true"></i></a>
+  <button id="voltarTopo" class="flutuante voltar-topo" type="button" aria-label="Voltar ao topo"><i class="bi bi-arrow-up" aria-hidden="true"></i></button>
+
+  <script src="../assets/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="../js/script.js"></script>
+</body>
+</html>
