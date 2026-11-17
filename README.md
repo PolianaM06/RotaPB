@@ -41,9 +41,9 @@ Criar uma plataforma que ajude os visitantes a conhecer melhor a Paraíba, explo
 
 ## Equipe
 
-1.Adalberto Velloso Borges Melo de Albuquerque
-2.Amanda Beatriz Andrade Baía
-3.Poliana Ferreira Vieira De Melo.
+1. Adalberto Velloso Borges Melo de Albuquerque;
+2. Amanda Beatriz Andrade Baía;
+3. Poliana Ferreira Vieira De Melo.
 
 Projeto desenvolvido por estudantes do curso de Análise e Desenvolvimento de Sistemas do UNIPÊ.
 
