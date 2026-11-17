@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RotaPB</title>
+  <meta name="description" content="Você conhece a Paraíba? Roteiros, culinária e curiosidades do Sertão ao Litoral.">
+  <!-- Fontes: Plus Jakarta Sans (títulos e texto) + DM Serif Display itálico (palavras em destaque) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@1&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <!-- ETAPA 12: Bootstrap (cópia local na pasta assets) -->
+  <link rel="stylesheet" href="assets/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/bootstrap-icons/bootstrap-icons.min.css">
+  <!-- ETAPA 7: nosso CSS vem DEPOIS do Bootstrap para poder sobrescrever -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- ETAPA 13 (acessibilidade): link para pular direto ao conteúdo -->
+  <a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
+
+  <!-- ===================== CABEÇALHO (ETAPA 6: header + nav | ETAPA 12: navbar) ===================== -->
+  <header class="topo">
+    <div class="faixa-bandeira" aria-hidden="true"></div>
+    <nav class="navbar navbar-expand-lg" aria-label="Menu principal">
+      <div class="container">
+        <a class="navbar-brand marca" href="index.html">
+          <img class="logo-mapa logo-claro" src="images/logo-rotapb-mapa.svg" alt="" width="96" height="56">
+          <img class="logo-mapa logo-escuro" src="images/logo-rotapb-mapa-escuro.svg" alt="" width="96" height="56">
+          <span class="marca-texto">Rota<em>PB</em></span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu"
+                aria-controls="menu" aria-expanded="false" aria-label="Abrir menu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="menu">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.html">Início</a></li>
+            <li class="nav-item"><a class="nav-link" href="pages/conhece.html">Você conhece?</a></li>
+            <li class="nav-item"><a class="nav-link" href="pages/culinaria.html">Culinária</a></li>
+            <li class="nav-item"><a class="nav-link" href="pages/cultura.html">Cultura</a></li>
+            <li class="nav-item"><a class="nav-link" href="pages/roteiros.html">Roteiros</a></li>
+            <li class="nav-item"><a class="nav-link" href="pages/desafio.html">Desafio</a></li>
+            <li class="nav-item"><a class="nav-link" href="pages/contato.html">Contato</a></li>
+          </ul>
+          <a class="btn btn-pb btn-sm" href="pages/contato.html">Monte sua viagem</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main id="conteudo">
+
+    <!-- ===================== HERO COM BUSCA (Pessoa 1) ===================== -->
+    <section class="hero" aria-labelledby="tituloHero">
+      <div class="container">
+        <div class="hero-foto">
+          <img src="images/fotos/falesias-litoral-sul.webp" alt="Falésias avermelhadas e mar no litoral sul da Paraíba ao entardecer">
+          <div class="hero-texto">
+            <p class="sobretitulo claro">Agência de turismo · Paraíba</p>
+            <h1 id="tituloHero">Você <em>conhece</em><br>a Paraíba?</h1>
+            <p>TODO: frase curta. Ex.: A Paraíba é mais do que seca. Venha conhecer de dentro pra fora.</p>
+            <a class="btn btn-pb" href="pages/conhece.html">Descobrir a Paraíba <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
+          </div>
+        </div>
+
+        <!-- Barra de busca (ETAPA 9: formulário). Envia para a página de roteiros. -->
+        <form class="busca" action="pages/roteiros.html" method="get" role="search" aria-label="Buscar roteiros">
+          <div class="busca-campo">
+            <i class="bi bi-geo-alt" aria-hidden="true"></i>
+            <div><label for="buscaRegiao">Para onde?</label>
+              <select id="buscaRegiao" name="regiao" class="form-select">
+                <option value="todas">Toda a Paraíba</option><option value="sertao">Sertão</option><option value="borborema">Borborema e Cariri</option><option value="brejo">Brejo</option><option value="litoral">Litoral</option>
+              </select></div>
+          </div>
+          <div class="busca-campo">
+            <i class="bi bi-calendar3" aria-hidden="true"></i>
+            <div><label for="buscaMes">Quando?</label>
+              <select id="buscaMes" name="mes" class="form-select"><option>Qualquer mês</option><option>Junho (São João)</option><option>Agosto (Caminhos do Frio)</option><option>Verão</option></select></div>
+          </div>
+          <div class="busca-campo">
+            <i class="bi bi-person" aria-hidden="true"></i>
+            <div><label for="buscaPessoas">Viajantes</label>
+              <input id="buscaPessoas" name="pessoas" type="number" class="form-control" min="1" max="20" value="2"></div>
+          </div>
+          <button type="submit" class="btn btn-escuro"><i class="bi bi-search" aria-hidden="true"></i> Buscar</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ===================== VANTAGENS ===================== -->
+    <section class="secao pt-4" aria-label="Por que viajar com a gente">
+      <div class="container">
+        <div class="row g-3 vantagens">
+          <div class="col-6 col-lg-3"><div class="vantagem"><i class="bi bi-compass" aria-hidden="true"></i><div><strong>Roteiros por região</strong><span>Do Sertão ao Litoral, de dentro pra fora.</span></div></div></div>
+          <div class="col-6 col-lg-3"><div class="vantagem"><i class="bi bi-tag" aria-hidden="true"></i><div><strong>Valores claros</strong><span>Preço por pessoa, sem surpresa.</span></div></div></div>
+          <div class="col-6 col-lg-3"><div class="vantagem"><i class="bi bi-people" aria-hidden="true"></i><div><strong>Guias locais</strong><span>Quem conhece de verdade mostra.</span></div></div></div>
+          <div class="col-6 col-lg-3"><div class="vantagem"><i class="bi bi-whatsapp" aria-hidden="true"></i><div><strong>Atendimento no WhatsApp</strong><span>Resposta rápida, em português do bom.</span></div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== DESTINOS EM DESTAQUE (cards do Bootstrap) ===================== -->
+    <section class="secao pt-0" aria-labelledby="tituloDestinos">
+      <div class="container">
+        <div class="d-flex flex-wrap justify-content-between align-items-end gap-2 mb-4">
+          <h2 id="tituloDestinos" class="titulo-secao mb-0">Destinos <em>em destaque</em></h2>
+          <a class="link-seta" href="pages/roteiros.html">Confira roteiros</a>
+        </div>
+        <div class="row g-4">
+          <div class="col-12 col-sm-6 col-lg-3">
+            <article class="card-destino regiao-sertao">
+              <img src="images/fotos/dinossauros-por-do-sol.webp" alt="Portal dos dinossauros em Sousa ao pôr do sol" loading="lazy">
+              <span class="selo-regiao">Sertão</span>
+              <div class="card-destino-texto">
+                <h3>Sousa</h3>
+                <p>Vale dos Dinossauros</p>
+                <p class="preco">a partir de <strong>R$ 750*</strong></p>
+              </div>
+              <a class="stretched-link" href="pages/roteiros.html" aria-label="Ver roteiro de Sousa"></a>
+            </article>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3">
+            <article class="card-destino regiao-borborema">
+              <img src="images/fotos/lajedo-cariri.webp" alt="Rochas e mandacaru no Cariri" loading="lazy">
+              <span class="selo-regiao">Cariri</span>
+              <div class="card-destino-texto">
+                <h3>Cabaceiras</h3>
+                <p>a "Roliúde Nordestina"</p>
+                <p class="preco">a partir de <strong>R$ 690*</strong></p>
+              </div>
+              <a class="stretched-link" href="pages/roteiros.html" aria-label="Ver roteiro de Cabaceiras"></a>
+            </article>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3">
+            <article class="card-destino regiao-brejo">
+              <img src="images/fotos/casario-areia.webp" alt="Casario colorido em Areia" loading="lazy">
+              <span class="selo-regiao">Brejo</span>
+              <div class="card-destino-texto">
+                <h3>Areia</h3>
+                <p>engenhos e cachaça</p>
+                <p class="preco">a partir de <strong>R$ 690*</strong></p>
+              </div>
+              <a class="stretched-link" href="pages/roteiros.html" aria-label="Ver roteiro de Areia"></a>
+            </article>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3">
+            <article class="card-destino regiao-litoral">
+              <img src="images/fotos/picaozinho.webp" alt="Piscinas naturais de Picãozinho" loading="lazy">
+              <span class="selo-regiao">Litoral</span>
+              <div class="card-destino-texto">
+                <h3>João Pessoa</h3>
+                <p>piscinas naturais</p>
+                <p class="preco">a partir de <strong>R$ 890*</strong></p>
+              </div>
+              <a class="stretched-link" href="pages/roteiros.html" aria-label="Ver roteiro de João Pessoa"></a>
+            </article>
+          </div>
+        </div>
+        <p class="nota mt-3">* Valores fictícios por pessoa, criados para este projeto acadêmico.</p>
+
+        <!-- Categorias -->
+        <nav class="categorias" aria-label="Explorar por tema">
+          <a class="chip-cat" href="pages/roteiros.html"><span class="chip-icone"><i class="bi bi-water" aria-hidden="true"></i></span>Praias</a>
+          <a class="chip-cat" href="pages/roteiros.html"><span class="chip-icone"><i class="bi bi-sun" aria-hidden="true"></i></span>Sertão</a>
+          <a class="chip-cat" href="pages/roteiros.html"><span class="chip-icone"><i class="bi bi-tree" aria-hidden="true"></i></span>Serra e Brejo</a>
+          <a class="chip-cat" href="pages/roteiros.html"><span class="chip-icone"><i class="bi bi-bank" aria-hidden="true"></i></span>História</a>
+          <a class="chip-cat" href="pages/culinaria.html"><span class="chip-icone"><i class="bi bi-cup-hot" aria-hidden="true"></i></span>Culinária</a>
+          <a class="chip-cat" href="pages/roteiros.html"><span class="chip-icone"><i class="bi bi-music-note-beamed" aria-hidden="true"></i></span>Forró e festas</a>
+        </nav>
+      </div>
+    </section>
+
+    <!-- ===================== VOCÊ CONHECE? ===================== -->
+    <section class="secao" aria-labelledby="tituloConhece">
+      <div class="container">
+        <div class="bloco-claro">
+          <div class="row g-4 align-items-center">
+            <div class="col-12 col-lg-5">
+              <img class="carneirinho" src="images/carneirinho-paraiba.svg" alt="O mapa da Paraíba desenhado como um carneirinho de lã">
+              <h2 id="tituloConhece" class="titulo-secao">Você <em>conhece…</em></h2>
+              <p>…o carneiro escondido no mapa, o algodão que já nasce colorido, a cachaça de Areia e o Caribessa? TODO: completar.</p>
+              <a class="btn btn-escuro" href="pages/conhece.html">Descobrir curiosidades <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
+            </div>
+            <div class="col-12 col-md-6 col-lg-3 offset-lg-1">
+              <article class="card-historia">
+                <img src="images/fotos/pedra-do-inga.webp" alt="Inscrições rupestres na Pedra do Ingá" loading="lazy">
+                <h3>Os mistérios da Pedra do Ingá</h3><p>TODO · 4 min de leitura</p>
+              </article>
+            </div>
+            <div class="col-12 col-md-6 col-lg-3">
+              <article class="card-historia">
+                <img src="images/fotos/centro-historico-jp.webp" alt="Casarões coloridos no Centro Histórico de João Pessoa" loading="lazy">
+                <h3>Um passeio pelo Centro Histórico</h3><p>TODO · 5 min de leitura</p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== OFERTA ESPECIAL ===================== -->
+    <section class="secao pt-0" aria-labelledby="tituloOferta">
+      <div class="container">
+        <div class="oferta">
+          <img src="images/fotos/farol-cabo-branco.webp" alt="Farol do Cabo Branco e a orla de João Pessoa" loading="lazy">
+          <div class="oferta-texto">
+            <p class="sobretitulo claro">Pacote especial</p>
+            <h2 id="tituloOferta">De dentro pra fora <em>em 6 dias</em></h2>
+            <p>Cajazeiras, Sousa, Campina Grande, Areia, Bananeiras e João Pessoa. TODO: o que está incluso.</p>
+            <a class="btn btn-pb" href="pages/roteiros.html">Ver roteiros</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== NÚMEROS ===================== -->
+    <section class="secao pt-0" aria-label="A Paraíba em números">
+      <div class="container">
+        <div class="row g-3 numeros text-center">
+          <div class="col-6 col-md-3"><i class="bi bi-map" aria-hidden="true"></i><strong>4</strong><span>regiões</span></div>
+          <div class="col-6 col-md-3"><i class="bi bi-pin-map" aria-hidden="true"></i><strong>223</strong><span>municípios</span></div>
+          <div class="col-6 col-md-3"><i class="bi bi-signpost-split" aria-hidden="true"></i><strong>3</strong><span>estados vizinhos + o mar</span></div>
+          <div class="col-6 col-md-3"><i class="bi bi-calendar-heart" aria-hidden="true"></i><strong>6</strong><span>dias de roteiro</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== ETAPA 10: GALERIA E VÍDEO ===================== -->
+    <section class="secao secao-clara" aria-labelledby="tituloGaleria">
+      <div class="container">
+        <h2 id="tituloGaleria" class="titulo-secao">Galeria</h2>
+        <div class="row g-3">
+          <figure class="col-6 col-md-4 m-0"><img class="foto " src="images/fotos/areia-vermelha.webp" alt="Areia Vermelha, Cabedelo" loading="lazy"><figcaption>Areia Vermelha, Cabedelo · TODO: crédito da foto</figcaption></figure>
+          <figure class="col-6 col-md-4 m-0"><img class="foto " src="images/fotos/centro-historico-jp.webp" alt="Centro Histórico de João Pessoa" loading="lazy"><figcaption>Centro Histórico de João Pessoa · TODO: crédito da foto</figcaption></figure>
+          <figure class="col-6 col-md-4 m-0"><img class="foto " src="images/fotos/farol-cabo-branco.webp" alt="Farol do Cabo Branco" loading="lazy"><figcaption>Farol do Cabo Branco · TODO: crédito da foto</figcaption></figure>
+          <figure class="col-6 col-md-4 m-0"><img class="foto " src="images/fotos/pedra-do-inga.webp" alt="Pedra do Ingá" loading="lazy"><figcaption>Pedra do Ingá · TODO: crédito da foto</figcaption></figure>
+          <figure class="col-6 col-md-4 m-0"><img class="foto " src="images/fotos/engenho-brejo.webp" alt="Engenho no Brejo paraibano" loading="lazy"><figcaption>Engenho no Brejo paraibano · TODO: crédito da foto</figcaption></figure>
+          <figure class="col-6 col-md-4 m-0"><img class="foto " src="images/fotos/mandacaru.webp" alt="Mandacaru" loading="lazy"><figcaption>Mandacaru · TODO: crédito da foto</figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CHAMADA PARA A PÁGINA CULTURA ===================== -->
+    <section class="secao" aria-labelledby="tituloMusica">
+      <div class="container">
+        <div class="oferta oferta-simples">
+          <div class="oferta-texto">
+            <p class="sobretitulo claro">Arte e música</p>
+            <h2 id="tituloMusica">Da tela de Pedro Américo ao <em>baião nervoso</em></h2>
+            <p>Jackson do Pandeiro, Sivuca, Elba e Zé Ramalho, Chico César, Seu Pereira e Coletivo 401, o Sabadinho Bom… A Paraíba também é trilha sonora.</p>
+            <a class="btn btn-pb" href="pages/cultura.html">Conhecer a cultura</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== RODAPÉ (ETAPA 6: footer) ===================== -->
+  <footer class="rodape">
+    <div class="faixa-bandeira" aria-hidden="true"></div>
+    <div class="container py-5">
+      <div class="row g-4">
+        <section class="col-12 col-lg-4">
+          <p class="marca-rodape">Rota<em>PB</em></p>
+          <p>TODO: uma frase sobre a agência (fictícia). Ex.: mostramos a Paraíba de dentro pra fora, do Sertão ao mar.</p>
+          <div class="d-flex gap-2">
+            <a class="rede" href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+            <a class="rede" href="https://wa.me/5583999999999?text=Ol%C3%A1!%20Quero%20conhecer%20a%20Para%C3%ADba" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+            <a class="rede" href="https://youtube.com" target="_blank" rel="noopener" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+          </div>
+        </section>
+        <section class="col-12 col-sm-6 col-lg-2">
+          <h2 class="h6">Navegue</h2>
+          <ul class="list-unstyled">
+            <li><a href="pages/conhece.html">Você conhece?</a></li>
+            <li><a href="pages/culinaria.html">Culinária</a></li>
+            <li><a href="pages/cultura.html">Arte e música</a></li>
+            <li><a href="pages/roteiros.html">Roteiros</a></li>
+            <li><a href="pages/desafio.html">Desafio (jogo)</a></li>
+            <li><a href="pages/creditos.html">Créditos e fontes</a></li>
+          </ul>
+        </section>
+        <section class="col-12 col-sm-6 col-lg-3">
+          <h2 class="h6">Atendimento</h2>
+          <ul class="list-unstyled">
+            <li><i class="bi bi-whatsapp" aria-hidden="true"></i> (83) 99999-9999 <span class="text-nowrap">(fictício)</span></li>
+            <li><i class="bi bi-envelope" aria-hidden="true"></i> contato@paraibaadentro.com.br</li>
+            <li><a href="pages/contato.html">Formulário de contato</a></li>
+          </ul>
+        </section>
+        <section class="col-12 col-lg-3">
+          <h2 class="h6">Novidades por e-mail</h2>
+          <form class="assinatura" novalidate>
+            <label for="emailNews-h" class="visually-hidden">Seu e-mail</label>
+            <input id="emailNews-h" type="email" class="form-control" placeholder="Seu e-mail" required>
+            <button type="submit" class="btn btn-pb">Assinar</button>
+          </form>
+        </section>
+      </div>
+      <p class="small mt-4 mb-0">© <span class="js-ano">2026</span> RotaPB · Projeto Integrador · UNIPÊ · Agência fictícia: valores e contatos são exemplos.</p>
+    </div>
+  </footer>
+
+  <script src="assets/bootstrap/bootstrap.bundle.min.js"></script>
+</body>
+</html>

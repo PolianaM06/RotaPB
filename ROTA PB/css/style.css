@@ -1,0 +1,148 @@
+/* RotaPB - CSS simplificado | primeira versão */
+:root {
+  --verde: #1F4A3A;
+  --laranja: #C2591F;
+  --fundo: #F8F6F1;
+  --claro: #EDF1EA;
+  --texto: #1E2B25;
+  --cinza: #5E6A63;
+}
+
+/* Estilos gerais */
+body { margin: 0; background: var(--fundo); color: var(--texto); font-family: 'Plus Jakarta Sans', Arial, sans-serif; }
+h1, h2, h3 { color: var(--verde); font-weight: 800; }
+h1 em, h2 em, .marca em, .marca-texto em { font-family: 'DM Serif Display', Georgia, serif; color: var(--laranja); }
+a { color: var(--laranja); }
+a:hover { color: var(--verde); }
+.secao { padding: 55px 0; }
+.secao-clara, .bloco-claro { background: var(--claro); }
+.titulo-secao { font-size: 2rem; margin-bottom: 25px; }
+.sobretitulo { font-size: .8rem; font-weight: bold; text-transform: uppercase; color: var(--laranja); }
+.sobretitulo.claro { color: #F2A65A; }
+.nota { font-size: .85rem; color: var(--cinza); }
+.btn-pb, .btn-escuro { color: white; border: 0; border-radius: 25px; padding: 10px 22px; font-weight: bold; }
+.btn-pb { background: var(--laranja); }
+.btn-escuro { background: var(--verde); }
+.btn-pb:hover, .btn-escuro:hover { background: #1F1B18; color: white; }
+.link-seta { border: 0; background: none; color: var(--verde); font-weight: bold; }
+
+/* Cabeçalho e menu */
+.faixa-bandeira { height: 4px; background: linear-gradient(90deg, #1F1B18 33%, #A3161B 33%); }
+.topo { background: white; border-bottom: 1px solid #ddd; }
+.marca { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.logo-mapa { height: 48px; width: auto; }
+.logo-escuro { display: none; }
+.marca-texto { font-size: 1.35rem; font-weight: 800; color: var(--verde); }
+.navbar .nav-link { color: var(--texto); font-weight: 600; }
+.navbar .nav-link:hover, .navbar .nav-link.active { color: var(--laranja); }
+.pular-conteudo { position: absolute; top: -100px; left: 10px; background: white; padding: 8px; }
+.pular-conteudo:focus { top: 10px; }
+
+/* Banner principal */
+.hero { padding-top: 20px; }
+.hero-foto { position: relative; min-height: 460px; border-radius: 18px; overflow: hidden; display: flex; align-items: center; }
+.hero-foto > img { position: absolute; width: 100%; height: 100%; object-fit: cover; }
+.hero-foto::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,.75), rgba(0,0,0,.1)); }
+.hero-texto { position: relative; z-index: 1; padding: 45px; max-width: 650px; color: white; }
+.hero-texto h1 { color: white; font-size: 3.5rem; }
+.hero-texto h1 em { color: #F2A65A; }
+.hero-texto p { font-size: 1.1rem; }
+
+/* Busca de roteiros */
+.busca { display: flex; gap: 15px; align-items: center; background: white; border-radius: 16px; padding: 20px; margin: 20px auto 0; box-shadow: 0 3px 12px #00000015; }
+.busca-campo { display: flex; flex: 1; align-items: center; gap: 10px; }
+.busca-campo i { color: var(--verde); font-size: 1.3rem; }
+.busca-campo label { display: block; font-size: .8rem; font-weight: bold; }
+.busca-campo .form-control, .busca-campo .form-select { min-width: 0; }
+
+/* Vantagens e destinos */
+.vantagens { background: white; padding: 20px 10px; border-radius: 15px; }
+.vantagem { display: flex; gap: 12px; align-items: flex-start; }
+.vantagem i { font-size: 1.6rem; color: #2F7F86; }
+.vantagem strong, .vantagem span { display: block; }
+.vantagem span { font-size: .85rem; color: var(--cinza); }
+.card-destino { position: relative; height: 340px; border-radius: 15px; overflow: hidden; }
+.card-destino img { width: 100%; height: 100%; object-fit: cover; }
+.card-destino::after { content: ''; position: absolute; inset: 0; background: linear-gradient(transparent 40%, rgba(0,0,0,.85)); pointer-events: none; }
+.selo-regiao { position: absolute; z-index: 1; top: 12px; left: 12px; background: var(--verde); color: white; padding: 5px 12px; border-radius: 15px; font-size: .8rem; }
+.card-destino-texto { position: absolute; z-index: 1; bottom: 15px; left: 18px; right: 18px; color: white; }
+.card-destino-texto h3 { color: white; margin: 0; }
+.card-destino-texto p { margin: 0; }
+.card-destino-texto .preco strong { color: #F2A65A; }
+.categorias { display: flex; flex-wrap: wrap; gap: 18px; justify-content: center; margin-top: 30px; }
+.chip-cat { display: flex; align-items: center; gap: 8px; text-decoration: none; font-weight: bold; color: var(--texto); }
+.chip-icone { background: var(--claro); border-radius: 50%; width: 42px; height: 42px; display: grid; place-items: center; color: var(--verde); }
+
+/* Curiosidades, ofertas e galeria */
+.bloco-claro { padding: 30px; border-radius: 18px; }
+.carneirinho { width: 100%; max-width: 350px; margin-bottom: 15px; }
+.card-historia { background: white; border-radius: 15px; overflow: hidden; height: 100%; }
+.card-historia img { width: 100%; aspect-ratio: 4/3; object-fit: cover; }
+.card-historia h3 { font-size: 1rem; margin: 12px; }
+.card-historia p { font-size: .85rem; margin: 12px; color: var(--cinza); }
+.oferta { display: grid; grid-template-columns: 1fr 1fr; background: var(--verde); color: white; border-radius: 18px; overflow: hidden; }
+.oferta > img { width: 100%; height: 100%; min-height: 260px; object-fit: cover; }
+.oferta-texto { padding: 35px; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; }
+.oferta-texto h2 { color: white; }
+.oferta-texto h2 em { color: #F2A65A; }
+.oferta-simples { grid-template-columns: 1fr; }
+.numeros > div { display: flex; flex-direction: column; align-items: center; }
+.numeros i { font-size: 1.6rem; color: #2F7F86; }
+.numeros strong { font-size: 2rem; }
+.numeros span { color: var(--cinza); font-size: .85rem; }
+.foto { display: block; width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 12px; }
+figcaption { margin-top: 5px; color: var(--cinza); font-size: .8rem; }
+
+/* Rodapé */
+.rodape { background: var(--verde); color: white; }
+.rodape a { color: white; }
+.rodape h2 { color: white; }
+.marca-rodape { font-size: 1.5rem; font-weight: bold; }
+.marca-rodape em { color: #F2A65A; }
+.rede { display: grid; place-items: center; width: 40px; height: 40px; border: 1px solid #ffffff70; border-radius: 50%; text-decoration: none; }
+.assinatura { display: flex; gap: 8px; }
+.rodape li { overflow-wrap: anywhere; }
+
+/* Elementos simples das páginas internas */
+.card, .card-prato, .card-pessoa, .formulario, .painel { background: white; border: 1px solid #e1e5dd; border-radius: 15px; padding: 20px; }
+.card-prato, .card-pessoa { height: 100%; }
+.card-prato h3, .card-pessoa h3 { font-size: 1.2rem; }
+.card-prato p, .card-pessoa p { color: var(--cinza); }
+.filtros, .abas, .atalhos { display: flex; flex-wrap: wrap; gap: 8px; }
+.filtro, .aba, .atalhos a { padding: 9px 15px; border: 1px solid #ddd; background: var(--claro); color: var(--verde); border-radius: 20px; text-decoration: none; }
+.filtro.ativo, .aba.ativa { background: var(--verde); color: white; }
+.tag-cat { display: inline-block; background: var(--claro); padding: 4px 10px; border-radius: 15px; font-size: .8rem; }
+.form-label { font-weight: bold; }
+.mapa-pb, .mapa-vizinhos, .chapeu { max-width: 100%; height: auto; }
+.mapa-pb .contorno { fill: url(#gradRegioes); stroke: var(--verde); stroke-width: 3; }
+.mapa-pb .pin circle { fill: var(--laranja); stroke: white; stroke-width: 4; }
+.mapa-pb .pin text { fill: var(--verde); font-weight: bold; font-size: 24px; paint-order: stroke; stroke: white; stroke-width: 6px; }
+.mapa-vizinhos .estado { fill: var(--claro); stroke: var(--verde); stroke-width: 2; }
+.mapa-vizinhos .estado-pb { fill: var(--verde); }
+.mapa-vizinhos text { fill: var(--verde); font-size: 30px; text-anchor: middle; }
+.mapa-vizinhos .rotulo-pb { fill: white; }
+.lista-regioes { list-style: none; padding: 0; }
+.lista-regioes li { background: var(--claro); margin-bottom: 8px; padding: 10px; border-radius: 10px; }
+.lista-regioes .ponto { display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: var(--verde); margin-right: 8px; }
+.carta { display: block; width: 100%; text-align: left; background: white; border: 1px solid #ddd; border-radius: 12px; padding: 15px; }
+.carta-verso { display: none; }
+.carta.virada .carta-frente { display: none; }
+.carta.virada .carta-verso { display: block; }
+.painel-rota { background: var(--verde); color: white; padding: 20px; border-radius: 15px; }
+.card-regiao { border-top: 5px solid var(--verde); }
+.lista-restaurantes, .lista-creditos { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 15px; }
+.restaurante, .credito-foto { background: white; padding: 15px; border-radius: 12px; }
+.credito-foto { display: flex; gap: 12px; }
+.credito-foto img { width: 84px; height: 64px; object-fit: cover; }
+
+/* Ajustes para celular */
+@media (max-width: 768px) {
+  .hero-foto { min-height: 400px; }
+  .hero-texto { padding: 25px; }
+  .hero-texto h1 { font-size: 2.4rem; }
+  .busca { flex-direction: column; align-items: stretch; }
+  .busca-campo { width: 100%; }
+  .oferta { grid-template-columns: 1fr; }
+  .assinatura { flex-direction: column; }
+  .secao { padding: 35px 0; }
+}
