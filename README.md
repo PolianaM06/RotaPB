@@ -1,9 +1,3 @@
-
-<div align="center">
-  <img src="ROTA PB/images/logo-rotapb-mapa.svg"
-       alt="Logo RotaPB"
-       width="180">
-
   <h1> 🌵 RotaPB — Conheça a Paraíba</h1>
   <p>Descubra a Paraíba de dentro pra fora!</p>
 </div>
