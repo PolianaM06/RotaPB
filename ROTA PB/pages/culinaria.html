@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Culinária · RotaPB</title>
+  <meta name="description" content="Comidas e frutas típicas da Paraíba, drinks com cachaça paraibana e onde comer.">
+  <!-- Fontes: Plus Jakarta Sans (títulos e texto) + DM Serif Display itálico (palavras em destaque) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@1&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <!-- ETAPA 12: Bootstrap (cópia local na pasta assets) -->
+  <link rel="stylesheet" href="../assets/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="../assets/bootstrap-icons/bootstrap-icons.min.css">
+  <!-- ETAPA 7: nosso CSS vem DEPOIS do Bootstrap para poder sobrescrever -->
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <!-- ETAPA 13 (acessibilidade): link para pular direto ao conteúdo -->
+  <a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
+
+  <!-- ===================== BARRA DE ACESSIBILIDADE (ETAPA 13 + ETAPA 11) ===================== -->
+  <div class="barra-acess">
+    <div class="container d-flex flex-wrap align-items-center justify-content-between gap-2">
+      <div class="d-flex flex-wrap align-items-center gap-1" role="group" aria-label="Acessibilidade">
+        <span class="me-1 rotulo">Acessibilidade:</span>
+        <button type="button" class="btn-acess" id="fonteMenor" aria-label="Diminuir texto">A-</button>
+        <button type="button" class="btn-acess" id="fonteNormal" aria-label="Tamanho normal do texto">A</button>
+        <button type="button" class="btn-acess" id="fonteMaior" aria-label="Aumentar texto">A+</button>
+        <button type="button" class="btn-acess" id="altoContraste" aria-pressed="false" aria-label="Alto contraste"><i class="bi bi-circle-half" aria-hidden="true"></i><span class="rotulo"> Alto contraste</span></button>
+        <button type="button" class="btn-acess" id="botaoTema" aria-pressed="false" aria-label="Modo noturno"><i class="bi bi-moon-stars" aria-hidden="true"></i><span class="rotulo"> Modo noturno</span></button>
+      </div>
+      <a class="link-whats-topo" href="https://wa.me/5583999999999?text=Ol%C3%A1!%20Quero%20conhecer%20a%20Para%C3%ADba" target="_blank" rel="noopener"><i class="bi bi-whatsapp" aria-hidden="true"></i> Fale no WhatsApp</a>
+    </div>
+  </div>
+
+  <!-- ===================== CABEÇALHO (ETAPA 6: header + nav | ETAPA 12: navbar) ===================== -->
+  <header class="topo">
+    <div class="faixa-bandeira" aria-hidden="true"></div>
+    <nav class="navbar navbar-expand-lg" aria-label="Menu principal">
+      <div class="container">
+        <a class="navbar-brand marca" href="../index.html">
+          <img class="logo-mapa logo-claro" src="../images/logo-rotapb-mapa.svg" alt="" width="96" height="56">
+          <img class="logo-mapa logo-escuro" src="../images/logo-rotapb-mapa-escuro.svg" alt="" width="96" height="56">
+          <span class="marca-texto">Rota<em>PB</em></span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu"
+                aria-controls="menu" aria-expanded="false" aria-label="Abrir menu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="menu">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item"><a class="nav-link" href="../index.html">Início</a></li>
+            <li class="nav-item"><a class="nav-link" href="conhece.html">Você conhece?</a></li>
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="culinaria.html">Culinária</a></li>
+            <li class="nav-item"><a class="nav-link" href="cultura.html">Cultura</a></li>
+            <li class="nav-item"><a class="nav-link" href="roteiros.html">Roteiros</a></li>
+            <li class="nav-item"><a class="nav-link" href="desafio.html">Desafio</a></li>
+            <li class="nav-item"><a class="nav-link" href="contato.html">Contato</a></li>
+          </ul>
+          <a class="btn btn-pb btn-sm" href="contato.html">Monte sua viagem</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ======================================================================
+       PÁGINA DA PESSOA 2 · Culinária
+       JavaScript desta página: filtrarCulinaria()
+       ====================================================================== -->
+  <main id="conteudo">
+    <section class="secao pb-4" aria-labelledby="tituloPagina">
+      <div class="container">
+        <p class="sobretitulo">Culinária</p>
+        <h1 id="tituloPagina">Sabores de <em>dentro pra fora</em></h1>
+        <p class="lead">A mesa paraibana, do cuscuz do Sertão ao peixe do litoral.</p>
+        <!-- atalhos para as seções da página -->
+        <nav class="atalhos" aria-label="Nesta página">
+          <a href="#comidas">Comidas típicas</a><a href="#frutas">Frutas</a><a href="#drinks">Drinks</a><a href="#restaurantes">Onde comer</a>
+        </nav>
+      </div>
+    </section>
+
+    <section class="secao pt-0" id="comidas" aria-labelledby="tituloComidas">
+      <div class="container">
+        <h2 id="tituloComidas" class="titulo-secao">Comidas <em>típicas</em></h2>
+        <!-- ETAPA 11: filtro por categoria (função filtrarCulinaria) -->
+        <div class="filtros mb-4" role="group" aria-label="Filtrar comidas">
+          <button class="filtro filtro-culinaria ativo" type="button" data-filtro="todas" aria-pressed="true">Todas</button>
+          <button class="filtro filtro-culinaria" type="button" data-filtro="pratos" aria-pressed="false">Pratos</button>
+          <button class="filtro filtro-culinaria" type="button" data-filtro="mar" aria-pressed="false">Do mar</button>
+          <button class="filtro filtro-culinaria" type="button" data-filtro="doces" aria-pressed="false">Doces</button>
+        </div>
+        <div class="row g-3">
+          <div class="col-12 col-sm-6 col-lg-4 item-culinaria" data-categoria="pratos">
+            <article class="card-prato">
+              <span class="tag-cat cat-pratos">Prato</span>
+              <h3>Cuscuz</h3>
+              <p>Flocão de milho no vapor. Vai bem com ovo, queijo coalho ou carne de sol.</p>
+            </article>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-4 item-culinaria" data-categoria="pratos">
+            <article class="card-prato">
+              <span class="tag-cat cat-pratos">Prato</span>
+              <h3>Tapioca</h3>
+              <p>Massa de goma de mandioca, recheada de doce ou salgado.</p>
+            </article>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-4 item-culinaria" data-categoria="pratos">
+            <article class="card-prato">
+              <span class="tag-cat cat-pratos">Prato</span>
+              <h3>Carne de sol</h3>
+              <p>Carne salgada e seca ao vento, servida com macaxeira e manteiga da terra.</p>
+            </article>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-4 item-culinaria" data-categoria="pratos">
+            <article class="card-prato">
+              <span class="tag-cat cat-pratos">Prato</span>
+              <h3>Rubacão</h3>
+              <p>Arroz com feijão-verde, queijo coalho e nata: o prato-símbolo da Paraíba.</p>
+            </article>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-4 item-culinaria" data-categoria="pratos">
+            <article class="card-prato">
+              <span class="tag-cat cat-pratos">Prato</span>
+              <h3>Arrumadinho</h3>
+              <p>Feijão-verde, carne de sol, farofa e vinagrete, tudo em camadas.</p>
+            </article>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-4 item-culinaria" data-categoria="pratos">
+            <article class="card-prato">
+              <span class="tag-cat cat-pratos">Prato</span>
+              <h3>Buchada de bode</h3>
+              <p>Tradição do Cariri e do Sertão. Vísceras do bode, temperadas e cozidas no próprio estômago do animal.</p>
+            </article>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-4 item-culinaria" data-categoria="pratos">
+            <article class="card-prato">
+              <span class="tag-cat cat-pratos">Prato</span>
+              <h3>Galinha de capoeira</h3>
+              <p>Galinha caipira cozida no molho.</p>
+            </article>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-4 item-culinaria" data-categoria="pratos">
+            <article class="card-prato">
+              <span class="tag-cat cat-pratos">Prato</span>
+              <h3>Fava</h3>
+              <p>Grãos cozidos e temperados, geralmente com carne de sol, charque ou linguiça.</p>
+            </article>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-4 item-culinaria" data-categoria="pratos">
+            <article class="card-prato">
+              <span class="tag-cat cat-pratos">Prato</span>
+              <h3>Mungunzá</h3>
+              <p>Milho branco cozido, na versão doce ou salgada.</p>
+            </article>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-4 item-culinaria" data-categoria="pratos">
+            <article class="card-prato">
+              <span class="tag-cat cat-pratos">Prato</span>
+              <h3>Sarapatel</h3>
+              <p>Ensopado feito com vísceras de porco ou bode, temperado com ervas, pimentas e especiarias.</p>
+            </article>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-4 item-culinaria" data-categoria="mar">
+            <article class="card-prato">
+              <span class="tag-cat cat-mar">Do mar</span>
+              <h3>Marisco ao coco</h3>
+              <p>Frutos do mar cozidos em um molho cremoso de leite de coco e temperos.</p>
+            </article>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-4 item-culinaria" data-categoria="mar">
+            <article class="card-prato">
+              <span class="tag-cat cat-mar">Do mar</span>
+              <h3>Peixe frito</h3>
+              <p>Clássico das barracas de praia. Peixe temperado e frito até ficar dourado e crocante.</p>
+            </article>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-4 item-culinaria" data-categoria="mar">
+            <article class="card-prato">
+              <span class="tag-cat cat-mar">Do mar</span>
+              <h3>Agulha frita</h3>
+              <p>Peixinho fino, servido inteiro, frito e crocante.</p>
+            </article>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-4 item-culinaria" data-categoria="doces">
+            <article class="card-prato">
+              <span class="tag-cat cat-doces">Doce</span>
+              <h3>Pamonha e canjica</h3>
+              <p>Feitas de milho verde, reinam no São João.</p>
+            </article>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-4 item-culinaria" data-categoria="doces">
+            <article class="card-prato">
+              <span class="tag-cat cat-doces">Doce</span>
+              <h3>Arroz doce</h3>
+              <p>Sobremesa cremosa feita com arroz, leite, açúcar e canela.</p>
+            </article>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-4 item-culinaria" data-categoria="doces">
+            <article class="card-prato">
+              <span class="tag-cat cat-doces">Doce</span>
+              <h3>Quebra-queixo</h3>
+              <p>Doce tradicional preparado com coco e açúcar caramelizado.</p>
+            </article>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-4 item-culinaria" data-categoria="doces">
+            <article class="card-prato">
+              <span class="tag-cat cat-doces">Doce</span>
+              <h3>Rapadura</h3>
+              <p>Do caldo de cana dos engenhos do Brejo.</p>
+            </article>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-4 item-culinaria" data-categoria="doces">
+            <article class="card-prato">
+              <span class="tag-cat cat-doces">Doce</span>
+              <h3>Bolo baeta</h3>
+              <p>Bolo de textura macia e cremosa, feito com leite, ovos, açúcar, farinha de trigo e manteiga.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="secao secao-clara" id="frutas" aria-labelledby="tituloFrutas">
+      <div class="container">
+        <p class="sobretitulo">Do quintal e da feira</p>
+        <h2 id="tituloFrutas" class="titulo-secao">Frutas <em>típicas</em></h2>
+        <p>Muita coisa que se come na Paraíba vem do pé: do umbu da Caatinga à mangaba do litoral. TODO: completar a abertura.</p>
+        <div class="row g-3">
+          <div class="col-6 col-md-4 col-lg-3"><article class="card-prato"><span class="tag-cat cat-fruta">Fruta</span><h3>Cajá</h3><p>Azedinha e perfumada, é o suco e o picolé mais pedidos do verão.</p></article></div>
+          <div class="col-6 col-md-4 col-lg-3"><article class="card-prato"><span class="tag-cat cat-fruta">Fruta</span><h3>Caju</h3><p>A fruta dá o suco e a castanha. O "caju" que a gente chupa é o pedúnculo; a castanha é o fruto de verdade.</p></article></div>
+          <div class="col-6 col-md-4 col-lg-3"><article class="card-prato"><span class="tag-cat cat-fruta">Fruta</span><h3>Mangaba</h3><p>Doce e delicada, nasce nos tabuleiros do litoral. Vira suco, sorvete e licor.</p></article></div>
+          <div class="col-6 col-md-4 col-lg-3"><article class="card-prato"><span class="tag-cat cat-fruta">Fruta</span><h3>Umbu</h3><p>A fruta do umbuzeiro, árvore da Caatinga que guarda água nas raízes. Base da umbuzada.</p></article></div>
+          <div class="col-6 col-md-4 col-lg-3"><article class="card-prato"><span class="tag-cat cat-fruta">Fruta</span><h3>Siriguela</h3><p>Pequena, vermelha e doce, chega nas feiras no fim do ano.</p></article></div>
+          <div class="col-6 col-md-4 col-lg-3"><article class="card-prato"><span class="tag-cat cat-fruta">Fruta</span><h3>Pitomba</h3><p>Vendida em cachos nas ruas; polpa translúcida e agridoce.</p></article></div>
+          <div class="col-6 col-md-4 col-lg-3"><article class="card-prato"><span class="tag-cat cat-fruta">Fruta</span><h3>Tamarindo</h3><p>Vagem de polpa azeda, boa em suco e em doce.</p></article></div>
+          <div class="col-6 col-md-4 col-lg-3"><article class="card-prato"><span class="tag-cat cat-fruta">Fruta</span><h3>Graviola</h3><p>Polpa branca e cremosa, perfeita para suco e sorvete.</p></article></div>
+          <div class="col-6 col-md-4 col-lg-3"><article class="card-prato"><span class="tag-cat cat-fruta">Fruta</span><h3>Jaca</h3><p>Gigante e perfumada, vendida em pedaços nas feiras.</p></article></div>
+          <div class="col-6 col-md-4 col-lg-3"><article class="card-prato"><span class="tag-cat cat-fruta">Fruta</span><h3>Manga</h3><p>Espada, rosa, coité… cada quintal tem a sua.</p></article></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="secao" id="drinks" aria-labelledby="tituloDrinks">
+      <div class="container">
+        <h2 id="tituloDrinks" class="titulo-secao">Drinks com <em>cachaça paraibana</em></h2>
+        <p>Areia tem Indicação de Procedência para cachaça e é o 2º município do Brasil com mais cachaças registradas. Bares e eventos da Paraíba vêm usando a cachaça local em coquetéis.</p>
+        <div class="row g-3">
+          <div class="col-12 col-md-4"><article class="card-prato"><span class="tag-cat cat-drink">Autoral</span><h3>Gonzaguinha</h3><p>Cachaça envelhecida em jequitibá-rosa, maracujá, xarope simples e clara de ovo.</p></article></div>
+          <div class="col-12 col-md-4"><article class="card-prato"><span class="tag-cat cat-drink">Releitura</span><h3>Negroni brasileiro</h3><p>Cachaça envelhecida em carvalho, Campari e vermute tinto.</p></article></div>
+          <div class="col-12 col-md-4"><article class="card-prato"><span class="tag-cat cat-drink">Refrescante</span><h3>Cachaça tônica</h3><p>Cachaça branca, água tônica, vermute seco e casca de limão.</p></article></div>
+          <div class="col-12"><article class="card-prato sem-alcool"><span class="tag-cat">Sem álcool</span><h3>Caldo de cana e sucos da terra</h3><p>Sucos de cajá, caju, mangaba, umbu e siriguela. Vale para quem dirige e para as crianças.</p></article></div>
+        </div>
+        <p class="nota mt-3"><i class="bi bi-exclamation-circle" aria-hidden="true"></i> Beba com moderação. Venda de bebida alcoólica proibida para menores de 18 anos.</p>
+      </div>
+    </section>
+
+    <section class="secao secao-clara" id="restaurantes" aria-labelledby="tituloRest">
+      <div class="container">
+        <h2 id="tituloRest" class="titulo-secao">Onde <em>comer</em></h2>
+        <p>Uma seleção de casas que a RotaPB indica aos viajantes.</p>
+        <ul class="lista-restaurantes">
+          <li class="restaurante">
+            <div><strong>Casa do Rubacão</strong><span class="restaurante-cidade"><i class="bi bi-geo-alt" aria-hidden="true"></i> João Pessoa</span></div>
+            <span class="tag-cat">Regional</span>
+            <p>Rubacão de panela de barro e carne de sol na nata.</p>
+          </li>
+          <li class="restaurante">
+            <div><strong>Sabor do Sertão</strong><span class="restaurante-cidade"><i class="bi bi-geo-alt" aria-hidden="true"></i> Cajazeiras</span></div>
+            <span class="tag-cat">Regional</span>
+            <p>Buchada, bode assado e cuscuz de milho na chapa.</p>
+          </li>
+          <li class="restaurante">
+            <div><strong>Cantinho da Serra</strong><span class="restaurante-cidade"><i class="bi bi-geo-alt" aria-hidden="true"></i> Areia</span></div>
+            <span class="tag-cat">Brejo</span>
+            <p>Galinha de capoeira, rapadura e cachaça do engenho.</p>
+          </li>
+          <li class="restaurante">
+            <div><strong>Maré Mansa</strong><span class="restaurante-cidade"><i class="bi bi-geo-alt" aria-hidden="true"></i> Cabedelo</span></div>
+            <span class="tag-cat">Frutos do mar</span>
+            <p>Peixe na brasa, marisco ao coco e agulha frita.</p>
+          </li>
+          <li class="restaurante">
+            <div><strong>Tapiocaria da Orla</strong><span class="restaurante-cidade"><i class="bi bi-geo-alt" aria-hidden="true"></i> João Pessoa</span></div>
+            <span class="tag-cat">Tapioca</span>
+            <p>Tapioca de queijo coalho com carne de sol, de frente para o mar.</p>
+          </li>
+          <li class="restaurante">
+            <div><strong>Engenho & Mesa</strong><span class="restaurante-cidade"><i class="bi bi-geo-alt" aria-hidden="true"></i> Bananeiras</span></div>
+            <span class="tag-cat">Doces</span>
+            <p>Macacada, bolo baeta e doce de leite de engenho.</p>
+          </li>
+        </ul>
+        <p class="nota mt-3">Estabelecimentos fictícios, criados para este projeto acadêmico.</p>
+      </div>
+    </section>
+
+    <section class="secao" aria-label="Chamada">
+      <div class="container">
+        <div class="oferta oferta-simples">
+          <div class="oferta-texto">
+            <h2>Quer uma viagem <em>só de sabores?</em></h2>
+            <p>A gente monta uma rota gastronômica do Brejo ao litoral.</p>
+            <a class="btn btn-pb" href="contato.html">Montar minha rota gastronômica</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== RODAPÉ (ETAPA 6: footer) ===================== -->
+  <footer class="rodape">
+    <div class="faixa-bandeira" aria-hidden="true"></div>
+    <div class="container py-5">
+      <div class="row g-4">
+        <section class="col-12 col-lg-4">
+          <p class="marca-rodape">Rota<em>PB</em></p>
+          <p>A Paraíba de dentro pra fora, do Sertão ao mar.</p>
+          <div class="d-flex gap-2">
+            <a class="rede" href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+            <a class="rede" href="https://wa.me/5583999999999?text=Ol%C3%A1!%20Quero%20conhecer%20a%20Para%C3%ADba" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+            <a class="rede" href="https://youtube.com" target="_blank" rel="noopener" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+          </div>
+        </section>
+        <section class="col-12 col-sm-6 col-lg-2">
+          <h2 class="h6">Navegue</h2>
+          <ul class="list-unstyled">
+            <li><a href="conhece.html">Você conhece?</a></li>
+            <li><a href="culinaria.html">Culinária</a></li>
+            <li><a href="cultura.html">Arte e música</a></li>
+            <li><a href="roteiros.html">Roteiros</a></li>
+            <li><a href="desafio.html">Desafio (jogo)</a></li>
+            <li><a href="creditos.html">Créditos e fontes</a></li>
+          </ul>
+        </section>
+        <section class="col-12 col-sm-6 col-lg-3">
+          <h2 class="h6">Atendimento</h2>
+          <ul class="list-unstyled">
+            <li><i class="bi bi-whatsapp" aria-hidden="true"></i> (83) 99999-9999 <span class="text-nowrap">(fictício)</span></li>
+            <li><i class="bi bi-envelope" aria-hidden="true"></i> contato@paraibaadentro.com.br</li>
+            <li><a href="contato.html">Formulário de contato</a></li>
+          </ul>
+        </section>
+        <section class="col-12 col-lg-3">
+          <h2 class="h6">Novidades por e-mail</h2>
+          <form class="assinatura" novalidate>
+            <label for="emailNews-i" class="visually-hidden">Seu e-mail</label>
+            <input id="emailNews-i" type="email" class="form-control" placeholder="Seu e-mail" required>
+            <button type="submit" class="btn btn-pb">Assinar</button>
+          </form>
+        </section>
+      </div>
+      <p class="small mt-4 mb-0">© <span class="js-ano">2026</span> RotaPB · Projeto Integrador · UNIPÊ · Agência fictícia: valores e contatos são exemplos.</p>
+    </div>
+  </footer>
+
+  <!-- ===================== PASSAPORTE (ETAPA 11: localStorage) ===================== -->
+  <button type="button" class="flutuante passaporte-botao" data-bs-toggle="modal" data-bs-target="#modalPassaporte" aria-label="Abrir meu passaporte">
+    <i class="bi bi-journal-bookmark" aria-hidden="true"></i><span class="js-passaporte-contagem">0/8</span>
+  </button>
+  <div class="modal fade" id="modalPassaporte" tabindex="-1" aria-labelledby="tituloPassaporte" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content passaporte">
+        <div class="modal-header">
+          <h2 class="modal-title h4" id="tituloPassaporte">Meu passaporte paraibano</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+        </div>
+        <div class="modal-body">
+          <p class="mb-2">Ganhe carimbos explorando o site e vencendo as salas do <a href="desafio.html">Desafio</a>. Os carimbos ficam salvos neste navegador.</p>
+          <div class="progress passaporte-progresso" role="progressbar" aria-label="Carimbos conquistados" aria-valuemin="0" aria-valuemax="8" aria-valuenow="0">
+            <div class="progress-bar" id="barraPassaporte" style="width: 0%"></div>
+          </div>
+          <ul class="grade-carimbos" id="gradeCarimbos" aria-label="Carimbos"></ul>
+          <div id="passaporteCompleto" class="alert alert-success mt-3" hidden>
+            <strong>Passaporte completo!</strong> Você ganhou <strong>10% de desconto</strong> em qualquer roteiro. Use o cupom <code class="cupom">ROTAPB10</code> ao <a href="contato.html">montar sua viagem</a>.
+          </div>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-link text-decoration-none" id="zerarPassaporte">Zerar carimbos</button>
+          <a class="btn btn-pb" href="desafio.html">Ir para o Desafio</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Botões flutuantes: WhatsApp e voltar ao topo (ETAPA 11) -->
+  <a class="flutuante whatsapp" href="https://wa.me/5583999999999?text=Ol%C3%A1!%20Quero%20conhecer%20a%20Para%C3%ADba" target="_blank" rel="noopener" aria-label="Falar no WhatsApp"><i class="bi bi-whatsapp" aria-hidden="true"></i></a>
+  <button id="voltarTopo" class="flutuante voltar-topo" type="button" aria-label="Voltar ao topo"><i class="bi bi-arrow-up" aria-hidden="true"></i></button>
+
+  <script src="../assets/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="../js/script.js"></script>
+</body>
+</html>

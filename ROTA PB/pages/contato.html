@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Monte sua viagem · RotaPB</title>
+  <meta name="description" content="Peça seu roteiro pela Paraíba.">
+  <!-- Fontes: Plus Jakarta Sans (títulos e texto) + DM Serif Display itálico (palavras em destaque) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@1&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <!-- ETAPA 12: Bootstrap (cópia local na pasta assets) -->
+  <link rel="stylesheet" href="../assets/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="../assets/bootstrap-icons/bootstrap-icons.min.css">
+  <!-- ETAPA 7: nosso CSS vem DEPOIS do Bootstrap para poder sobrescrever -->
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <!-- ETAPA 13 (acessibilidade): link para pular direto ao conteúdo -->
+  <a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
+
+  <!-- ===================== BARRA DE ACESSIBILIDADE (ETAPA 13 + ETAPA 11) ===================== -->
+  <div class="barra-acess">
+    <div class="container d-flex flex-wrap align-items-center justify-content-between gap-2">
+      <div class="d-flex flex-wrap align-items-center gap-1" role="group" aria-label="Acessibilidade">
+        <span class="me-1 rotulo">Acessibilidade:</span>
+        <button type="button" class="btn-acess" id="fonteMenor" aria-label="Diminuir texto">A-</button>
+        <button type="button" class="btn-acess" id="fonteNormal" aria-label="Tamanho normal do texto">A</button>
+        <button type="button" class="btn-acess" id="fonteMaior" aria-label="Aumentar texto">A+</button>
+        <button type="button" class="btn-acess" id="altoContraste" aria-pressed="false" aria-label="Alto contraste"><i class="bi bi-circle-half" aria-hidden="true"></i><span class="rotulo"> Alto contraste</span></button>
+        <button type="button" class="btn-acess" id="botaoTema" aria-pressed="false" aria-label="Modo noturno"><i class="bi bi-moon-stars" aria-hidden="true"></i><span class="rotulo"> Modo noturno</span></button>
+      </div>
+      <a class="link-whats-topo" href="https://wa.me/5583999999999?text=Ol%C3%A1!%20Quero%20conhecer%20a%20Para%C3%ADba" target="_blank" rel="noopener"><i class="bi bi-whatsapp" aria-hidden="true"></i> Fale no WhatsApp</a>
+    </div>
+  </div>
+
+  <!-- ===================== CABEÇALHO (ETAPA 6: header + nav | ETAPA 12: navbar) ===================== -->
+  <header class="topo">
+    <div class="faixa-bandeira" aria-hidden="true"></div>
+    <nav class="navbar navbar-expand-lg" aria-label="Menu principal">
+      <div class="container">
+        <a class="navbar-brand marca" href="../index.html">
+          <img class="logo-mapa logo-claro" src="../images/logo-rotapb-mapa.svg" alt="" width="96" height="56">
+          <img class="logo-mapa logo-escuro" src="../images/logo-rotapb-mapa-escuro.svg" alt="" width="96" height="56">
+          <span class="marca-texto">Rota<em>PB</em></span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu"
+                aria-controls="menu" aria-expanded="false" aria-label="Abrir menu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="menu">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item"><a class="nav-link" href="../index.html">Início</a></li>
+            <li class="nav-item"><a class="nav-link" href="conhece.html">Você conhece?</a></li>
+            <li class="nav-item"><a class="nav-link" href="culinaria.html">Culinária</a></li>
+            <li class="nav-item"><a class="nav-link" href="cultura.html">Cultura</a></li>
+            <li class="nav-item"><a class="nav-link" href="roteiros.html">Roteiros</a></li>
+            <li class="nav-item"><a class="nav-link" href="desafio.html">Desafio</a></li>
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="contato.html">Contato</a></li>
+          </ul>
+          <a class="btn btn-pb btn-sm" href="contato.html">Monte sua viagem</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ======================================================================
+       PÁGINA DA PESSOA 3 · Monte sua viagem (ETAPA 9: formulário)
+       JavaScript desta página: mascaraTelefone() e validarFormulario()
+       ====================================================================== -->
+  <main id="conteudo">
+    <section class="secao" aria-labelledby="tituloPagina">
+      <div class="container">
+        <div class="row g-4 g-lg-5">
+          <div class="col-12 col-lg-7">
+            <p class="sobretitulo">Monte sua viagem</p>
+            <h1 id="tituloPagina">Conte pra gente como quer atravessar</h1>
+
+            <!-- ETAPA 9: campos mínimos nome, e-mail, telefone, mensagem + validação HTML5 (required, type, minlength) -->
+            <!-- novalidate: desliga os balões do navegador para mostrarmos nossas mensagens (Bootstrap .invalid-feedback) -->
+            <form id="formViagem" class="formulario" novalidate>
+              <div class="row g-3">
+                <div class="col-12">
+                  <label for="nome" class="form-label">Nome completo</label>
+                  <input type="text" class="form-control" id="nome" name="nome" required minlength="3" autocomplete="name">
+                  <div class="invalid-feedback">Informe seu nome completo.</div>
+                </div>
+                <div class="col-12 col-md-6">
+                  <label for="email" class="form-label">E-mail</label>
+                  <input type="email" class="form-control" id="email" name="email" required autocomplete="email">
+                  <div class="invalid-feedback">Informe um e-mail válido, como nome@email.com.</div>
+                </div>
+                <div class="col-12 col-md-6">
+                  <label for="telefone" class="form-label">Telefone / WhatsApp</label>
+                  <input type="tel" class="form-control" id="telefone" name="telefone" required placeholder="(83) 99999-9999"
+                         pattern="\(\d{2}\) \d{4,5}-\d{4}" autocomplete="tel">
+                  <div class="invalid-feedback">Use o formato (83) 99999-9999.</div>
+                </div>
+                <fieldset class="col-12">
+                  <legend class="form-label fs-6">Regiões que quer conhecer</legend>
+                  <div class="form-check form-check-inline"><input class="form-check-input" type="checkbox" id="r1" value="sertao"><label class="form-check-label" for="r1">Sertão</label></div>
+                  <div class="form-check form-check-inline"><input class="form-check-input" type="checkbox" id="r2" value="borborema"><label class="form-check-label" for="r2">Borborema</label></div>
+                  <div class="form-check form-check-inline"><input class="form-check-input" type="checkbox" id="r3" value="brejo"><label class="form-check-label" for="r3">Brejo</label></div>
+                  <div class="form-check form-check-inline"><input class="form-check-input" type="checkbox" id="r4" value="litoral"><label class="form-check-label" for="r4">Litoral</label></div>
+                  <p id="avisoRegiao" class="small text-danger mb-0" hidden>Marque pelo menos uma região.</p>
+                </fieldset>
+                <div class="col-12 col-md-6">
+                  <label for="cupom" class="form-label">Cupom de desconto</label>
+                  <input type="text" class="form-control" id="cupom" name="cupom" placeholder="Tem um cupom?">
+                  <div class="form-text" id="avisoCupom"></div>
+                </div>
+                <div class="col-12">
+                  <label for="mensagem" class="form-label">Mensagem</label>
+                  <textarea class="form-control" id="mensagem" name="mensagem" rows="5" required minlength="10" maxlength="500"></textarea>
+                  <div class="d-flex justify-content-between">
+                    <div class="invalid-feedback">Escreva pelo menos 10 caracteres.</div>
+                    <span class="small text-muted ms-auto" id="contadorMensagem">0/500</span>
+                  </div>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-pb mt-3">Enviar pedido</button>
+              <!-- ETAPA 9: feedback visual ao usuário (o JS escreve aqui) -->
+              <div id="retornoForm" class="mt-3" role="status" aria-live="polite"></div>
+            </form>
+          </div>
+
+          <aside class="col-12 col-lg-5">
+            <h2 class="h4">Onde estamos</h2>
+            <div class="ratio ratio-4x3 mapa-embed">
+              <!-- ETAPA 10: mapa incorporado. Troque o endereço depois do q= -->
+              <iframe src="https://maps.google.com/maps?q=Jo%C3%A3o%20Pessoa%20-%20PB&z=12&output=embed" title="Mapa: João Pessoa" loading="lazy"></iframe>
+            </div>
+            <p class="mt-2">Av. Alm. Tamandaré, 9999 - Tambaú, João Pessoa - PB</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== RODAPÉ (ETAPA 6: footer) ===================== -->
+  <footer class="rodape">
+    <div class="faixa-bandeira" aria-hidden="true"></div>
+    <div class="container py-5">
+      <div class="row g-4">
+        <section class="col-12 col-lg-4">
+          <p class="marca-rodape">Rota<em>PB</em></p>
+          <p>A Paraíba de dentro pra fora, do Sertão ao mar.</p>
+          <div class="d-flex gap-2">
+            <a class="rede" href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+            <a class="rede" href="https://wa.me/5583999999999?text=Ol%C3%A1!%20Quero%20conhecer%20a%20Para%C3%ADba" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+            <a class="rede" href="https://youtube.com" target="_blank" rel="noopener" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+          </div>
+        </section>
+        <section class="col-12 col-sm-6 col-lg-2">
+          <h2 class="h6">Navegue</h2>
+          <ul class="list-unstyled">
+            <li><a href="conhece.html">Você conhece?</a></li>
+            <li><a href="culinaria.html">Culinária</a></li>
+            <li><a href="cultura.html">Arte e música</a></li>
+            <li><a href="roteiros.html">Roteiros</a></li>
+            <li><a href="desafio.html">Desafio (jogo)</a></li>
+            <li><a href="creditos.html">Créditos e fontes</a></li>
+          </ul>
+        </section>
+        <section class="col-12 col-sm-6 col-lg-3">
+          <h2 class="h6">Atendimento</h2>
+          <ul class="list-unstyled">
+            <li><i class="bi bi-whatsapp" aria-hidden="true"></i> (83) 99999-9999 <span class="text-nowrap">(fictício)</span></li>
+            <li><i class="bi bi-envelope" aria-hidden="true"></i> contato@paraibaadentro.com.br</li>
+            <li><a href="contato.html">Formulário de contato</a></li>
+          </ul>
+        </section>
+        <section class="col-12 col-lg-3">
+          <h2 class="h6">Novidades por e-mail</h2>
+          <form class="assinatura" novalidate>
+            <label for="emailNews-i" class="visually-hidden">Seu e-mail</label>
+            <input id="emailNews-i" type="email" class="form-control" placeholder="Seu e-mail" required>
+            <button type="submit" class="btn btn-pb">Assinar</button>
+          </form>
+        </section>
+      </div>
+      <p class="small mt-4 mb-0">© <span class="js-ano">2026</span> RotaPB · Projeto Integrador · UNIPÊ · Agência fictícia: valores e contatos são exemplos.</p>
+    </div>
+  </footer>
+
+  <!-- ===================== PASSAPORTE (ETAPA 11: localStorage) ===================== -->
+  <button type="button" class="flutuante passaporte-botao" data-bs-toggle="modal" data-bs-target="#modalPassaporte" aria-label="Abrir meu passaporte">
+    <i class="bi bi-journal-bookmark" aria-hidden="true"></i><span class="js-passaporte-contagem">0/8</span>
+  </button>
+  <div class="modal fade" id="modalPassaporte" tabindex="-1" aria-labelledby="tituloPassaporte" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content passaporte">
+        <div class="modal-header">
+          <h2 class="modal-title h4" id="tituloPassaporte">Meu passaporte paraibano</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+        </div>
+        <div class="modal-body">
+          <p class="mb-2">Ganhe carimbos explorando o site e vencendo as salas do <a href="desafio.html">Desafio</a>. Os carimbos ficam salvos neste navegador.</p>
+          <div class="progress passaporte-progresso" role="progressbar" aria-label="Carimbos conquistados" aria-valuemin="0" aria-valuemax="8" aria-valuenow="0">
+            <div class="progress-bar" id="barraPassaporte" style="width: 0%"></div>
+          </div>
+          <ul class="grade-carimbos" id="gradeCarimbos" aria-label="Carimbos"></ul>
+          <div id="passaporteCompleto" class="alert alert-success mt-3" hidden>
+            <strong>Passaporte completo!</strong> Você ganhou <strong>10% de desconto</strong> em qualquer roteiro. Use o cupom <code class="cupom">ROTAPB10</code> ao <a href="contato.html">montar sua viagem</a>.
+          </div>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-link text-decoration-none" id="zerarPassaporte">Zerar carimbos</button>
+          <a class="btn btn-pb" href="desafio.html">Ir para o Desafio</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Botões flutuantes: WhatsApp e voltar ao topo (ETAPA 11) -->
+  <a class="flutuante whatsapp" href="https://wa.me/5583999999999?text=Ol%C3%A1!%20Quero%20conhecer%20a%20Para%C3%ADba" target="_blank" rel="noopener" aria-label="Falar no WhatsApp"><i class="bi bi-whatsapp" aria-hidden="true"></i></a>
+  <button id="voltarTopo" class="flutuante voltar-topo" type="button" aria-label="Voltar ao topo"><i class="bi bi-arrow-up" aria-hidden="true"></i></button>
+
+  <script src="../assets/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="../js/script.js"></script>
+</body>
+</html>

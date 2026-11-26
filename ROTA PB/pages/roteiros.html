@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Roteiros · RotaPB</title>
+  <meta name="description" content="Roteiros pela Paraíba do Sertão ao Litoral: Cajazeiras, Campina Grande, Areia, Bananeiras e João Pessoa.">
+  <!-- Fontes: Plus Jakarta Sans (títulos e texto) + DM Serif Display itálico (palavras em destaque) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@1&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <!-- ETAPA 12: Bootstrap (cópia local na pasta assets) -->
+  <link rel="stylesheet" href="../assets/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="../assets/bootstrap-icons/bootstrap-icons.min.css">
+  <!-- ETAPA 7: nosso CSS vem DEPOIS do Bootstrap para poder sobrescrever -->
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <!-- ETAPA 13 (acessibilidade): link para pular direto ao conteúdo -->
+  <a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
+
+  <!-- ===================== BARRA DE ACESSIBILIDADE (ETAPA 13 + ETAPA 11) ===================== -->
+  <div class="barra-acess">
+    <div class="container d-flex flex-wrap align-items-center justify-content-between gap-2">
+      <div class="d-flex flex-wrap align-items-center gap-1" role="group" aria-label="Acessibilidade">
+        <span class="me-1 rotulo">Acessibilidade:</span>
+        <button type="button" class="btn-acess" id="fonteMenor" aria-label="Diminuir texto">A-</button>
+        <button type="button" class="btn-acess" id="fonteNormal" aria-label="Tamanho normal do texto">A</button>
+        <button type="button" class="btn-acess" id="fonteMaior" aria-label="Aumentar texto">A+</button>
+        <button type="button" class="btn-acess" id="altoContraste" aria-pressed="false" aria-label="Alto contraste"><i class="bi bi-circle-half" aria-hidden="true"></i><span class="rotulo"> Alto contraste</span></button>
+        <button type="button" class="btn-acess" id="botaoTema" aria-pressed="false" aria-label="Modo noturno"><i class="bi bi-moon-stars" aria-hidden="true"></i><span class="rotulo"> Modo noturno</span></button>
+      </div>
+      <a class="link-whats-topo" href="https://wa.me/5583999999999?text=Ol%C3%A1!%20Quero%20conhecer%20a%20Para%C3%ADba" target="_blank" rel="noopener"><i class="bi bi-whatsapp" aria-hidden="true"></i> Fale no WhatsApp</a>
+    </div>
+  </div>
+
+  <!-- ===================== CABEÇALHO (ETAPA 6: header + nav | ETAPA 12: navbar) ===================== -->
+  <header class="topo">
+    <div class="faixa-bandeira" aria-hidden="true"></div>
+    <nav class="navbar navbar-expand-lg" aria-label="Menu principal">
+      <div class="container">
+        <a class="navbar-brand marca" href="../index.html">
+          <img class="logo-mapa logo-claro" src="../images/logo-rotapb-mapa.svg" alt="" width="96" height="56">
+          <img class="logo-mapa logo-escuro" src="../images/logo-rotapb-mapa-escuro.svg" alt="" width="96" height="56">
+          <span class="marca-texto">Rota<em>PB</em></span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu"
+                aria-controls="menu" aria-expanded="false" aria-label="Abrir menu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="menu">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item"><a class="nav-link" href="../index.html">Início</a></li>
+            <li class="nav-item"><a class="nav-link" href="conhece.html">Você conhece?</a></li>
+            <li class="nav-item"><a class="nav-link" href="culinaria.html">Culinária</a></li>
+            <li class="nav-item"><a class="nav-link" href="cultura.html">Cultura</a></li>
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="roteiros.html">Roteiros</a></li>
+            <li class="nav-item"><a class="nav-link" href="desafio.html">Desafio</a></li>
+            <li class="nav-item"><a class="nav-link" href="contato.html">Contato</a></li>
+          </ul>
+          <a class="btn btn-pb btn-sm" href="contato.html">Monte sua viagem</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ======================================================================
+       PÁGINA DA PESSOA 3 · Roteiros
+       JavaScript desta página: filtrarRoteiros() e montarRota()
+       ====================================================================== -->
+  <main id="conteudo">
+    <section class="secao" aria-labelledby="tituloPagina">
+      <div class="container">
+        <p class="sobretitulo">Roteiros</p>
+        <h1 id="tituloPagina">Escolha por onde atravessar</h1>
+        <p class="lead">Selecione as cidades que deseja visitar e monte sua rota.</p>
+
+        <!-- ETAPA 11: FILTRO DE CONTEÚDO (função filtrarRoteiros) -->
+        <div class="filtros" role="group" aria-label="Filtrar por região">
+          <button class="filtro ativo" type="button" data-filtro="todas" aria-pressed="true">Todas</button>
+          <button class="filtro" type="button" data-filtro="sertao" aria-pressed="false">Sertão</button>
+          <button class="filtro" type="button" data-filtro="borborema" aria-pressed="false">Borborema</button>
+          <button class="filtro" type="button" data-filtro="brejo" aria-pressed="false">Brejo</button>
+          <button class="filtro" type="button" data-filtro="litoral" aria-pressed="false">Litoral</button>
+        </div>
+
+        <div class="row g-4 mt-1">
+          <div class="col-12 col-lg-8">
+            <div class="row g-4">
+          <!-- data-regiao é o que o filtro usa para mostrar/esconder -->
+          <div class="col-12 col-sm-6 col-xl-4 item-roteiro" data-regiao="sertao">
+            <article class="card card-regiao regiao-sertao h-100">
+              <img class="foto " src="../images/fotos/cajazeiras.png" alt="Cajazeiras" loading="lazy">
+              <div class="card-body">
+                <h3 class="card-title">Cajazeiras</h3>
+                <p class="card-text">A terra que ensinou a Paraíba a ler.</p>
+                <div class="form-check">
+                  <input class="form-check-input incluir-rota" type="checkbox" id="rota-1" value="Cajazeiras" data-ordem="1">
+                  <label class="form-check-label" for="rota-1">Incluir na minha rota</label>
+                </div>
+              </div>
+            </article>
+          </div>
+          <!-- data-regiao é o que o filtro usa para mostrar/esconder -->
+          <div class="col-12 col-sm-6 col-xl-4 item-roteiro" data-regiao="sertao">
+            <article class="card card-regiao regiao-sertao h-100">
+              <img class="foto " src="../images/fotos/dinossauros-sousa.webp" alt="Portal dos dinossauros em Sousa" loading="lazy">
+              <div class="card-body">
+                <h3 class="card-title">Sousa</h3>
+                <p class="card-text">Vale dos Dinossauros.</p>
+                <div class="form-check">
+                  <input class="form-check-input incluir-rota" type="checkbox" id="rota-2" value="Sousa" data-ordem="2">
+                  <label class="form-check-label" for="rota-2">Incluir na minha rota</label>
+                </div>
+              </div>
+            </article>
+          </div>
+          <!-- data-regiao é o que o filtro usa para mostrar/esconder -->
+          <div class="col-12 col-sm-6 col-xl-4 item-roteiro" data-regiao="borborema">
+            <article class="card card-regiao regiao-borborema h-100">
+              <img class="foto " src="../images/fotos/campina-grande.png" alt="Campina Grande" loading="lazy">
+              <div class="card-body">
+                <h3 class="card-title">Campina Grande</h3>
+                <p class="card-text">Maior São João do Mundo.</p>
+                <div class="form-check">
+                  <input class="form-check-input incluir-rota" type="checkbox" id="rota-3" value="Campina Grande" data-ordem="3">
+                  <label class="form-check-label" for="rota-3">Incluir na minha rota</label>
+                </div>
+              </div>
+            </article>
+          </div>
+          <!-- data-regiao é o que o filtro usa para mostrar/esconder -->
+          <div class="col-12 col-sm-6 col-xl-4 item-roteiro" data-regiao="borborema">
+            <article class="card card-regiao regiao-borborema h-100">
+              <img class="foto " src="../images/fotos/lajedo-cariri.webp" alt="Rochas do Cariri" loading="lazy">
+              <div class="card-body">
+                <h3 class="card-title">Cabaceiras</h3>
+                <p class="card-text">A "Roliúde Nordestina".</p>
+                <div class="form-check">
+                  <input class="form-check-input incluir-rota" type="checkbox" id="rota-4" value="Cabaceiras" data-ordem="4">
+                  <label class="form-check-label" for="rota-4">Incluir na minha rota</label>
+                </div>
+              </div>
+            </article>
+          </div>
+          <!-- data-regiao é o que o filtro usa para mostrar/esconder -->
+          <div class="col-12 col-sm-6 col-xl-4 item-roteiro" data-regiao="brejo">
+            <article class="card card-regiao regiao-brejo h-100">
+              <img class="foto " src="../images/fotos/portal-areia.webp" alt="Portal de entrada de Areia" loading="lazy">
+              <div class="card-body">
+                <h3 class="card-title">Areia</h3>
+                <p class="card-text">Teatro Minerva e engenhos.</p>
+                <div class="form-check">
+                  <input class="form-check-input incluir-rota" type="checkbox" id="rota-5" value="Areia" data-ordem="5">
+                  <label class="form-check-label" for="rota-5">Incluir na minha rota</label>
+                </div>
+              </div>
+            </article>
+          </div>
+          <!-- data-regiao é o que o filtro usa para mostrar/esconder -->
+          <div class="col-12 col-sm-6 col-xl-4 item-roteiro" data-regiao="brejo">
+            <article class="card card-regiao regiao-brejo h-100">
+              <img class="foto " src="../images/fotos/bananeiras.png" alt="Igraja Nossa Senhora do Livramento" loading="lazy">
+              <div class="card-body">
+                <h3 class="card-title">Bananeiras</h3>
+                <p class="card-text">Cachoeira do Roncador.</p>
+                <div class="form-check">
+                  <input class="form-check-input incluir-rota" type="checkbox" id="rota-6" value="Bananeiras" data-ordem="6">
+                  <label class="form-check-label" for="rota-6">Incluir na minha rota</label>
+                </div>
+              </div>
+            </article>
+          </div>
+          <!-- data-regiao é o que o filtro usa para mostrar/esconder -->
+          <div class="col-12 col-sm-6 col-xl-4 item-roteiro" data-regiao="litoral">
+            <article class="card card-regiao regiao-litoral h-100">
+              <img class="foto " src="../images/fotos/orla-joao-pessoa.webp" alt="Orla de João Pessoa ao entardecer" loading="lazy">
+              <div class="card-body">
+                <h3 class="card-title">João Pessoa</h3>
+                <p class="card-text">Ponta do Seixas e Caribessa.</p>
+                <div class="form-check">
+                  <input class="form-check-input incluir-rota" type="checkbox" id="rota-7" value="João Pessoa" data-ordem="7">
+                  <label class="form-check-label" for="rota-7">Incluir na minha rota</label>
+                </div>
+              </div>
+            </article>
+          </div>
+          <!-- data-regiao é o que o filtro usa para mostrar/esconder -->
+          <div class="col-12 col-sm-6 col-xl-4 item-roteiro" data-regiao="litoral">
+            <article class="card card-regiao regiao-litoral h-100">
+              <img class="foto " src="../images/fotos/areia-vermelha.webp" alt="Barcos na piscina natural de Areia Vermelha" loading="lazy">
+              <div class="card-body">
+                <h3 class="card-title">Cabedelo</h3>
+                <p class="card-text">Areia Vermelha e a Fortaleza de Santa Catarina.</p>
+                <div class="form-check">
+                  <input class="form-check-input incluir-rota" type="checkbox" id="rota-8" value="Cabedelo" data-ordem="8">
+                  <label class="form-check-label" for="rota-8">Incluir na minha rota</label>
+                </div>
+              </div>
+            </article>
+          </div>
+          <!-- data-regiao é o que o filtro usa para mostrar/esconder -->
+          <div class="col-12 col-sm-6 col-xl-4 item-roteiro" data-regiao="litoral">
+            <article class="card card-regiao regiao-litoral h-100">
+              <img class="foto " src="../images/fotos/lucena.png" alt="Capela de Nossa Senhora de Guia" loading="lazy">
+              <div class="card-body">
+                <h3 class="card-title">Lucena</h3>
+                <p class="card-text">Praias tranquilas do litoral norte.</p>
+                <div class="form-check">
+                  <input class="form-check-input incluir-rota" type="checkbox" id="rota-9" value="Lucena" data-ordem="9">
+                  <label class="form-check-label" for="rota-9">Incluir na minha rota</label>
+                </div>
+              </div>
+            </article>
+          </div>
+          <!-- data-regiao é o que o filtro usa para mostrar/esconder -->
+          <div class="col-12 col-sm-6 col-xl-4 item-roteiro" data-regiao="litoral">
+            <article class="card card-regiao regiao-litoral h-100">
+              <img class="foto " src="../images/fotos/baia-da-traicao.png" alt="Praia de Baía da Traição" loading="lazy">
+              <div class="card-body">
+                <h3 class="card-title">Baía da Traição</h3>
+                <p class="card-text">Terra dos potiguaras.</p>
+                <div class="form-check">
+                  <input class="form-check-input incluir-rota" type="checkbox" id="rota-10" value="Baía da Traição" data-ordem="10">
+                  <label class="form-check-label" for="rota-10">Incluir na minha rota</label>
+                </div>
+              </div>
+            </article>
+          </div>
+          <!-- data-regiao é o que o filtro usa para mostrar/esconder -->
+          <div class="col-12 col-sm-6 col-xl-4 item-roteiro" data-regiao="litoral">
+            <article class="card card-regiao regiao-litoral h-100">
+              <img class="foto " src="../images/fotos/falesias-litoral-sul.webp" alt="Falésias do litoral sul" loading="lazy">
+              <div class="card-body">
+                <h3 class="card-title">Jacumã</h3>
+                <p class="card-text">Falésias e praias do Conde.</p>
+                <div class="form-check">
+                  <input class="form-check-input incluir-rota" type="checkbox" id="rota-11" value="Jacumã" data-ordem="11">
+                  <label class="form-check-label" for="rota-11">Incluir na minha rota</label>
+                </div>
+              </div>
+            </article>
+          </div>
+            </div>
+          </div>
+          <!-- ETAPA 11: MONTE SUA ROTA (função montarRota) -->
+          <aside class="col-12 col-lg-4">
+            <div class="painel-rota">
+              <h2 class="h4">Sua rota</h2>
+              <ol id="listaRota"><li class="vazio">Marque as cidades que quer visitar.</li></ol>
+              <p id="resumoRota" aria-live="polite">0 cidades</p>
+              <a class="btn btn-pb w-100" href="contato.html">Quero essa viagem</a>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="secao secao-clara" aria-labelledby="tituloFestas">
+      <div class="container">
+        <h2 id="tituloFestas" class="titulo-secao">Calendário de festas</h2>
+        <div class="row g-3">
+          <div class="col-12 col-md-4"><article class="card h-100"><div class="card-body"><h3 class="h5">Fevereiro/Março</h3><p class="mb-0">Folia de Rua em João Pessoa</p></div></article></div>
+          <div class="col-12 col-md-4"><article class="card h-100"><div class="card-body"><h3 class="h5">Junho</h3><p class="mb-0">São João de Campina Grande e de Bananeiras.</p></div></article></div>
+          <div class="col-12 col-md-4"><article class="card h-100"><div class="card-body"><h3 class="h5">Agosto</h3><p class="mb-0">Caminhos do Frio no Brejo.</p></div></article></div>
+          <div class="col-12 col-md-4"><article class="card h-100"><div class="card-body"><h3 class="h5">Agosto</h3><p class="mb-0">Festa das Neves em João Pessoa</p></div></article></div>
+          <div class="col-12 col-md-4"><article class="card h-100"><div class="card-body"><h3 class="h5">Outubro</h3><p class="mb-0">Festa do Rosário em Pombal</p></div></article></div>
+          <div class="col-12 col-md-4"><article class="card h-100"><div class="card-body"><h3 class="h5">Novembro</h3><p class="mb-0">Romaria da Penha em João Pessoa</p></div></article></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== RODAPÉ (ETAPA 6: footer) ===================== -->
+  <footer class="rodape">
+    <div class="faixa-bandeira" aria-hidden="true"></div>
+    <div class="container py-5">
+      <div class="row g-4">
+        <section class="col-12 col-lg-4">
+          <p class="marca-rodape">Rota<em>PB</em></p>
+          <p>A Paraíba de dentro pra fora, do Sertão ao mar.</p>
+          <div class="d-flex gap-2">
+            <a class="rede" href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+            <a class="rede" href="https://wa.me/5583999999999?text=Ol%C3%A1!%20Quero%20conhecer%20a%20Para%C3%ADba" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+            <a class="rede" href="https://youtube.com" target="_blank" rel="noopener" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+          </div>
+        </section>
+        <section class="col-12 col-sm-6 col-lg-2">
+          <h2 class="h6">Navegue</h2>
+          <ul class="list-unstyled">
+            <li><a href="conhece.html">Você conhece?</a></li>
+            <li><a href="culinaria.html">Culinária</a></li>
+            <li><a href="cultura.html">Arte e música</a></li>
+            <li><a href="roteiros.html">Roteiros</a></li>
+            <li><a href="desafio.html">Desafio (jogo)</a></li>
+            <li><a href="creditos.html">Créditos e fontes</a></li>
+          </ul>
+        </section>
+        <section class="col-12 col-sm-6 col-lg-3">
+          <h2 class="h6">Atendimento</h2>
+          <ul class="list-unstyled">
+            <li><i class="bi bi-whatsapp" aria-hidden="true"></i> (83) 99999-9999 <span class="text-nowrap">(fictício)</span></li>
+            <li><i class="bi bi-envelope" aria-hidden="true"></i> contato@paraibaadentro.com.br</li>
+            <li><a href="contato.html">Formulário de contato</a></li>
+          </ul>
+        </section>
+        <section class="col-12 col-lg-3">
+          <h2 class="h6">Novidades por e-mail</h2>
+          <form class="assinatura" novalidate>
+            <label for="emailNews-i" class="visually-hidden">Seu e-mail</label>
+            <input id="emailNews-i" type="email" class="form-control" placeholder="Seu e-mail" required>
+            <button type="submit" class="btn btn-pb">Assinar</button>
+          </form>
+        </section>
+      </div>
+      <p class="small mt-4 mb-0">© <span class="js-ano">2026</span> RotaPB · Projeto Integrador · UNIPÊ · Agência fictícia: valores e contatos são exemplos.</p>
+    </div>
+  </footer>
+
+  <!-- ===================== PASSAPORTE (ETAPA 11: localStorage) ===================== -->
+  <button type="button" class="flutuante passaporte-botao" data-bs-toggle="modal" data-bs-target="#modalPassaporte" aria-label="Abrir meu passaporte">
+    <i class="bi bi-journal-bookmark" aria-hidden="true"></i><span class="js-passaporte-contagem">0/8</span>
+  </button>
+  <div class="modal fade" id="modalPassaporte" tabindex="-1" aria-labelledby="tituloPassaporte" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content passaporte">
+        <div class="modal-header">
+          <h2 class="modal-title h4" id="tituloPassaporte">Meu passaporte paraibano</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+        </div>
+        <div class="modal-body">
+          <p class="mb-2">Ganhe carimbos explorando o site e vencendo as salas do <a href="desafio.html">Desafio</a>. Os carimbos ficam salvos neste navegador.</p>
+          <div class="progress passaporte-progresso" role="progressbar" aria-label="Carimbos conquistados" aria-valuemin="0" aria-valuemax="8" aria-valuenow="0">
+            <div class="progress-bar" id="barraPassaporte" style="width: 0%"></div>
+          </div>
+          <ul class="grade-carimbos" id="gradeCarimbos" aria-label="Carimbos"></ul>
+          <div id="passaporteCompleto" class="alert alert-success mt-3" hidden>
+            <strong>Passaporte completo!</strong> Você ganhou <strong>10% de desconto</strong> em qualquer roteiro. Use o cupom <code class="cupom">ROTAPB10</code> ao <a href="contato.html">montar sua viagem</a>.
+          </div>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-link text-decoration-none" id="zerarPassaporte">Zerar carimbos</button>
+          <a class="btn btn-pb" href="desafio.html">Ir para o Desafio</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Botões flutuantes: WhatsApp e voltar ao topo (ETAPA 11) -->
+  <a class="flutuante whatsapp" href="https://wa.me/5583999999999?text=Ol%C3%A1!%20Quero%20conhecer%20a%20Para%C3%ADba" target="_blank" rel="noopener" aria-label="Falar no WhatsApp"><i class="bi bi-whatsapp" aria-hidden="true"></i></a>
+  <button id="voltarTopo" class="flutuante voltar-topo" type="button" aria-label="Voltar ao topo"><i class="bi bi-arrow-up" aria-hidden="true"></i></button>
+
+  <script src="../assets/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="../js/script.js"></script>
+</body>
+</html>

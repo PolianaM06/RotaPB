@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Créditos e fontes · RotaPB</title>
+  <meta name="description" content="Créditos das fotos, fontes das informações e tecnologias usadas no site RotaPB.">
+  <!-- Fontes: Plus Jakarta Sans (títulos e texto) + DM Serif Display itálico (palavras em destaque) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@1&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <!-- ETAPA 12: Bootstrap (cópia local na pasta assets) -->
+  <link rel="stylesheet" href="../assets/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="../assets/bootstrap-icons/bootstrap-icons.min.css">
+  <!-- ETAPA 7: nosso CSS vem DEPOIS do Bootstrap para poder sobrescrever -->
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <!-- ETAPA 13 (acessibilidade): link para pular direto ao conteúdo -->
+  <a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
+
+  <!-- ===================== BARRA DE ACESSIBILIDADE (ETAPA 13 + ETAPA 11) ===================== -->
+  <div class="barra-acess">
+    <div class="container d-flex flex-wrap align-items-center justify-content-between gap-2">
+      <div class="d-flex flex-wrap align-items-center gap-1" role="group" aria-label="Acessibilidade">
+        <span class="me-1 rotulo">Acessibilidade:</span>
+        <button type="button" class="btn-acess" id="fonteMenor" aria-label="Diminuir texto">A-</button>
+        <button type="button" class="btn-acess" id="fonteNormal" aria-label="Tamanho normal do texto">A</button>
+        <button type="button" class="btn-acess" id="fonteMaior" aria-label="Aumentar texto">A+</button>
+        <button type="button" class="btn-acess" id="altoContraste" aria-pressed="false" aria-label="Alto contraste"><i class="bi bi-circle-half" aria-hidden="true"></i><span class="rotulo"> Alto contraste</span></button>
+        <button type="button" class="btn-acess" id="botaoTema" aria-pressed="false" aria-label="Modo noturno"><i class="bi bi-moon-stars" aria-hidden="true"></i><span class="rotulo"> Modo noturno</span></button>
+      </div>
+      <a class="link-whats-topo" href="https://wa.me/5583999999999?text=Ol%C3%A1!%20Quero%20conhecer%20a%20Para%C3%ADba" target="_blank" rel="noopener"><i class="bi bi-whatsapp" aria-hidden="true"></i> Fale no WhatsApp</a>
+    </div>
+  </div>
+
+  <!-- ===================== CABEÇALHO (ETAPA 6: header + nav | ETAPA 12: navbar) ===================== -->
+  <header class="topo">
+    <div class="faixa-bandeira" aria-hidden="true"></div>
+    <nav class="navbar navbar-expand-lg" aria-label="Menu principal">
+      <div class="container">
+        <a class="navbar-brand marca" href="../index.html">
+          <img class="logo-mapa logo-claro" src="../images/logo-rotapb-mapa.svg" alt="" width="96" height="56">
+          <img class="logo-mapa logo-escuro" src="../images/logo-rotapb-mapa-escuro.svg" alt="" width="96" height="56">
+          <span class="marca-texto">Rota<em>PB</em></span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu"
+                aria-controls="menu" aria-expanded="false" aria-label="Abrir menu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="menu">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item"><a class="nav-link" href="../index.html">Início</a></li>
+            <li class="nav-item"><a class="nav-link" href="conhece.html">Você conhece?</a></li>
+            <li class="nav-item"><a class="nav-link" href="culinaria.html">Culinária</a></li>
+            <li class="nav-item"><a class="nav-link" href="cultura.html">Cultura</a></li>
+            <li class="nav-item"><a class="nav-link" href="roteiros.html">Roteiros</a></li>
+            <li class="nav-item"><a class="nav-link" href="desafio.html">Desafio</a></li>
+            <li class="nav-item"><a class="nav-link" href="contato.html">Contato</a></li>
+          </ul>
+          <a class="btn btn-pb btn-sm" href="contato.html">Monte sua viagem</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main id="conteudo">
+    <section class="secao pb-4" aria-labelledby="tituloPagina">
+      <div class="container">
+        <p class="sobretitulo">Transparência</p>
+        <h1 id="tituloPagina">Créditos <em>e fontes</em></h1>
+        <p class="lead">Site acadêmico, sem fins comerciais. Tudo o que não é nosso está creditado aqui. Se você é autor de alguma foto e quer crédito ou remoção, fale com a gente.</p>
+      </div>
+    </section>
+
+    <section class="secao pt-0" aria-labelledby="tituloFotos">
+      <div class="container">
+        <h2 id="tituloFotos" class="titulo-secao">Fotos</h2>
+        <ul class="lista-creditos">
+          <li class="credito-foto">
+            <img src="../images/fotos/falesias-litoral-sul.webp" alt="" loading="lazy">
+            <div><strong>Falésias do litoral sul (topo da página inicial)</strong><span>Joel Souto Maior</span></div>
+          </li>
+          <li class="credito-foto">
+            <img src="../images/fotos/dinossauros-por-do-sol.webp" alt="" loading="lazy">
+            <div><strong>Portal dos dinossauros em Sousa, ao pôr do sol</strong><span>Secretaria de Comunicação do Governo da Paraíba (Secom-PB)</span></div>
+          </li>
+          <li class="credito-foto">
+            <img src="../images/fotos/dinossauros-sousa.webp" alt="" loading="lazy">
+            <div><strong>Portal dos dinossauros em Sousa</strong><span>Saullo Dannylck</span></div>
+          </li>
+          <li class="credito-foto">
+            <img src="../images/fotos/lajedo-cariri.webp" alt="" loading="lazy">
+            <div><strong>Lajedo de Pai Mateus, Cabaceiras</strong><span>Adventure Club</span></div>
+          </li>
+          <li class="credito-foto">
+            <img src="../images/fotos/pedra-do-inga.webp" alt="" loading="lazy">
+            <div><strong>Pedra do Ingá</strong><span>Krys Carneiro</span></div>
+          </li>
+          <li class="credito-foto">
+            <img src="../images/fotos/casario-areia.webp" alt="" loading="lazy">
+            <div><strong>Casario de Areia</strong><span>Rogério Vital</span></div>
+          </li>
+          <li class="credito-foto">
+            <img src="../images/fotos/portal-areia.webp" alt="" loading="lazy">
+            <div><strong>Portal de entrada de Areia</strong><span>Mapa da Cachaça</span></div>
+          </li>
+          <li class="credito-foto">
+            <img src="../images/fotos/engenho-brejo.webp" alt="" loading="lazy">
+            <div><strong>Engenho no Brejo paraibano</strong><span>Cachaça Matuta</span></div>
+          </li>
+          <li class="credito-foto">
+            <img src="../images/fotos/mandacaru.webp" alt="" loading="lazy">
+            <div><strong>Mandacaru</strong><span>Fartura Brasil</span></div>
+          </li>
+          <li class="credito-foto">
+            <img src="../images/fotos/picaozinho.webp" alt="" loading="lazy">
+            <div><strong>Piscinas naturais de Picãozinho</strong><span>Tripadvisor</span></div>
+          </li>
+          <li class="credito-foto">
+            <img src="../images/fotos/areia-vermelha.webp" alt="" loading="lazy">
+            <div><strong>Areia Vermelha, Cabedelo</strong><span>Miguel Dirceu Tortorello Filho</span></div>
+          </li>
+          <li class="credito-foto">
+            <img src="../images/fotos/farol-cabo-branco.webp" alt="" loading="lazy">
+            <div><strong>Farol do Cabo Branco</strong><span>Cidade Turismo</span></div>
+          </li>
+          <li class="credito-foto">
+            <img src="../images/fotos/orla-joao-pessoa.webp" alt="" loading="lazy">
+            <div><strong>Orla de João Pessoa</strong><span>Marco Pimentel</span></div>
+          </li>
+          <li class="credito-foto">
+            <img src="../images/fotos/centro-historico-jp.webp" alt="" loading="lazy">
+            <div><strong>Centro Histórico de João Pessoa</strong><span>Secretaria de Turismo da Paraíba</span></div>
+          </li>
+          <li class="credito-foto">
+            <img src="../images/fotos/igreja-praca.webp" alt="" loading="lazy">
+            <div><strong>Igreja e praça no Centro Histórico de João Pessoa</strong><span>Eyre Aguiar</span></div>
+          </li>
+          <li class="credito-foto">
+            <img src="../images/fotos/feirinha-tambau.webp" alt="" loading="lazy">
+            <div><strong>Feirinha de Artesanato de Tambaú</strong><span>Paloma Lacerda</span></div>
+          </li>
+          <li class="credito-foto">
+            <img src="../images/fotos/cordel-varal.webp" alt="" loading="lazy">
+            <div><strong>Folhetos de cordel com xilogravuras de J. Borges</strong><span>Gamelha</span></div>
+          </li>
+          <li class="credito-foto">
+            <img src="../images/fotos/cajazeiras.png" alt="" loading="lazy">
+            <div><strong>Cajazeiras</strong><span>G1 Paraíba</span></div>
+          </li>
+          <li class="credito-foto">
+            <img src="../images/fotos/campina-grande.png" alt="" loading="lazy">
+            <div><strong>Campina Grande</strong><span>Prefeitura de Campina Grande</span></div>
+          </li>
+          <li class="credito-foto">
+            <img src="../images/fotos/bananeiras.png" alt="" loading="lazy">
+            <div><strong>Igreja Nossa Senhora do Livramento</strong><span>Bruno Giovanni</span></div>
+          </li>
+          <li class="credito-foto">
+            <img src="../images/fotos/lucena.png" alt="" loading="lazy">
+            <div><strong>Capela de Nossa Senhora da Guia</strong><span>Ruy Carvalho</span></div>
+          </li>
+          <li class="credito-foto">
+            <img src="../images/fotos/baia-da-traicao.png" alt="" loading="lazy">
+            <div><strong>Praia de Baía da Traição</strong><span>Jair Prandi</span></div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="secao secao-clara" aria-labelledby="tituloFontes">
+      <div class="container">
+        <h2 id="tituloFontes" class="titulo-secao">Fontes das <em>informações</em></h2>
+        <ul class="fontes">
+          <li>Jornal da Paraíba, <a href="https://jornaldaparaiba.com.br/qualaboa/pontos-turisticos-da-paraiba" target="_blank" rel="noopener">Pontos turísticos da Paraíba</a></li>
+          <li>Paraíba Business: <a href="https://paraibabusiness.com.br/areia-e-o-2o-maior-polo-de-cachacas-registradas-do-brasil/" target="_blank" rel="noopener">Areia e as cachaças registradas</a>, <a href="https://paraibabusiness.com.br/cachaca-paraibana-busca-espaco-no-mercado-premium-pela-coquetelaria/" target="_blank" rel="noopener">drinks com cachaça paraibana</a>, <a href="https://paraibabusiness.com.br/caribe-paraibano-paraiso-natural-impulsiona/" target="_blank" rel="noopener">Caribe paraibano</a>, <a href="https://paraibabusiness.com.br/seu-pereira-e-coletivo-401-e-confirmado-no-lollapalooza-2027/" target="_blank" rel="noopener">Seu Pereira e Coletivo 401</a>, <a href="https://paraibabusiness.com.br/sabadinho-bom-tera-mistura-de-chorinho-xote-e-bolero-no-centro-historico-de-joao-pessoa/" target="_blank" rel="noopener">Sabadinho Bom</a>, <a href="https://paraibabusiness.com.br/cordel-patrimonio-cultural-imaterial-pb/" target="_blank" rel="noopener">cordel como patrimônio da Paraíba</a></li>
+          <li>Agência Sebrae, <a href="https://agenciasebrae.com.br/inovacao-e-tecnologia/brasil-alcanca-150-igs-nacionais-e-celebra-reconhecimento-de-duas-novas-regioes-produtoras-de-cachaca/" target="_blank" rel="noopener">Indicação Geográfica da cachaça de Areia</a></li>
+          <li>Revista Cultivar, <a href="https://www.revistacultivar.com.br/noticias/embrapa-apresenta-logomarca-para-identificacao-de-tecidos-em-algodoes-coloridos" target="_blank" rel="noopener">algodão naturalmente colorido da Embrapa</a></li>
+          <li>Revista Pesquisa FAPESP, <a href="https://revistapesquisa.fapesp.br/uma-trama-de-cordeis/" target="_blank" rel="noopener">Uma trama de cordéis</a></li>
+          <li>Enciclopédia Itaú Cultural (Pedro Américo, João Câmara) e Prêmio PIPA (José Rufino)</li>
+          <li>TODO: fontes da história das cidades, do Teatro Minerva e das frutas</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="secao" aria-labelledby="tituloTec">
+      <div class="container">
+        <h2 id="tituloTec" class="titulo-secao">Tecnologias e <em>recursos</em></h2>
+        <ul class="fontes">
+          <li><a href="https://getbootstrap.com" target="_blank" rel="noopener">Bootstrap 5.3</a> e <a href="https://icons.getbootstrap.com" target="_blank" rel="noopener">Bootstrap Icons</a> (licença MIT)</li>
+          <li>Fontes <a href="https://fonts.google.com/specimen/Plus+Jakarta+Sans" target="_blank" rel="noopener">Plus Jakarta Sans</a> e <a href="https://fonts.google.com/specimen/DM+Serif+Display" target="_blank" rel="noopener">DM Serif Display</a> (Google Fonts, licença OFL)</li>
+          <li>Contorno do mapa da Paraíba e dos estados vizinhos: dados de limites estaduais do projeto <a href="https://github.com/codeforamerica/click_that_hood" target="_blank" rel="noopener">click_that_hood</a> (Code for America)</li>
+          <li>Player de música: incorporação oficial do Spotify</li>
+          <li>Mapa de localização: incorporação do Google Maps</li>
+          <li>Logo, ilustração do mapa e textos: equipe RotaPB. Parte do código gerada com auxílio de IA (Claude), conforme registrado no relatório</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== RODAPÉ (ETAPA 6: footer) ===================== -->
+  <footer class="rodape">
+    <div class="faixa-bandeira" aria-hidden="true"></div>
+    <div class="container py-5">
+      <div class="row g-4">
+        <section class="col-12 col-lg-4">
+          <p class="marca-rodape">Rota<em>PB</em></p>
+          <p>A Paraíba de dentro pra fora, do Sertão ao mar.</p>
+          <div class="d-flex gap-2">
+            <a class="rede" href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+            <a class="rede" href="https://wa.me/5583999999999?text=Ol%C3%A1!%20Quero%20conhecer%20a%20Para%C3%ADba" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+            <a class="rede" href="https://youtube.com" target="_blank" rel="noopener" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+          </div>
+        </section>
+        <section class="col-12 col-sm-6 col-lg-2">
+          <h2 class="h6">Navegue</h2>
+          <ul class="list-unstyled">
+            <li><a href="conhece.html">Você conhece?</a></li>
+            <li><a href="culinaria.html">Culinária</a></li>
+            <li><a href="cultura.html">Arte e música</a></li>
+            <li><a href="roteiros.html">Roteiros</a></li>
+            <li><a href="desafio.html">Desafio (jogo)</a></li>
+            <li><a href="creditos.html">Créditos e fontes</a></li>
+          </ul>
+        </section>
+        <section class="col-12 col-sm-6 col-lg-3">
+          <h2 class="h6">Atendimento</h2>
+          <ul class="list-unstyled">
+            <li><i class="bi bi-whatsapp" aria-hidden="true"></i> (83) 99999-9999 <span class="text-nowrap">(fictício)</span></li>
+            <li><i class="bi bi-envelope" aria-hidden="true"></i> contato@paraibaadentro.com.br</li>
+            <li><a href="contato.html">Formulário de contato</a></li>
+          </ul>
+        </section>
+        <section class="col-12 col-lg-3">
+          <h2 class="h6">Novidades por e-mail</h2>
+          <form class="assinatura" novalidate>
+            <label for="emailNews-i" class="visually-hidden">Seu e-mail</label>
+            <input id="emailNews-i" type="email" class="form-control" placeholder="Seu e-mail" required>
+            <button type="submit" class="btn btn-pb">Assinar</button>
+          </form>
+        </section>
+      </div>
+      <p class="small mt-4 mb-0">© <span class="js-ano">2026</span> RotaPB · Projeto Integrador · UNIPÊ · Agência fictícia: valores e contatos são exemplos.</p>
+    </div>
+  </footer>
+
+  <!-- ===================== PASSAPORTE (ETAPA 11: localStorage) ===================== -->
+  <button type="button" class="flutuante passaporte-botao" data-bs-toggle="modal" data-bs-target="#modalPassaporte" aria-label="Abrir meu passaporte">
+    <i class="bi bi-journal-bookmark" aria-hidden="true"></i><span class="js-passaporte-contagem">0/8</span>
+  </button>
+  <div class="modal fade" id="modalPassaporte" tabindex="-1" aria-labelledby="tituloPassaporte" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content passaporte">
+        <div class="modal-header">
+          <h2 class="modal-title h4" id="tituloPassaporte">Meu passaporte paraibano</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+        </div>
+        <div class="modal-body">
+          <p class="mb-2">Ganhe carimbos explorando o site e vencendo as salas do <a href="desafio.html">Desafio</a>. Os carimbos ficam salvos neste navegador.</p>
+          <div class="progress passaporte-progresso" role="progressbar" aria-label="Carimbos conquistados" aria-valuemin="0" aria-valuemax="8" aria-valuenow="0">
+            <div class="progress-bar" id="barraPassaporte" style="width: 0%"></div>
+          </div>
+          <ul class="grade-carimbos" id="gradeCarimbos" aria-label="Carimbos"></ul>
+          <div id="passaporteCompleto" class="alert alert-success mt-3" hidden>
+            <strong>Passaporte completo!</strong> Você ganhou <strong>10% de desconto</strong> em qualquer roteiro. Use o cupom <code class="cupom">ROTAPB10</code> ao <a href="contato.html">montar sua viagem</a>.
+          </div>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-link text-decoration-none" id="zerarPassaporte">Zerar carimbos</button>
+          <a class="btn btn-pb" href="desafio.html">Ir para o Desafio</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Botões flutuantes: WhatsApp e voltar ao topo (ETAPA 11) -->
+  <a class="flutuante whatsapp" href="https://wa.me/5583999999999?text=Ol%C3%A1!%20Quero%20conhecer%20a%20Para%C3%ADba" target="_blank" rel="noopener" aria-label="Falar no WhatsApp"><i class="bi bi-whatsapp" aria-hidden="true"></i></a>
+  <button id="voltarTopo" class="flutuante voltar-topo" type="button" aria-label="Voltar ao topo"><i class="bi bi-arrow-up" aria-hidden="true"></i></button>
+
+  <script src="../assets/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="../js/script.js"></script>
+</body>
+</html>
