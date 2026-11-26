@@ -177,6 +177,41 @@ function virarCartas() {
   });
 }
 
+/* Mapa de cidades para regiões (usado para integrar Roteiros -> Contato) */
+const REGIAO_POR_CIDADE = {
+  "Cajazeiras": "sertao",
+  "Sousa": "sertao",
+  "Campina Grande": "borborema",
+  "Cabaceiras": "borborema",
+  "Areia": "brejo",
+  "Bananeiras": "brejo",
+  "João Pessoa": "litoral",
+  "Cabedelo": "litoral",
+  "Lucena": "litoral",
+  "Baía da Traição": "litoral",
+  "Jacumã": "litoral"
+};
+
+/* Mapa interativo em "Você conhece?": clicar ou acionar pino pelo teclado leva ao roteiro da região. */
+function mapaInterativo() {
+  const pinos = document.querySelectorAll(".mapa-pb .pin[data-regiao]");
+  if (pinos.length === 0) return;
+
+  pinos.forEach(function (pino) {
+    function abrir() {
+      const regiao = pino.getAttribute("data-regiao");
+      if (regiao) window.location.href = "roteiros.html?regiao=" + encodeURIComponent(regiao);
+    }
+    pino.addEventListener("click", abrir);
+    pino.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        abrir();
+      }
+    });
+  });
+}
+
 /* ======================= 5. FILTROS E ROTA ======================= */
 
 /* Função genérica: botões com data-filtro mostram/escondem itens com data-<atributo>.
@@ -208,18 +243,42 @@ function filtrarCulinaria() {
   ligarFiltro(".filtro-culinaria", ".item-culinaria", "categoria");
 }
 
-/* A busca da página inicial manda ?regiao=sertao na URL: já abrimos filtrado. */
+/* A busca da página inicial manda ?regiao=sertao&mes=...&pessoas=... na URL: já abrimos filtrado. */
 function filtrarRoteiros() {
-  const parametro = new URLSearchParams(location.search).get("regiao");
+  const params = new URLSearchParams(location.search);
+  const parametro = params.get("regiao");
   const valido = ["sertao", "borborema", "brejo", "litoral"].includes(parametro);
   ligarFiltro(".filtro:not(.filtro-culinaria)", ".item-roteiro", "regiao", valido ? parametro : null);
+
+  const mes = params.get("mes");
+  const pessoas = params.get("pessoas");
+  const avisoBusca = document.getElementById("avisoBuscaHome");
+  if (mes || pessoas) {
+    const info = {
+      mes: mes && mes !== "Qualquer mês" ? mes : "",
+      pessoas: pessoas ? Math.max(1, Math.min(20, Number(pessoas) || 2)) : 0
+    };
+    armazem.gravar("rotapb-busca", info);
+    if (avisoBusca) {
+      const partes = [];
+      if (info.mes) partes.push("Período: " + info.mes);
+      if (info.pessoas) partes.push(info.pessoas + (info.pessoas === 1 ? " viajante" : " viajantes"));
+      if (partes.length > 0) {
+        avisoBusca.innerHTML = '<i class="bi bi-search" aria-hidden="true"></i> Preferências da sua busca: <strong>' + partes.join(" · ") + '</strong> (vamos levar esses dados para o formulário de contato).';
+        avisoBusca.hidden = false;
+      }
+    }
+  }
 }
 
-/* Monte sua rota: lista as cidades marcadas, na ordem oeste → leste. */
+/* Monte sua rota: lista as cidades marcadas, na ordem oeste → leste, salva no localStorage
+   e permite remover cidades ou enviar a rota pronta para a página de Contato. */
 function montarRota() {
   const caixas = document.querySelectorAll(".incluir-rota");
   const lista = document.getElementById("listaRota");
   const resumo = document.getElementById("resumoRota");
+  const btnLimpar = document.getElementById("limparRota");
+  const btnEnviar = document.getElementById("btnQueroViagem");
   if (caixas.length === 0 || !lista || !resumo) return;
 
   function atualizar() {
@@ -227,20 +286,50 @@ function montarRota() {
       .filter(function (c) { return c.checked; })
       .sort(function (a, b) { return Number(a.dataset.ordem) - Number(b.dataset.ordem); });
 
+    const nomes = marcadas.map(function (c) { return c.value; });
+    armazem.gravar("rotapb-rota", nomes);
+
     lista.innerHTML = "";
     if (marcadas.length === 0) {
       lista.innerHTML = '<li class="vazio">Marque as cidades que quer visitar.</li>';
       resumo.textContent = "0 cidades";
+      if (btnLimpar) btnLimpar.hidden = true;
+      if (btnEnviar) {
+        btnEnviar.href = "contato.html";
+        btnEnviar.textContent = "Quero essa viagem";
+      }
       return;
     }
+
     marcadas.forEach(function (caixa, i) {
       const li = document.createElement("li");
-      li.textContent = "Dia " + (i + 1) + " · " + caixa.value;
+      li.className = "rota-item";
+
+      const span = document.createElement("span");
+      span.textContent = "Dia " + (i + 1) + " · " + caixa.value;
+
+      const remover = document.createElement("button");
+      remover.type = "button";
+      remover.className = "btn-remover-cidade";
+      remover.setAttribute("aria-label", "Remover " + caixa.value + " da rota");
+      remover.innerHTML = '<i class="bi bi-x" aria-hidden="true"></i>';
+      remover.addEventListener("click", function () {
+        caixa.checked = false;
+        atualizar();
+      });
+
+      li.appendChild(span);
+      li.appendChild(remover);
       lista.appendChild(li);
     });
+
     const n = marcadas.length;
     resumo.textContent = n + (n === 1 ? " cidade · 1 dia" : " cidades · " + n + " dias");
-    armazem.gravar("rotapb-rota", marcadas.map(function (c) { return c.value; }));
+    if (btnLimpar) btnLimpar.hidden = false;
+    if (btnEnviar) {
+      btnEnviar.href = "contato.html?origem=rota";
+      btnEnviar.textContent = "Enviar rota para orçamento (" + n + ")";
+    }
   }
 
   // recupera a rota salva da última visita
@@ -248,6 +337,12 @@ function montarRota() {
   caixas.forEach(function (c) { if (salva.includes(c.value)) c.checked = true; });
 
   caixas.forEach(function (c) { c.addEventListener("change", atualizar); });
+  if (btnLimpar) {
+    btnLimpar.addEventListener("click", function () {
+      caixas.forEach(function (c) { c.checked = false; });
+      atualizar();
+    });
+  }
   atualizar();
 }
 
@@ -260,10 +355,7 @@ function trocarMusica() {
   faixas.forEach(function (faixa) {
     faixa.addEventListener("click", function () {
       const codigo = faixa.dataset.spotify;
-      if (!codigo || codigo === "TODO") {
-        faixa.insertAdjacentHTML("beforeend", ' <small>(em breve)</small>');
-        return;
-      }
+      if (!codigo) return;
       player.src = "https://open.spotify.com/embed/" + codigo;
       player.title = "Player de música: " + faixa.textContent.trim() + " no Spotify";
       faixas.forEach(function (f) {
@@ -292,6 +384,83 @@ function mascaraTelefone() {
   });
 }
 
+/* Preenche automaticamente regiões e mensagem no formulário de Contato quando
+   o visitante montou uma rota em Roteiros ou clicou em um tema específico. */
+function preencherRotaNoContato() {
+  const form = document.getElementById("formViagem");
+  const mensagem = document.getElementById("mensagem");
+  const caixaResumo = document.getElementById("resumoRotaContato");
+  const listaChips = document.getElementById("chipsRotaContato");
+  const btnLimpar = document.getElementById("limparRotaContato");
+  if (!form || !mensagem) return;
+
+  const params = new URLSearchParams(location.search);
+  const tema = params.get("tema");
+  const rotaSalva = armazem.ler("rotapb-rota", []);
+  const buscaSalva = armazem.ler("rotapb-busca", null);
+
+  function dispararInputMensagem() {
+    mensagem.dispatchEvent(new Event("input", { bubbles: true }));
+  }
+
+  function marcarRegioes(regioesUnicas) {
+    const checkboxes = form.querySelectorAll('fieldset input[type="checkbox"]');
+    checkboxes.forEach(function (cb) {
+      if (regioesUnicas.includes(cb.value)) cb.checked = true;
+    });
+    const avisoRegiao = document.getElementById("avisoRegiao");
+    if (avisoRegiao && regioesUnicas.length > 0) avisoRegiao.hidden = true;
+  }
+
+  if (Array.isArray(rotaSalva) && rotaSalva.length > 0) {
+    const regioes = [];
+    rotaSalva.forEach(function (cidade) {
+      const reg = REGIAO_POR_CIDADE[cidade];
+      if (reg && !regioes.includes(reg)) regioes.push(reg);
+    });
+    marcarRegioes(regioes);
+
+    if (caixaResumo && listaChips) {
+      listaChips.innerHTML = rotaSalva.map(function (cidade, idx) {
+        return '<li class="chip-cidade"><strong>Dia ' + (idx + 1) + '</strong> ' + cidade + '</li>';
+      }).join("");
+      caixaResumo.hidden = false;
+    }
+
+    if (!mensagem.value.trim()) {
+      const n = rotaSalva.length;
+      const linhas = [
+        "Olá! Montei este roteiro pela Paraíba (" + n + (n === 1 ? " cidade / 1 dia" : " cidades / " + n + " dias") + "):",
+        rotaSalva.map(function (c, i) { return "Dia " + (i + 1) + ": " + c; }).join(" → ") + "."
+      ];
+      if (buscaSalva && (buscaSalva.mes || buscaSalva.pessoas)) {
+        const extras = [];
+        if (buscaSalva.mes) extras.push("Período: " + buscaSalva.mes);
+        if (buscaSalva.pessoas) extras.push(buscaSalva.pessoas + (buscaSalva.pessoas === 1 ? " viajante" : " viajantes"));
+        linhas.push(extras.join(" · ") + ".");
+      }
+      linhas.push("Gostaria de receber valores e sugestões de hospedagem.");
+      mensagem.value = linhas.join("\n").slice(0, mensagem.maxLength);
+      dispararInputMensagem();
+    }
+  } else if (tema === "gastronomia" && !mensagem.value.trim()) {
+    marcarRegioes(["brejo", "litoral"]);
+    mensagem.value = "Olá! Tenho interesse em uma rota gastronômica pela Paraíba, conhecendo comidas típicas, engenhos do Brejo e a culinária do litoral.";
+    dispararInputMensagem();
+  }
+
+  if (btnLimpar) {
+    btnLimpar.addEventListener("click", function () {
+      armazem.gravar("rotapb-rota", []);
+      armazem.gravar("rotapb-busca", null);
+      if (caixaResumo) caixaResumo.hidden = true;
+      form.querySelectorAll('fieldset input[type="checkbox"]').forEach(function (cb) { cb.checked = false; });
+      mensagem.value = "";
+      dispararInputMensagem();
+    });
+  }
+}
+
 /* Validação HTML5 + regras extras, com feedback visual do Bootstrap. */
 function validarFormulario() {
   const form = document.getElementById("formViagem");
@@ -306,31 +475,72 @@ function validarFormulario() {
     atualizar();
   }
 
+  // remove aviso de região assim que o usuário marca qualquer checkbox
+  const checkboxesRegiao = form.querySelectorAll('fieldset input[type="checkbox"]');
+  const avisoRegiao = document.getElementById("avisoRegiao");
+  checkboxesRegiao.forEach(function (cb) {
+    cb.addEventListener("change", function () {
+      const alguma = Array.from(checkboxesRegiao).some(function (c) { return c.checked; });
+      if (avisoRegiao && alguma) avisoRegiao.hidden = true;
+    });
+  });
+
   form.addEventListener("submit", function (evento) {
     evento.preventDefault();
 
     // regra extra: pelo menos uma região marcada
-    const regioes = form.querySelectorAll('fieldset input[type="checkbox"]');
-    const algumaRegiao = Array.from(regioes).some(function (c) { return c.checked; });
-    const avisoRegiao = document.getElementById("avisoRegiao");
+    const marcadas = Array.from(checkboxesRegiao).filter(function (c) { return c.checked; });
+    const algumaRegiao = marcadas.length > 0;
     if (avisoRegiao) avisoRegiao.hidden = algumaRegiao;
 
     if (!form.checkValidity() || !algumaRegiao) {
       form.classList.add("was-validated");
-      retorno.className = "alert alert-danger mt-3";
-      retorno.textContent = "Confira os campos destacados antes de enviar.";
-      const primeiroErro = form.querySelector(":invalid");
+      retorno.className = "retorno-form retorno-erro mt-3";
+      retorno.innerHTML = '<i class="bi bi-exclamation-triangle-fill" aria-hidden="true"></i><div><strong>Confira os campos destacados</strong><p class="mb-0">Preencha seus dados corretamente e selecione pelo menos uma região antes de enviar.</p></div>';
+      const primeiroErro = form.querySelector(":invalid") || form.querySelector('fieldset input[type="checkbox"]');
       if (primeiroErro) primeiroErro.focus();
       return;
     }
 
-    const nome = form.nome.value.trim().split(" ")[0];
-    retorno.className = "alert alert-success mt-3";
-    retorno.textContent = "Obrigado, " + nome + "! Recebemos seu pedido e respondemos em até 2 dias úteis.";
+    const nomeCompleto = form.nome.value.trim();
+    const primeiroNome = nomeCompleto.split(" ")[0];
+    const textoMensagem = mensagem ? mensagem.value.trim() : "";
+    const cupomCampo = document.getElementById("cupom");
+    const cupomAplicado = cupomCampo && cupomCampo.value.trim().toUpperCase() === CUPOM && passaporteCompleto();
+    const nomesRegioes = marcadas.map(function (c) {
+      const lbl = form.querySelector('label[for="' + c.id + '"]');
+      return lbl ? lbl.textContent.trim() : c.value;
+    }).join(", ");
+
+    const textoWhats = encodeURIComponent(
+      "Olá, RotaPB! Sou " + nomeCompleto + ". Regiões de interesse: " + nomesRegioes +
+      (cupomAplicado ? " (Cupom " + CUPOM + " - 10% OFF)" : "") +
+      ". " + textoMensagem
+    );
+
+    retorno.className = "retorno-form retorno-sucesso mt-3";
+    retorno.innerHTML =
+      '<i class="bi bi-check-circle-fill" aria-hidden="true"></i>' +
+      '<div>' +
+        '<strong>Pedido enviado, ' + primeiroNome + '!</strong>' +
+        '<p class="mb-2">Recebemos sua solicitação para <strong>' + nomesRegioes + '</strong>' +
+        (cupomAplicado ? ' com <strong>10% de desconto (cupom ' + CUPOM + ')</strong>' : '') +
+        ' e responderemos em até 2 dias úteis.</p>' +
+        '<a class="btn btn-sm btn-escuro" href="https://wa.me/5583999999999?text=' + textoWhats + '" target="_blank" rel="noopener">' +
+          '<i class="bi bi-whatsapp" aria-hidden="true"></i> Enviar também pelo WhatsApp' +
+        '</a>' +
+      '</div>';
+
     form.reset();
     form.classList.remove("was-validated");
-    if (contador) contador.textContent = "0/" + mensagem.maxLength;
-    carimbar("contato");
+    armazem.gravar("rotapb-rota", []);
+    armazem.gravar("rotapb-busca", null);
+    const caixaResumo = document.getElementById("resumoRotaContato");
+    if (caixaResumo) caixaResumo.hidden = true;
+    if (contador && mensagem) contador.textContent = "0/" + mensagem.maxLength;
+    const avisoCupom = document.getElementById("avisoCupom");
+    if (avisoCupom) avisoCupom.textContent = "";
+    if (cupomCampo) cupomCampo.classList.remove("is-valid", "is-invalid");
   });
 }
 
@@ -360,14 +570,14 @@ function assinarNovidades() {
 /* Os carimbos. Metade vem do Desafio (uma sala por região), metade de
    páginas exploradas. Tudo fica salvo em localStorage ("rotapb-passaporte"). */
 const CARIMBOS = [
-  { id: "sertao",    nome: "Sertão",         detalhe: "Vale dos Dinossauros", icone: "bi-sun",          tipo: "sala" },
-  { id: "borborema", nome: "Cariri",         detalhe: "Pedra do Ingá",        icone: "bi-gem",          tipo: "sala" },
-  { id: "brejo",     nome: "Brejo",          detalhe: "Teatro Minerva",       icone: "bi-tree",         tipo: "sala" },
-  { id: "litoral",   nome: "Litoral",        detalhe: "Centro Histórico",     icone: "bi-water",        tipo: "sala" },
-  { id: "conhece",   nome: "Curioso",        detalhe: "Você conhece?",        icone: "bi-lightbulb",    tipo: "pagina" },
-  { id: "culinaria", nome: "Comilão",        detalhe: "Culinária",            icone: "bi-cup-hot",      tipo: "pagina" },
+  { id: "sertao",    nome: "Sertão",         detalhe: "Vale dos Dinossauros", icone: "bi-sun",              tipo: "sala" },
+  { id: "borborema", nome: "Cariri",         detalhe: "Pedra do Ingá",        icone: "bi-gem",              tipo: "sala" },
+  { id: "brejo",     nome: "Brejo",          detalhe: "Teatro Minerva",       icone: "bi-tree",             tipo: "sala" },
+  { id: "litoral",   nome: "Litoral",        detalhe: "Centro Histórico",     icone: "bi-water",            tipo: "sala" },
+  { id: "conhece",   nome: "Curioso",        detalhe: "Você conhece?",        icone: "bi-lightbulb",        tipo: "pagina" },
+  { id: "culinaria", nome: "Comilão",        detalhe: "Culinária",            icone: "bi-cup-hot",          tipo: "pagina" },
   { id: "cultura",   nome: "Forrozeiro",     detalhe: "Cultura",              icone: "bi-music-note-beamed", tipo: "pagina" },
-  { id: "contato",   nome: "Viajante",       detalhe: "Pediu uma viagem",     icone: "bi-send",         tipo: "pagina" }
+  { id: "roteiros",  nome: "Roteirista",     detalhe: "Roteiros",             icone: "bi-signpost-split",   tipo: "pagina" }
 ];
 
 function lerPassaporte() {
@@ -449,7 +659,7 @@ function validarCupom() {
 /* Carimbo automático por página visitada + botão de zerar. */
 function iniciarPassaporte() {
   const pagina = (location.pathname.split("/").pop() || "index.html").replace(".html", "");
-  if (["conhece", "culinaria", "cultura"].includes(pagina)) carimbar(pagina);
+  if (["conhece", "culinaria", "cultura", "roteiros"].includes(pagina)) carimbar(pagina);
 
   const zerar = document.getElementById("zerarPassaporte");
   if (zerar) {
@@ -697,6 +907,7 @@ document.addEventListener("DOMContentLoaded", function () {
   altoContraste();
   voltarAoTopo();
   trocarAbas();
+  mapaInterativo();
   virarCartas();
   filtrarCulinaria();
   filtrarRoteiros();
@@ -704,6 +915,7 @@ document.addEventListener("DOMContentLoaded", function () {
   trocarMusica();
   mascaraTelefone();
   validarFormulario();
+  preencherRotaNoContato();
   validarCupom();
   assinarNovidades();
   iniciarPassaporte();

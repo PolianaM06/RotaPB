@@ -1,5 +1,5 @@
 /* ==========================================================================
-   PARAÍBA ADENTRO · style.css
+   ROTAPB · style.css
    ETAPA 7: identidade visual própria (cores, tipografia, espaçamentos, hierarquia)
    Trabalhar com: Flexbox, CSS Grid, pseudo-classes e animações simples.
 
@@ -16,8 +16,8 @@
    A bandeira (vermelho + preto) aparece só como detalhe. */
 :root {
   /* Paleta inspirada nas referências (fundo claro, verde floresta, laranja quente).
-     A bandeira (vermelho + preto) aparece só na faixa fina do topo e no ícone. */
-  --pb-acento: #C2591F;     /* laranja-terracota: botões e destaques (branco sobre ele passa no contraste) */
+     Contraste conferido para WCAG AA (>= 4.5:1) em botões, selos e textos. */
+  --pb-acento: #B34E18;     /* laranja-terracota: botões e destaques (5.22:1 com branco; 4.84:1 no fundo claro) */
   --pb-acento-claro: #F2A65A;
   --pb-escuro: #1F4A3A;     /* verde floresta: barra de cima, rodapé, faixas, botões escuros */
   --pb-titulo: #1F4A3A;     /* cor dos títulos (no noturno fica clara) */
@@ -30,10 +30,10 @@
   --pb-suave: #5E6A63;
   --pb-linha: #E1E5DD;
 
-  --pb-sertao: #C9974F;
-  --pb-borborema: #A06E55;
-  --pb-brejo: #4F7A55;
-  --pb-litoral: #2F7F86;
+  --pb-sertao: #8E5E1B;     /* 5.57:1 com branco nos selos */
+  --pb-borborema: #86563E;  /* 6.15:1 com branco nos selos */
+  --pb-brejo: #4F7A55;      /* 4.94:1 com branco nos selos */
+  --pb-litoral: #2F7F86;    /* 4.67:1 com branco nos selos */
 
   --fonte: "Plus Jakarta Sans", "Segoe UI", system-ui, sans-serif;
   --fonte-destaque: "DM Serif Display", Georgia, serif;
@@ -172,9 +172,15 @@ figure figcaption { font-size: .8rem; color: var(--pb-suave); margin-top: .3rem;
 /* mapa do carneiro (contorno real) */
 .mapa-pb { width: 100%; height: auto; overflow: visible; }
 .mapa-pb .contorno { fill: url(#gradRegioes); stroke: var(--pb-escuro); stroke-width: 3; stroke-linejoin: round; filter: drop-shadow(0 10px 14px rgba(42, 35, 32, .2)); }
-.mapa-pb .pin circle { fill: var(--pb-acento); stroke: #fff; stroke-width: 4; }
-.mapa-pb .pin text { font-family: var(--fonte); font-weight: 700; font-size: 24px; fill: var(--pb-escuro); paint-order: stroke; stroke: #fff; stroke-width: 6px; }
-/* TODO (Pessoa 1): animação simples nos pinos */
+.mapa-pb .pin { cursor: pointer; }
+.mapa-pb .pin circle { fill: var(--pb-acento); stroke: #fff; stroke-width: 4; transform-box: fill-box; transform-origin: center; transition: transform .25s ease, fill .25s ease; animation: pulsarPino 2.8s ease-in-out infinite; }
+.mapa-pb .pin:hover circle, .mapa-pb .pin:focus-visible circle { transform: scale(1.32); fill: var(--pb-escuro); animation: none; }
+.mapa-pb .pin text { font-family: var(--fonte); font-weight: 700; font-size: 24px; fill: var(--pb-escuro); paint-order: stroke; stroke: #fff; stroke-width: 6px; transition: fill .2s ease; }
+.mapa-pb .pin:hover text, .mapa-pb .pin:focus-visible text { fill: var(--pb-acento); }
+@keyframes pulsarPino {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.12); }
+}
 
 /* abas (Pessoa 2) */
 .abas { display: flex; gap: .35rem; margin-top: 1.5rem; }
@@ -227,14 +233,35 @@ figure figcaption { font-size: .8rem; color: var(--pb-suave); margin-top: .3rem;
 
 /* roteiros (Pessoa 3) */
 .card-regiao { border-top: 6px solid var(--cor-regiao, var(--pb-preto)); }
+.aviso-busca-home { background: var(--pb-claro); color: var(--pb-tinta); border-left: 4px solid var(--pb-acento); border-radius: 12px; padding: .75rem 1rem; font-size: .9rem; margin-top: 1rem; display: flex; align-items: center; gap: .6rem; flex-wrap: wrap; }
 .painel-rota { position: sticky; top: 100px; background: var(--pb-escuro); color: #fff; padding: 1.5rem; border-radius: var(--raio); }
-.painel-rota ol { border-left: 4px solid var(--pb-sertao); padding-left: 1.5rem; }
-.painel-rota .vazio { color: #b8c9c5; list-style: none; margin-left: -1.5rem; }
+.painel-rota h2 { color: #fff; }
+.painel-rota ol { border-left: 4px solid var(--pb-acento-claro); padding-left: 1.25rem; list-style: none; display: grid; gap: .45rem; }
+.painel-rota .vazio { color: #d5e2de; list-style: none; margin-left: -1.25rem; }
+.rota-item { display: flex; align-items: center; justify-content: space-between; gap: .5rem; background: rgba(255, 255, 255, .10); padding: .35rem .55rem .35rem .75rem; border-radius: 10px; font-weight: 600; font-size: .95rem; }
+.btn-remover-cidade { background: transparent; border: 0; color: #E6EDE8; width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; font-size: 1.1rem; line-height: 1; transition: background .2s ease; }
+.btn-remover-cidade:hover { background: rgba(255, 255, 255, .2); color: #fff; }
+.btn-limpar-rota { background: transparent; border: 1px solid rgba(255, 255, 255, .35); color: #E6EDE8; border-radius: 999px; padding: .45rem 1rem; font-size: .85rem; font-weight: 700; width: 100%; margin-top: .5rem; }
+.btn-limpar-rota:hover { background: rgba(255, 255, 255, .14); color: #fff; }
 
-/* formulário (Pessoa 3) — TODO: estilizar o retorno de sucesso/erro */
+/* resumo de rota importada em Contato */
+.resumo-rota-contato { background: var(--pb-claro); border: 1px solid var(--pb-linha); border-left: 5px solid var(--pb-acento); border-radius: var(--raio); padding: 1rem 1.25rem; margin-bottom: 1.25rem; }
+.resumo-rota-contato-topo { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .5rem; margin-bottom: .65rem; }
+.resumo-rota-contato-acoes { display: flex; gap: .5rem; flex-wrap: wrap; }
+.chips-rota-contato { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: .45rem; }
+.chip-cidade { background: var(--pb-papel); color: var(--pb-tinta); border: 1px solid var(--pb-linha); border-radius: 999px; padding: .25rem .75rem; font-size: .85rem; }
+.chip-cidade strong { color: var(--pb-acento); margin-right: .25rem; }
+
+/* formulário (Pessoa 3) — retorno estilizado de sucesso/erro */
 .formulario { background: var(--pb-papel); border-radius: var(--raio); box-shadow: var(--sombra); padding: clamp(1.25rem, 3vw, 2rem); }
 .form-label { font-weight: 700; }
 .mapa-embed { border-radius: var(--raio); overflow: hidden; }
+.retorno-form { display: flex; align-items: flex-start; gap: .8rem; padding: 1rem 1.2rem; border-radius: 14px; border-left: 5px solid transparent; animation: surgir .35s ease both; }
+.retorno-form > i { font-size: 1.35rem; line-height: 1.2; flex: 0 0 auto; }
+.retorno-sucesso { background: #E7F5EC; color: #124024; border-left-color: #197A42; }
+.retorno-sucesso > i { color: #197A42; }
+.retorno-erro { background: #FCEBEC; color: #6B1117; border-left-color: #A3161B; }
+.retorno-erro > i { color: #A3161B; }
 
 /* ---------- 9. RODAPÉ E BOTÕES FLUTUANTES ---------- */
 .rodape { background: var(--pb-escuro); color: #E6EDE8; }
@@ -248,25 +275,34 @@ figure figcaption { font-size: .8rem; color: var(--pb-suave); margin-top: .3rem;
 .assinatura .form-control { border-radius: 999px; }
 
 .flutuante { position: fixed; right: 1.25rem; z-index: 1040; width: 52px; height: 52px; border-radius: 50%; border: 0; display: grid; place-items: center; font-size: 1.4rem; box-shadow: var(--sombra); }
-.whatsapp { bottom: 1.25rem; background: #1F8F4E; color: #fff; text-decoration: none; }   /* verde escuro: contraste com o ícone branco */
-.whatsapp:hover { background: #167340; color: #fff; }
+.whatsapp { bottom: 1.25rem; background: #197A42; color: #fff; text-decoration: none; }   /* contraste 5.38:1 com ícone branco */
+.whatsapp:hover { background: #136034; color: #fff; }
 .voltar-topo { bottom: 5.25rem; background: var(--pb-escuro); color: #fff; opacity: 0; visibility: hidden; transition: opacity .3s ease; }
 .voltar-topo.visivel { opacity: 1; visibility: visible; }
 
 /* ---------- 10. MODO NOTURNO E ALTO CONTRASTE ----------
    O JS coloca data-tema="escuro" ou data-contraste="alto" no <html>.
-   Aqui só trocamos as variáveis. TODO: ajustar até ficar bom. */
+   Cores ajustadas para manter contraste WCAG AA (>= 4.5:1) em todos os componentes. */
 :root[data-tema="escuro"] {
   --pb-fundo: #151311; --pb-papel: #1F1C19; --pb-claro: #26221E;
   --pb-tinta: #F1EAE0; --pb-suave: #C4B8AC; --pb-linha: #3A332D;
   --pb-titulo: #F6F1E8; --pb-acento: #E8853F; --pb-acento-claro: #F2A65A;
   --sombra: 0 12px 32px rgba(0, 0, 0, .35);
 }
+:root[data-tema="escuro"] .btn-pb, :root[data-tema="escuro"] .faixa.ativa { color: #151311; }
+:root[data-tema="escuro"] .btn-pb:hover { background: #F2A65A; color: #151311; }
 :root[data-tema="escuro"] .tag-cat { color: #1E2B25; }            /* etiquetas têm fundo claro: texto fixo escuro */
 :root[data-tema="escuro"] .vantagens, :root[data-tema="escuro"] .busca { background: var(--pb-papel); }
 :root[data-tema="escuro"] .busca-campo .form-select, :root[data-tema="escuro"] .busca-campo .form-control { color: var(--pb-tinta); }
 :root[data-tema="escuro"] .form-control, :root[data-tema="escuro"] .form-select { background-color: #26221E; color: var(--pb-tinta); border-color: var(--pb-linha); }
+:root[data-tema="escuro"] .form-control::placeholder { color: #A69A8E; }
+:root[data-tema="escuro"] .text-muted, :root[data-tema="escuro"] .form-text { color: var(--pb-suave) !important; }
 :root[data-tema="escuro"] .modal-content, :root[data-tema="escuro"] .card { background: var(--pb-papel); color: var(--pb-tinta); }
+:root[data-tema="escuro"] .table { --bs-table-bg: transparent; --bs-table-color: var(--pb-tinta); --bs-table-border-color: var(--pb-linha); }
+:root[data-tema="escuro"] .retorno-sucesso { background: #173322; color: #D4F3DF; border-left-color: #4AD182; }
+:root[data-tema="escuro"] .retorno-sucesso > i { color: #4AD182; }
+:root[data-tema="escuro"] .retorno-erro { background: #3B181A; color: #FAD6D8; border-left-color: #F06D73; }
+:root[data-tema="escuro"] .retorno-erro > i { color: #F06D73; }
 :root[data-tema="escuro"] .btn-close { filter: invert(1); }
 :root[data-tema="escuro"] .certificado { background: #fff; color: #1E2B25; }
 :root[data-tema="escuro"] .mapa-pb .pin text { fill: var(--pb-tinta); stroke: var(--pb-fundo); }
@@ -280,9 +316,19 @@ figure figcaption { font-size: .8rem; color: var(--pb-suave); margin-top: .3rem;
 :root[data-contraste="alto"] {
   --pb-fundo: #FFFFFF; --pb-papel: #FFFFFF; --pb-claro: #FFFFFF;
   --pb-tinta: #000000; --pb-suave: #000000; --pb-linha: #000000;
-  --pb-vermelho: #8A0000; --pb-escuro: #000000; --sombra: none;
+  --pb-titulo: #000000; --pb-acento: #8A0000; --pb-vermelho: #8A0000; --pb-escuro: #000000; --sombra: none;
 }
 :root[data-contraste="alto"] a { text-decoration: underline; }
+:root[data-contraste="alto"] .card,
+:root[data-contraste="alto"] .card-prato,
+:root[data-contraste="alto"] .card-pessoa,
+:root[data-contraste="alto"] .restaurante,
+:root[data-contraste="alto"] .formulario,
+:root[data-contraste="alto"] .painel,
+:root[data-contraste="alto"] .palco,
+:root[data-contraste="alto"] .resumo-rota-contato,
+:root[data-contraste="alto"] .vantagens,
+:root[data-contraste="alto"] .busca { border: 2px solid #000; }
 
 @keyframes surgir { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
 .hero-texto { animation: surgir .7s ease both; }
@@ -369,7 +415,7 @@ figure figcaption { font-size: .8rem; color: var(--pb-suave); margin-top: .3rem;
 .carimbo.carimbado .carimbo-selo { border: 3px solid var(--cor-regiao, var(--pb-escuro)); color: #fff; background: var(--cor-regiao, var(--pb-escuro)); transform: rotate(-8deg); animation: carimbar .4s ease; }
 .carimbo-selo.grande { width: 84px; height: 84px; font-size: 2.2rem; border: 4px solid var(--cor-regiao, var(--pb-escuro)); background: var(--cor-regiao, var(--pb-escuro)); color: #fff; transform: rotate(-8deg); margin-bottom: .75rem; animation: carimbar .5s ease; }
 @keyframes carimbar { from { transform: rotate(-8deg) scale(1.6); opacity: 0; } to { transform: rotate(-8deg) scale(1); opacity: 1; } }
-.regiao-conhece { --cor-regiao: #7A6AA6; } .regiao-culinaria { --cor-regiao: #B8562E; } .regiao-cultura { --cor-regiao: #2F6F8F; } .regiao-contato { --cor-regiao: var(--pb-escuro); }
+.regiao-conhece { --cor-regiao: #7A6AA6; } .regiao-culinaria { --cor-regiao: #B8562E; } .regiao-cultura { --cor-regiao: #2F6F8F; } .regiao-roteiros { --cor-regiao: var(--pb-escuro); }
 
 /* ---------- DESAFIO ---------- */
 .desafio-tempo { display: flex; flex-direction: column; align-items: flex-start; gap: .1rem; padding: .9rem 1.25rem; border-radius: var(--raio); background: var(--pb-escuro); color: #fff; }

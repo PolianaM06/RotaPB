@@ -83,14 +83,16 @@
           <button class="filtro" type="button" data-filtro="brejo" aria-pressed="false">Brejo</button>
           <button class="filtro" type="button" data-filtro="litoral" aria-pressed="false">Litoral</button>
         </div>
+        <div id="avisoBuscaHome" class="aviso-busca-home" role="status" hidden></div>
 
+        <h2 class="visually-hidden">Cidades disponíveis por região</h2>
         <div class="row g-4 mt-1">
           <div class="col-12 col-lg-8">
             <div class="row g-4">
           <!-- data-regiao é o que o filtro usa para mostrar/esconder -->
           <div class="col-12 col-sm-6 col-xl-4 item-roteiro" data-regiao="sertao">
             <article class="card card-regiao regiao-sertao h-100">
-              <img class="foto " src="../images/fotos/cajazeiras.png" alt="Cajazeiras" loading="lazy">
+              <img class="foto " src="../images/fotos/cajazeiras.webp" alt="Vista aérea de Cajazeiras no Sertão paraibano" loading="lazy">
               <div class="card-body">
                 <h3 class="card-title">Cajazeiras</h3>
                 <p class="card-text">A terra que ensinou a Paraíba a ler.</p>
@@ -118,7 +120,7 @@
           <!-- data-regiao é o que o filtro usa para mostrar/esconder -->
           <div class="col-12 col-sm-6 col-xl-4 item-roteiro" data-regiao="borborema">
             <article class="card card-regiao regiao-borborema h-100">
-              <img class="foto " src="../images/fotos/campina-grande.png" alt="Campina Grande" loading="lazy">
+              <img class="foto " src="../images/fotos/campina-grande.webp" alt="Campina Grande na Serra da Borborema" loading="lazy">
               <div class="card-body">
                 <h3 class="card-title">Campina Grande</h3>
                 <p class="card-text">Maior São João do Mundo.</p>
@@ -160,7 +162,7 @@
           <!-- data-regiao é o que o filtro usa para mostrar/esconder -->
           <div class="col-12 col-sm-6 col-xl-4 item-roteiro" data-regiao="brejo">
             <article class="card card-regiao regiao-brejo h-100">
-              <img class="foto " src="../images/fotos/bananeiras.png" alt="Igraja Nossa Senhora do Livramento" loading="lazy">
+              <img class="foto " src="../images/fotos/bananeiras.webp" alt="Igreja Nossa Senhora do Livramento em Bananeiras" loading="lazy">
               <div class="card-body">
                 <h3 class="card-title">Bananeiras</h3>
                 <p class="card-text">Cachoeira do Roncador.</p>
@@ -202,7 +204,7 @@
           <!-- data-regiao é o que o filtro usa para mostrar/esconder -->
           <div class="col-12 col-sm-6 col-xl-4 item-roteiro" data-regiao="litoral">
             <article class="card card-regiao regiao-litoral h-100">
-              <img class="foto " src="../images/fotos/lucena.png" alt="Capela de Nossa Senhora de Guia" loading="lazy">
+              <img class="foto " src="../images/fotos/lucena.webp" alt="Capela de Nossa Senhora da Guia em Lucena" loading="lazy">
               <div class="card-body">
                 <h3 class="card-title">Lucena</h3>
                 <p class="card-text">Praias tranquilas do litoral norte.</p>
@@ -216,7 +218,7 @@
           <!-- data-regiao é o que o filtro usa para mostrar/esconder -->
           <div class="col-12 col-sm-6 col-xl-4 item-roteiro" data-regiao="litoral">
             <article class="card card-regiao regiao-litoral h-100">
-              <img class="foto " src="../images/fotos/baia-da-traicao.png" alt="Praia de Baía da Traição" loading="lazy">
+              <img class="foto " src="../images/fotos/baia-da-traicao.webp" alt="Praia de Baía da Traição" loading="lazy">
               <div class="card-body">
                 <h3 class="card-title">Baía da Traição</h3>
                 <p class="card-text">Terra dos potiguaras.</p>
@@ -247,9 +249,11 @@
           <aside class="col-12 col-lg-4">
             <div class="painel-rota">
               <h2 class="h4">Sua rota</h2>
+              <p class="small mb-2" style="color:#d5e2de;">Ordenada automaticamente de oeste para leste (do Sertão ao mar).</p>
               <ol id="listaRota"><li class="vazio">Marque as cidades que quer visitar.</li></ol>
               <p id="resumoRota" aria-live="polite">0 cidades</p>
-              <a class="btn btn-pb w-100" href="contato.html">Quero essa viagem</a>
+              <a id="btnQueroViagem" class="btn btn-pb w-100" href="contato.html">Quero essa viagem</a>
+              <button type="button" id="limparRota" class="btn-limpar-rota" hidden><i class="bi bi-trash3" aria-hidden="true"></i> Limpar rota</button>
             </div>
           </aside>
         </div>
@@ -260,12 +264,12 @@
       <div class="container">
         <h2 id="tituloFestas" class="titulo-secao">Calendário de festas</h2>
         <div class="row g-3">
-          <div class="col-12 col-md-4"><article class="card h-100"><div class="card-body"><h3 class="h5">Fevereiro/Março</h3><p class="mb-0">Folia de Rua em João Pessoa</p></div></article></div>
+          <div class="col-12 col-md-4"><article class="card h-100"><div class="card-body"><h3 class="h5">Fevereiro/Março</h3><p class="mb-0">Folia de Rua em João Pessoa.</p></div></article></div>
           <div class="col-12 col-md-4"><article class="card h-100"><div class="card-body"><h3 class="h5">Junho</h3><p class="mb-0">São João de Campina Grande e de Bananeiras.</p></div></article></div>
           <div class="col-12 col-md-4"><article class="card h-100"><div class="card-body"><h3 class="h5">Agosto</h3><p class="mb-0">Caminhos do Frio no Brejo.</p></div></article></div>
-          <div class="col-12 col-md-4"><article class="card h-100"><div class="card-body"><h3 class="h5">Agosto</h3><p class="mb-0">Festa das Neves em João Pessoa</p></div></article></div>
-          <div class="col-12 col-md-4"><article class="card h-100"><div class="card-body"><h3 class="h5">Outubro</h3><p class="mb-0">Festa do Rosário em Pombal</p></div></article></div>
-          <div class="col-12 col-md-4"><article class="card h-100"><div class="card-body"><h3 class="h5">Novembro</h3><p class="mb-0">Romaria da Penha em João Pessoa</p></div></article></div>
+          <div class="col-12 col-md-4"><article class="card h-100"><div class="card-body"><h3 class="h5">Agosto</h3><p class="mb-0">Festa das Neves em João Pessoa.</p></div></article></div>
+          <div class="col-12 col-md-4"><article class="card h-100"><div class="card-body"><h3 class="h5">Outubro</h3><p class="mb-0">Festa do Rosário em Pombal.</p></div></article></div>
+          <div class="col-12 col-md-4"><article class="card h-100"><div class="card-body"><h3 class="h5">Novembro</h3><p class="mb-0">Romaria da Penha em João Pessoa.</p></div></article></div>
         </div>
       </div>
     </section>
@@ -300,7 +304,7 @@
           <h2 class="h6">Atendimento</h2>
           <ul class="list-unstyled">
             <li><i class="bi bi-whatsapp" aria-hidden="true"></i> (83) 99999-9999 <span class="text-nowrap">(fictício)</span></li>
-            <li><i class="bi bi-envelope" aria-hidden="true"></i> contato@paraibaadentro.com.br</li>
+            <li><i class="bi bi-envelope" aria-hidden="true"></i> contato@rotapb.com.br</li>
             <li><a href="contato.html">Formulário de contato</a></li>
           </ul>
         </section>

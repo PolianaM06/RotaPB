@@ -76,6 +76,18 @@
             <p class="sobretitulo">Monte sua viagem</p>
             <h1 id="tituloPagina">Conte pra gente como quer atravessar</h1>
 
+            <!-- Resumo automático da rota montada em roteiros.html -->
+            <div id="resumoRotaContato" class="resumo-rota-contato" hidden>
+              <div class="resumo-rota-contato-topo">
+                <strong><i class="bi bi-signpost-split" aria-hidden="true"></i> Rota importada de Roteiros</strong>
+                <div class="resumo-rota-contato-acoes">
+                  <a class="btn btn-sm btn-outline-secondary" href="roteiros.html">Alterar cidades</a>
+                  <button type="button" class="btn btn-sm btn-outline-danger" id="limparRotaContato">Limpar rota</button>
+                </div>
+              </div>
+              <ul id="chipsRotaContato" class="chips-rota-contato" aria-label="Cidades selecionadas na rota"></ul>
+            </div>
+
             <!-- ETAPA 9: campos mínimos nome, e-mail, telefone, mensagem + validação HTML5 (required, type, minlength) -->
             <!-- novalidate: desliga os balões do navegador para mostrarmos nossas mensagens (Bootstrap .invalid-feedback) -->
             <form id="formViagem" class="formulario" novalidate>
@@ -166,7 +178,7 @@
           <h2 class="h6">Atendimento</h2>
           <ul class="list-unstyled">
             <li><i class="bi bi-whatsapp" aria-hidden="true"></i> (83) 99999-9999 <span class="text-nowrap">(fictício)</span></li>
-            <li><i class="bi bi-envelope" aria-hidden="true"></i> contato@paraibaadentro.com.br</li>
+            <li><i class="bi bi-envelope" aria-hidden="true"></i> contato@rotapb.com.br</li>
             <li><a href="contato.html">Formulário de contato</a></li>
           </ul>
         </section>
